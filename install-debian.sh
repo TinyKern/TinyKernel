@@ -1,6 +1,6 @@
 # * @file install-debian.sh
 # * @author Owen Boreham (owenkadeboreham@gmail.com)
-# * @version 0.1
+# * @version 0.1.2
 # * @date 2021-07-06
 # * 
 # * @copyright Copyright (c) 2021 TinyKernel
@@ -42,12 +42,18 @@ if [ -d "build" ]; then
   clean;
 fi
 
-# Install QEMU
+# install requirements
+echo "Installing important requirements:";
+echo "  apt-get install binutils";
+echo "  apt-get install gcc";
+sudo apt-get -y --no-install-recommends install binutils gcc
+
+# Install QEMU, Grub & xorriso
 echo "Installing QEMU & GRUB & xorriso:";
-echo "  apt-get install qemu-system-x86";
+echo "  apt-get install qemu qemu-system-x86";
 echo "  apt-get install grub-common";
 echo "  apt-get install xorriso\n";
-sudo apt-get install qemu-system-x86 grub-common xorriso;
+sudo apt-get -y --no-install-recommends install qemu-system-x86 grub-common xorriso;
 
 sleep 0.5; # suspense...
 # Create build dirs

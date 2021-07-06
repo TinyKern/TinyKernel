@@ -1,13 +1,13 @@
-clear
-
-version=0.1.1
-
+clear;
+version=0.1.1;
+iso_name="TinyKernel_Bobrossrtx-${version}.iso";
 echo \
 "
 ▀█▀ █ █▄░█ █▄█ █▄▀ █▀▀ █▀█ █▄░█ ▄▀█ █░░
 ░█░ █ █░▀█ ░█░ █░█ ██▄ █▀▄ █░▀█ █▀█ █▄▄
     Created by: Owen Boreham
     Version: ${version}
+    Iso: ${iso_name}
 ";
 
 include_dir="include";
@@ -15,15 +15,15 @@ kernel_dir="kernel";
 build_dir="build";
 
 # Build subdirs
-boot_dir="${build_dir}/boot"
-grub_dir="${boot_dir}/grub"
-obj_dir="${build_dir}/obj"
-iso_dir="${build_dir}/iso"
+boot_dir="${build_dir}/boot";
+grub_dir="${boot_dir}/grub";
+obj_dir="${build_dir}/obj";
+iso_dir="${build_dir}/iso";
 
-clean() 
+clean()
 {
   echo "${build_dir}/ already exists:"
-  echo "  rm -rf ${build_dir}\n"
+  echo "  rm -rf ${build_dir}\n";
   rm -rf $build_dir;
 }
 
@@ -32,9 +32,11 @@ if [ -d "build" ]; then
 fi
 
 # Install QEMU
-echo "Installing QEMU:"
-echo "  apt-get install qemu-system-x86\n"
-sudo apt-get install qemu-system-x86
+echo "Installing QEMU & GRUB & xorriso:";
+echo "  apt-get install qemu-system-x86";
+echo "  apt-get install grub-common";
+echo "  apt-get install xorriso\n";
+sudo apt-get install qemu-system-x86 grub-common xorriso;
 
 sleep 0.5; # suspense...
 # Create build dirs
@@ -83,16 +85,15 @@ grub-file --is-x86-multiboot ${boot_dir}/TinyKernel.bin;
 
 sleep 0.5; # suspense..
 
-iso_name="TinyKernel_Bobrossrtx-${version}.iso"
-
+# Building the ISO file
 echo "Building ISO:";
-echo "  cp grub.cfg ${grub_dir}/grub.cfg"
-echo "  grub-mkrescue -o ${iso_name} ${build_dir}"
+echo "  cp grub.cfg ${grub_dir}/grub.cfg";
+echo "  grub-mkrescue -o ${iso_name} ${build_dir}";
 cp grub.cfg ${grub_dir}/grub.cfg;
 grub-mkrescue -o ${iso_name} ${build_dir};
 echo "Moving ISO:";
 echo "  mv ${iso_name} ${iso_dir}/${iso_name}";
-mv ${iso_name} ${iso_dir}/${iso_name}
+mv ${iso_name} ${iso_dir}/${iso_name};
 
 # Run
 while true; do

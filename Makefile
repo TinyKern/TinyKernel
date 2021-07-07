@@ -1,7 +1,7 @@
 # * @file Makefile
 # * @author Owen Boreham (owenkadeboreham@gmail.com)
-# * @version 0.1
-# * @date 2021-07-06
+# * @version 0.1.5
+# * @date 2021-07-07
 # * 
 # * @copyright Copyright (c) 2021 TinyKernel
 # * This file is part of TinyKernel which is released
@@ -9,42 +9,43 @@
 # * to https://www.apache.org/licenses/LICENSE-2.0 for
 # * full license details.
 
-# Compiler
-CC := gcc
-
-# Compilation Flags
-INCLUDE := include
-LDFLAGS := -S -I ${INCLUDE} 
-CFLAGS = -Wall
-
-# File Paths
-SRC_DIR := src
-BUILD_DIR := build
+CC = gcc
+LD = ld
+AS = as
+BUILD_DIR ?= build
+BOOT_DIR := $(BUILD_DIR)/boot
 OBJ_DIR := $(BUILD_DIR)/obj
+SRC_DIRS ?= kernel
+INC_DIRS := include
 
-# Files to be compiled
-SRCS := $(wildcard $(SRC_DIR)/*.c)
-OBJS := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-BUILD := $(OBJS:$(OBJ_DIR)/%.o=$(BUILD_DIR)/%)
+TARGET_BIN ?= $(BOOT_DIR)/TinyKernel.bin
+KERNEL_OUT ?= $(OBJ_DIR)/kernel.o
+SRC_SUBS := $(shell find $(SRC_DIRS) -type d)
 
-# Don't remove *.o files automatically
-.SECONDARY: $(OBJS)
+SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c)
+OBJS := $(SRCS:%=$(OBJ_DIR)/%.o)
+DEPS := $(OBJS:.o=.d)
 
-all: $(BUILD)
+INC_FLAGS := $(addprefix -I,$(INC_DIRS))
+CFLAGS ?= $(INC_FLAGS) -std=gnu99 -ffreestanding -O2 -Wall -Wextra
+LDFLAGS ?= -m elf_i386 -T linker.ld
+ASFLAGS ?= --32
 
-# Compile each *.c file as *.o files
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@echo + CC $<
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -c -o $@ $<
+$(TARGET_BIN): $(OBJS)
+	$(LD) $(LDFLAGS) $(OBJS) -o $(TARGET_BIN)
 
-# Link each *.o file as *.s files
-$(BUILD_DIR)/%: $(OBJ_DIR)/%.o
-	@echo + CC $<
-	@mkdir -p $(BUILD_DIR)
-	@$(CC) -S -o $@ $<
+# assembly
+$(OBJ_DIR)/%.o: %.s
+	$(MKDIR_P) $(dir $@)
+	$(AS) $(ASFLAGS) -c $< -o $@
 
-.PHONY: all clean
+$(OBJ_DIR)/%.o: %.c
+	$(MKDIR_P) $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+.PHONY: clean
 
 clean:
-	rm -rf $(BUILD_DIR)
+	$(RM) -r $(BUILD_DIR)
+
+MKDIR_P ?= mkdir -p

@@ -1,6 +1,6 @@
 # * @file install-debian.sh
 # * @author Owen Boreham (owenkadeboreham@gmail.com)
-# * @version 0.1
+# * @version 0.1.2
 # * @date 2021-07-06
 # * 
 # * @copyright Copyright (c) 2021 TinyKernel
@@ -34,7 +34,7 @@ iso_dir="${build_dir}/iso";
 clean()
 {
   echo "${build_dir}/ already exists:"
-  echo "  rm -rf ${build_dir}\n";
+  echo "  rm -rf ${build_dir}";
   rm -rf $build_dir;
 }
 
@@ -42,12 +42,18 @@ if [ -d "build" ]; then
   clean;
 fi
 
-# Install QEMU
+# install requirements
+echo "Installing important requirements:";
+echo "  apt-get install binutils";
+echo "  apt-get install gcc";
+sudo apt-get -y --no-install-recommends install binutils gcc
+
+# Install QEMU, Grub & xorriso
 echo "Installing QEMU & GRUB & xorriso:";
-echo "  apt-get install qemu-system-x86";
+echo "  apt-get install qemu qemu-system-x86";
 echo "  apt-get install grub-common";
-echo "  apt-get install xorriso\n";
-sudo apt-get install qemu-system-x86 grub-common xorriso;
+echo "  apt-get install xorriso";
+sudo apt-get -y --no-install-recommends install qemu-system-x86 grub-common xorriso;
 
 sleep 0.5; # suspense...
 # Create build dirs
@@ -60,7 +66,7 @@ echo "        ${grub_dir}:   📁";
 sleep 0.5; # suspense...
 echo "        ${obj_dir}:         📁";
 sleep 0.5; # suspense...
-echo "        ${iso_dir}:         📁\n";
+echo "        ${iso_dir}:         📁";
 
 # Create the build directories
 mkdir $build_dir;
@@ -76,7 +82,7 @@ sleep 0.5; # suspense...
 # Compile ${kernel_dir}/kernel.c file
 echo "Compiling ./${kernel_dir}/kernel.c:";
 echo "  gcc -m32 -c ${kernel_dir}/kernel.c -o ${obj_dir}/kernel.o \\";
-echo "    -std=gnu99 -ffreestanding -O2 -Wall -Wextra -I ${include_dir}\n";
+echo "    -std=gnu99 -ffreestanding -O2 -Wall -Wextra -I ${include_dir}";
 gcc -m32 -c ${kernel_dir}/kernel.c -o ${obj_dir}/kernel.o \
   -std=gnu99 -ffreestanding -O2 -Wall -Wextra -I $include_dir;
 
@@ -84,7 +90,7 @@ sleep 0.5; # suspense...
 # Linking the kernel with ${obj_dir}/kernel.o and ${obj_dir}/boot.o files
 echo "Linking kernel:";
 echo "  ld -m elf_i386 -T linker.ld ${obj_dir}/kernel.o ${obj_dir}/boot.o \\";
-echo "    -o ${boot_dir}/TinyKernel.bin\n";
+echo "    -o ${boot_dir}/TinyKernel.bin";
 ld -m elf_i386 -T linker.ld ${obj_dir}/kernel.o ${obj_dir}/boot.o \
   -o ${boot_dir}/TinyKernel.bin;
 
@@ -112,6 +118,6 @@ while true; do
   case $yn in
     [Yy]* ) qemu-system-x86_64 -cdrom ${iso_dir}/${iso_name}; break;;
     [Nn]* ) exit;;
-    * ) echo "\nPlease enter <Y/n>";;
+    * ) echo "Please enter <Y/n>";;
   esac
 done

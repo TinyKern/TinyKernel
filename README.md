@@ -6,7 +6,7 @@ I thought it was time to finally create a project from the ground up, with its o
 the kernel.
 
 ## Setup
-[Disclaimer] - TinyKernel currently only works on Linux distributions.
+[Disclaimer] - TinyKernel currently only builds on Linux distributions.
 
 To setup TinyKernel, you can either clone the project or you can even install the iso from the [releases page](https://github.com/bobrossrtx/TinyKernel/releases).
 If you install the iso disk file directly, you can skip to [#ISO](https://github.com/bobrossrtx/TinyKernel/new/master?readme=1#iso).

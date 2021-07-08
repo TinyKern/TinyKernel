@@ -11,8 +11,9 @@
  * full license details.
  */
 
-
-#include "kernel.h"
+#include <kernel.h>
+#include <keyboard.h>
+#include <vga.h>
 
 // Index for video buffer array
 uint32 vga_index;
@@ -63,7 +64,7 @@ void clear_vga_buffer(uint16 **buffer, uint8 fore_color, uint8 back_color)
 // Initialize vga buffer
 void init_vga(uint8 fore_color, uint8 back_color)
 {
-  vga_buffer = (uint16*)VGA_ADDRESS; // Point vga_buffer pointer to VGA_ADDRESS
+  vga_buffer = (uint16*)VGA_ADDRESS; // vga_buffer pointer to VGA_ADDRESS
   clear_vga_buffer(&vga_buffer, fore_color, back_color);
   g_fore_color = fore_color;
   g_back_color = back_color;
@@ -160,6 +161,22 @@ void print_int(int num)
   print_string(str_num);
 }
 
+void input()
+{
+  char ch = 0;
+  char keycode = 0;
+  do {
+    keycode = get_input_keycode();
+    if (keycode == KEY_ENTER)
+      print_new_line();
+    else
+    {
+      ch = get_ascii_char(keycode);
+      print_char(ch);
+    }
+  } while (ch > 0);
+}
+
 void kernel_entry()
 {
   // First init vga with fore & back colors
@@ -179,4 +196,8 @@ void kernel_entry()
   default_colors();
   print_new_line();
   print_string("Goodbye World!");
+  print_new_line();
+  print_string("Type here, one key per second, ENTER to go to next line");
+  print_new_line();
+  input();
 }

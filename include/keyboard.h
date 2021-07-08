@@ -14,6 +14,15 @@
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
 
+#include <kernel.h>
+
+uint8 inb(uint16 port);
+void outb(uint16 port, uint8 data);
+char get_input_keycode();
+void wait_for_io(uint32 timer_count);
+void sleep(uint32 timer_count);
+char get_ascii_char(int keycode);
+
 #define KEYBOARD_PORT 0x60
 
 #define KEY_A 0x1E

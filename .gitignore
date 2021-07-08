@@ -1,5 +1,16 @@
-### Private Set ###
+### Build ###
 **/build
+
+### AutoTools ###
+*.m4
+*.log
+*.cache
+
+# Scripts #
+compile
+config.status
+install-sh
+missing
 
 # --------------------------------------------------------------------------------
 # File created using 'AnGitIgnored' extensions for Visual Studio Code: 

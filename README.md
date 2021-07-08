@@ -1,3 +1,5 @@
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/bobrossrtx/TinyKernel)
+
 # TinyKernel - 0.1.3
 Tiny Kernel is a work in progress Operating System kernel.
 

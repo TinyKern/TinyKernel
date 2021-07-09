@@ -1,7 +1,7 @@
 /**
  * @file linker.ld
  * @author Owen Boreham (owenkadeboreham@gmail.com)
- * @version 0.1
+ * @version 0.1.1
  * @date 2021-07-06
  * 
  * @copyright Copyright (c) 2021 TinyKernel
@@ -14,11 +14,16 @@
 /* entry point of our kernel */
 ENTRY(_start)
 
+/* Tell where the various sections of the object files
+    will be put in final kernel image. */
 SECTIONS
 {
     /* we need 1MB of space atleast */
     . = 1M;
 
+    /* First we put the multiboot header, as it is required
+        to be put very early in the image or the bootloader
+        won't recognize the file format. */
     /* text section */
     .text BLOCK(4K) : ALIGN(4K)
     {
@@ -26,19 +31,19 @@ SECTIONS
         *(.text)
     }
 
-    /* read only data section */
+    /* Read-only data. */
     .rodata BLOCK(4K) : ALIGN(4K)
     {
         *(.rodata)
     }
 
-    /* data section */
+    /* Read-Write data (initialized) */
     .data BLOCK(4K) : ALIGN(4K)
     {
         *(.data)
     }
 
-    /* bss section */
+    /* Read-Write data (uninitialized) & stack */
     .bss BLOCK(4K) : ALIGN(4K)
     {
         *(COMMON)

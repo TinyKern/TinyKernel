@@ -1,5 +1,20 @@
-#include <keyboard.h>
+/**
+ * @file keyboard.c
+ * @author Owen Boreham (owenkadeboreham@gmail.com)
+ * @version 0.1.2
+ * @date 2021-07-09
+ * 
+ * @copyright Copyright (c) 2021 TinyKernel
+ * This file is part of TinyKernel which is released
+ * under Apache License 2.0.  See file LICENSE or go
+ * to https://www.apache.org/licenses/LICENSE-2.0 for
+ * full license details.
+ */
 
+#include <kernel/keyboard.h>
+
+// returns in inbound keyboard input from
+// the keyboard port 0x60
 uint8 inb(uint16 port)
 {
   uint8 ret;
@@ -15,7 +30,7 @@ void outb(uint16 port, uint8 data)
 char get_input_keycode()
 {
   char ch = 0;
-  while ((ch == inb(KEYBOARD_PORT)) != 0)
+  while ((ch = inb(KEYBOARD_PORT)) != 0x60)
   {
     if (ch > 0)
       return ch;
@@ -42,40 +57,4 @@ void wait_for_io(uint32 timer_count)
 void sleep(uint32 timer_count)
 {
   wait_for_io(timer_count);
-}
-
-// TODO: Takes in keycode (Example: KEY_A) and converts it to ASCII char value.
-// FIXME: Can't figure out how to convert KEY_A -> 'a' char.
-char get_ascii_char(int keycode)
-{
-  char ch = (char)keycode;
-  // switch (keycode)
-  // {
-  //   case KEY_A:
-  //     ch = 'a';
-  //     break;
-  //   case KEY_B:
-  //     ch = 'b';
-  //     break;
-  //   case KEY_C:
-  //     ch = 'c';
-  //     break;
-  //   case KEY_D:
-  //     ch = 'd';
-  //     break;
-  //   case KEY_E:
-  //     ch = 'e';
-  //     break;
-  //   case KEY_F:
-  //     ch = 'f';
-  //     break;
-  //   case KEY_G:
-  //     ch = 'g';
-  //     break;
-  //   case KEY_H:
-  //     ch = 'h';
-  //     break;
-  // }
-
-  return ch;
 }

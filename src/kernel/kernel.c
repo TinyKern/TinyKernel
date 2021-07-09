@@ -71,14 +71,13 @@ void input()
     if (keycode == KEY_ENTER)
     {
       print_new_line();
-      print_string("ENTER");
     }
     else
     {
       ch = get_ascii_char(keycode);
       print_char(ch);
     }
-    sleep(1);
+    sleep(0x04FFFFFF);
   } while (ch > 0);
 }
 
@@ -94,14 +93,14 @@ void kernel_entry()
    * assign g_fore_color & g_back_color to color values
    *  g_fore_color = BRIGHT_RED;
    */
-  // print_string("Hello World!");
-  // print_new_line();
-  // g_fore_color = BRIGHT_GREEN;
-  // print_int(123456789);
-  // default_colors();
-  // print_new_line();
-  // print_string("Goodbye World!");
-  // print_new_line();
+  print_string("Hello World!");
+  print_new_line();
+  g_fore_color = BRIGHT_GREEN;
+  print_int(123456789);
+  default_colors();
+  print_new_line();
+  print_string("Goodbye World!");
+  print_new_line();
   print_string("Type here, one key per second, ENTER to go to next line");
   print_new_line();
   input();

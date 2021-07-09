@@ -21,7 +21,7 @@ void outb(uint16 port, uint8 data);
 char get_input_keycode();
 void wait_for_io(uint32 timer_count);
 void sleep(uint32 timer_count);
-char get_ascii_char(int keycode);
+char get_ascii_char(char keycode);
 
 #define KEYBOARD_PORT 0x60
 

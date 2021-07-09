@@ -1,7 +1,7 @@
 /**
  * @file keyboard.h
  * @author Owen Boreham (owenkadeboreham@gmail.com)
- * @version 0.1
+ * @version 0.1.2
  * @date 2021-07-06
  * 
  * @copyright Copyright (c) 2021 TinyKernel
@@ -14,16 +14,18 @@
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
 
-#include <kernel.h>
+#include <sys/types.h>
 
-uint8 inb(uint16 port);
-void outb(uint16 port, uint8 data);
-char get_input_keycode();
-void wait_for_io(uint32 timer_count);
-void sleep(uint32 timer_count);
-char get_ascii_char(char keycode);
+extern uint8 inb(uint16 port);
+extern void outb(uint16 port, uint8 data);
+extern char get_input_keycode();
+extern void wait_for_io(uint32 timer_count);
+extern void sleep(uint32 timer_count);
 
 #define KEYBOARD_PORT 0x60
+
+// Looking for inb() default return value
+// #define KEY_NULL 0x0
 
 #define KEY_A 0x1E
 #define KEY_B 0x30

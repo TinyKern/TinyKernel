@@ -1,7 +1,7 @@
 /**
  * @file kernel.h
  * @author Owen Boreham (owenkadeboreham@gmail.com)
- * @version 0.1
+ * @version 0.1.4
  * @date 2021-07-06
  * 
  * @copyright Copyright (c) 2021 TinyKernel
@@ -14,10 +14,9 @@
 #ifndef KERNEL_H
 #define KERNEL_H
 
-typedef unsigned char uint8;
-typedef unsigned short uint16;
-typedef unsigned int uint32;
-
-#define NULL 0
+#include <config.h>
+#include <sys/types.h>
+#include <sys/char.h>
+#include <kernel/keyboard.h>
 
 #endif

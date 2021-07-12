@@ -16,8 +16,8 @@
 uint8 g_fore_color = WHITE;
 uint8 g_back_color = BLACK;
 
-uint32 vga_index = 1;
-uint16* vga_buffer = 1;
+uint32 vga_index;
+uint16* vga_buffer = NULL;
 
 /*
  * 16 bit video buffer elements(register ax)
@@ -44,24 +44,20 @@ uint16 vga_entry(unsigned char ch, uint8 fore_color, uint8 back_color)
 }
 
 // Clears video buffer array
-void clear_vga_buffer(uint16 **buffer, uint8 fore_color, uint8 back_color, 
-                      uint32 next_line_index, uint32 vga_index)
+void clear_vga_buffer(uint16 **buffer, uint8 fore_color, uint8 back_color)
 {
-    uint32 i;
-    for(i = 0; i < BUFSIZE; i++)
-    {
-        (*buffer)[i] = vga_entry(NULL, fore_color, back_color);
-    }
-    next_line_index = 1;
-    vga_index = 0;
+  uint32 i;
+  for(i = 0; i < BUFSIZE; i++)
+  {
+    (*buffer)[i] = vga_entry(NULL, fore_color, back_color);
+  }
 }
 
 // Initialize vga buffer
-void init_vga(uint8 fore_color, uint8 back_color, 
-              uint32 next_line_index, uint32 vga_index)
+void init_vga(uint8 fore_color, uint8 back_color)
 {
   vga_buffer = (uint16*)VGA_ADDRESS; // vga_buffer pointer to VGA_ADDRESS
-  clear_vga_buffer(&vga_buffer, fore_color, back_color, next_line_index, vga_index);
+  clear_vga_buffer(&vga_buffer, fore_color, back_color);
   g_fore_color = fore_color;
   g_back_color = back_color;
 }

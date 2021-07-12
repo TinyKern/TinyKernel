@@ -20,14 +20,9 @@
 #define VGA_ADDRESS 0xB8000
 #define BUFSIZE 2200
 
-// Counter to store new lines
-static uint32 next_line_index = 1;
-
 extern uint16 vga_entry(unsigned char ch, uint8 fore_color, uint8 back_color);
-extern void clear_vga_buffer(uint16 **buffer, uint8 fore_color, uint8 back_color, 
-                            uint32 next_line_index, uint32 vga_index);
-extern void init_vga(uint8 fore_color, uint8 back_color, 
-                    uint32 next_line_index, uint32 vga_index);
+extern void clear_vga_buffer(uint16 **buffer, uint8 fore_color, uint8 back_color);
+extern void init_vga(uint8 fore_color, uint8 back_color);
 extern void vga_default_colors();
 
 enum vga_color {

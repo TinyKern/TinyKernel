@@ -11,21 +11,8 @@
  * full license details.
  */
 
+#include <kernel/cpu/ports.h>
 #include <kernel/keyboard.h>
-
-// returns in inbound keyboard input from
-// the keyboard port 0x60
-uint8 inb(uint16 port)
-{
-  uint8 ret;
-  asm volatile("inb %1, %0" : "=a"(ret) : "d"(port));
-  return ret;
-}
-
-void outb(uint16 port, uint8 data)
-{
-  asm volatile("outb %0, %1" : "=a"(data) : "d"(port));
-}
 
 char get_input_keycode()
 {

@@ -16,11 +16,9 @@
 
 #include <sys/types.h>
 
-extern uint8 inb(uint16 port);
-extern void outb(uint16 port, uint8 data);
-extern char get_input_keycode();
-extern void wait_for_io(uint32 timer_count);
-extern void sleep(uint32 timer_count);
+char get_input_keycode();
+void wait_for_io(uint32 timer_count);
+void sleep(uint32 timer_count);
 
 #define KEYBOARD_PORT 0x60
 

@@ -13,58 +13,44 @@
 
 #include <sys/vga.h>
 
-uint8 g_fore_color = WHITE;
-uint8 g_back_color = BLACK;
+size_t VGA_COL;
+size_t VGA_ROW;
+uint8 VGA_DEF_COLOR;
+struct vga_entry_t* VGA_BUFFER;
 
-uint32 vga_index;
-uint16* vga_buffer = NULL;
-
-/*
- * 16 bit video buffer elements(register ax)
- * 8 bits(ah) higher :
- *      lower 4 bits - foreground color
- *      higher 4 bits - back color
- * 8 bits(al) lower :
- *      8 bits : ASCII character to print
- * */
-uint16 vga_entry(unsigned char ch, uint8 fore_color, uint8 back_color)
-{
-  uint16 ax = 0;
-  uint8 ah = 0, al = 0;
-
-  ah = back_color;
-  ah <<= 4;
-  ah |= fore_color;
-  ax = ah;
-  ax <<= 8;
-  al = ch;
-  ax |= al;
-
-  return ax;
+uint8 vga_create_color(uint8 bg, uint8 fg) {
+  return (bg << 4) | fg;
 }
 
-// Clears video buffer array
-void clear_vga_buffer(uint16 **buffer, uint8 fore_color, uint8 back_color)
-{
-  uint32 i;
-  for(i = 0; i < BUFSIZE; i++)
-  {
-    (*buffer)[i] = vga_entry(NULL, fore_color, back_color);
+void vga_set_default_color(uint8 color) {
+  VGA_DEF_COLOR = color;
+}
+
+struct vga_entry_t vga_create_entry(uint8 ch, uint8 color) {
+  return (struct vga_entry_t){ ch, color };
+}
+
+void vga_put_entry(struct vga_entry_t entry, size_t x, size_t y) {
+  VGA_BUFFER[y * VGA_WIDTH + x] = entry;
+}
+
+void vga_init() {
+  VGA_COL = 0;
+  VGA_ROW = 0;
+  VGA_DEF_COLOR = vga_create_color(BLACK, GREY);
+  VGA_BUFFER = (struct vga_entry_t*) VGA_ADDRESS;
+}
+
+void vga_putchar(const char c) {
+  if(c == '\n') {
+    VGA_COL = 0;
+    ++VGA_ROW;
+  } else {
+    vga_put_entry(vga_create_entry(c, VGA_DEF_COLOR), VGA_COL, VGA_ROW);
+    if(++VGA_COL == VGA_WIDTH) {
+      VGA_COL = 0;
+      ++VGA_ROW;
+    }
   }
 }
 
-// Initialize vga buffer
-void init_vga(uint8 fore_color, uint8 back_color)
-{
-  vga_buffer = (uint16*)VGA_ADDRESS; // vga_buffer pointer to VGA_ADDRESS
-  clear_vga_buffer(&vga_buffer, fore_color, back_color);
-  g_fore_color = fore_color;
-  g_back_color = back_color;
-}
-
-// Sets g_fore/back_color back to default (WHITE, BLACK)
-void vga_default_colors()
-{
-  g_fore_color = WHITE;
-  g_back_color = BLACK;
-}

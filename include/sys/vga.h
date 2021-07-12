@@ -16,14 +16,28 @@
 
 #include "types.h"
 #include <config.h>
+#include <stddef.h>
 
 #define VGA_ADDRESS 0xB8000
-#define BUFSIZE 2200
+#define VGA_WIDTH 80
+#define VGA_HEIGHT 25
 
-extern uint16 vga_entry(unsigned char ch, uint8 fore_color, uint8 back_color);
-extern void clear_vga_buffer(uint16 **buffer, uint8 fore_color, uint8 back_color);
-extern void init_vga(uint8 fore_color, uint8 back_color);
-extern void vga_default_colors();
+struct vga_entry_t {
+  uint8 ch;
+  uint8 color;
+};
+
+// color
+extern uint8 vga_create_color(uint8 bg, uint8 fg);
+extern void vga_set_default_color(uint8 color);
+
+// entry
+extern struct vga_entry_t vga_create_entry(uint8 ch, uint8 color);
+extern void vga_put_entry(struct vga_entry_t, size_t x, size_t y);
+extern void vga_init();
+
+// output
+extern void vga_putchar(const char c);
 
 enum vga_color {
     BLACK,

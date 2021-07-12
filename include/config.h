@@ -24,7 +24,4 @@ extern uint32 vga_index;
 extern uint8 g_fore_color;
 extern uint8 g_back_color;
 
-// Counter to store new lines
-static uint32 next_line_index = 1;
-
 #endif

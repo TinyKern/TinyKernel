@@ -29,7 +29,7 @@ void print_new_line()
   if (next_line_index >= 55) 
   {
     next_line_index = 0;
-    clear_vga_buffer(&vga_buffer, g_fore_color, g_back_color, next_line_index, vga_index);
+    clear_vga_buffer(&vga_buffer, g_fore_color, g_back_color);
   }
   vga_index = 80 * next_line_index;
   next_line_index++;
@@ -77,14 +77,14 @@ void input()
       ch = get_ascii_char(keycode);
       print_char(ch);
     }
-    sleep(0x04FFFFFF);
+    sleep(0x03FFFFFF);
   } while (ch > 0);
 }
 
 void kernel_entry()
 {
   // First init vga with fore & back colors
-  init_vga(WHITE, BLACK, next_line_index, vga_index);
+  init_vga(WHITE, BLACK);
 
   /**
    * @brief Printing "Hello World!\n", "1234456789\n", "Goodbye World!"
@@ -97,7 +97,7 @@ void kernel_entry()
   print_new_line();
   g_fore_color = BRIGHT_GREEN;
   print_int(123456789);
-  default_colors();
+  vga_default_colors();
   print_new_line();
   print_string("Goodbye World!");
   print_new_line();

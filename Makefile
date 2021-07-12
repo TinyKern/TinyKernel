@@ -38,6 +38,7 @@ INC_FLAGS := $(addprefix -I ,$(INC_DIRS))
 CFLAGS ?= $(INC_FLAGS) -std=gnu99 -ffreestanding -O2 -Wall -Wextra -m32
 LDFLAGS ?= -m elf_i386 -T linker.ld
 ASFLAGS ?= --32
+QEMUFLAGS ?= cdrom $(ISO_DIR)/$(ISO)
 
 # Package managers
 apt := $(shell command -v apt 2>/dev/null)
@@ -60,8 +61,6 @@ endif
 	@cp grub.cfg $(GRUB_DIR)/
 	@grub-mkrescue -o $(ISO) $(BUILD_DIR)
 	@mv $(ISO) $(ISO_DIR)/
-	
-	
 
 $(OBJ_DIR)/%.s.o: %.s
 	@$(MKDIR_P) $(dir $@)
@@ -70,6 +69,9 @@ $(OBJ_DIR)/%.s.o: %.s
 $(OBJ_DIR)/%.c.o: %.c
 	@$(MKDIR_P) $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
+
+run:
+	qemu-system-x86_64 -cdrom build/iso/TinyKernel_Bobrossrtx-0.1.3.iso
 
 .PHONY: clean
 clean:

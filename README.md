@@ -1,3 +1,5 @@
+<img alt="TinyKernel Cover Art" src="https://raw.githubusercontent.com/TinyKern/TinyKernel/master/Assets/TinyKernel%20Cover%20Art.png" width=650 />
+
 [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/bobrossrtx/TinyKernel)
 [![Lines of code](https://img.shields.io/tokei/lines/github/bobrossrtx/TinyKernel?color=pink)](https://github.com/bobrossrtx/TinyKernel/)
 [![Issues Closed](https://img.shields.io/github/issues-search/bobrossrtx/TinyKernel?color=red&label=Issues%20Closed&query=is%3Aclosed)](https://github.com/bobrossrtx/TinyKernel/issues)

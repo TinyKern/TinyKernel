@@ -11,7 +11,7 @@
  * full license details.
  */
 
-#include <sys/vga.h>
+#include <drivers/vga/vga.h>
 
 size_t VGA_COL;
 size_t VGA_ROW;

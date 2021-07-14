@@ -11,15 +11,14 @@
  * full license details.
  */
 
+#include <drivers/keyboard/keyboard.h>
+#include <drivers/vga/vga.h>
 #include <kernel/kernel.h>
-#include <kernel/keyboard.h>
+#include <kernel/stdio.h>
+#include <kernel/errno.h>
 #include <sys/utils.h>
-#include <sys/vga.h>
 
-// Fore & Back color values
-
-// digit ascii code for printing integers
-int digit_ascii_codes[10] = {0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39};
+#define TEST_PANIC TRUE
 
 void input()
 {
@@ -40,13 +39,6 @@ void input()
   } while (ch > 0);
 }
 
-void kprint(const char* str) {
-  while(*str) {
-    vga_putchar(*str);
-    ++str;
-  }
-}
-
 void kernel_entry()
 {
   // First init vga
@@ -64,5 +56,7 @@ void kernel_entry()
   kprint(num);
   vga_set_default_color(vga_create_color(BLUE, RED));
   kprint("\nGoodbye World!");
+  if (TEST_PANIC)
+    kpanic(10, "Test Error Message", FALSE);
   input();
 }

@@ -12,7 +12,7 @@
  */
 
 #include <kernel/cpu/ports.h>
-#include <kernel/keyboard.h>
+#include <drivers/keyboard/keyboard.h>
 
 char get_input_keycode()
 {

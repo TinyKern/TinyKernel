@@ -1,7 +1,7 @@
 /**
  * @file utils.c
  * @author Owen Boreham (owenkadeboreham@gmail.com)
- * @version 0.1.2
+ * @version 0.1.3
  * @date 2021-07-09
  * 
  * @copyright Copyright (c) 2021 TinyKernel
@@ -32,6 +32,14 @@ uint32 digit_count(int num)
     num = num/10;
   }
   return count;
+}
+
+int strcmp(const char* s1, const char* s2)
+{
+  while (*s1 == *s2++)
+    if (*s1++ == 0)
+      return 0;
+  return (*(uint8*)s1 - *(uint8*)--s2);
 }
 
 void itoa(int num, char *number)

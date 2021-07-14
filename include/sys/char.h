@@ -14,8 +14,8 @@
 #ifndef CHAR_H
 #define CHAR_H
 
-#include "types.h"
-#include <kernel/keyboard.h>
+#include <types.h>
+#include <drivers/keyboard/keyboard.h>
 
 extern char get_ascii_char(uint8);
 

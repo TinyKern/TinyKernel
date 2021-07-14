@@ -1,7 +1,7 @@
 /**
  * @file utils.h
  * @author Owen Boreham (owenkadeboreham@gmail.com)
- * @version 0.1.2
+ * @version 0.1.3
  * @date 2021-07-09
  * 
  * @copyright Copyright (c) 2021 TinyKernel
@@ -14,10 +14,11 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include "types.h"
+#include <types.h>
 
-extern uint32 strlen(const char*);
-extern uint32 digit_count(int);
-extern void itoa(int, char*);
+extern uint32   strlen(const char*);
+extern uint32   digit_count(int);
+extern int      strcmp(const char*, const char*);
+extern void     itoa(int, char*);
 
 #endif

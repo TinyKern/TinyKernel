@@ -1,18 +1,3 @@
-### Build ###
-**/build
-test/
-
-### AutoTools ###
-*.m4
-*.log
-*.cache
-
-# Scripts #
-compile
-config.status
-install-sh
-missing
-
 # --------------------------------------------------------------------------------
 # File created using 'AnGitIgnored' extensions for Visual Studio Code: 
 # https://marketplace.visualstudio.com/items?itemName=AnAppWiLos.angitignored 
@@ -114,10 +99,7 @@ dkms.conf
 
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+!.vscode/c_cpp_properties.json
 *.code-workspace
 
 # Local History for Visual Studio Code
@@ -134,4 +116,19 @@ dkms.conf
 
 # vim
 *.swp
+.project_alt.json
 
+### Build ###
+**/build
+test/
+
+### AutoTools ###
+*.m4
+*.log
+*.cache
+
+# Scripts #
+compile
+config.status
+install-sh
+missing

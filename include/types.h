@@ -1,8 +1,8 @@
 /**
- * @file kernel.h
+ * @file types.h
  * @author Owen Boreham (owenkadeboreham@gmail.com)
- * @version 0.1.4
- * @date 2021-07-06
+ * @version 0.1.3
+ * @date 2021-07-09
  * 
  * @copyright Copyright (c) 2021 TinyKernel
  * This file is part of TinyKernel which is released
@@ -11,12 +11,18 @@
  * full license details.
  */
 
-#ifndef KERNEL_H
-#define KERNEL_H
+#ifndef TYPES_H
+#define TYPES_H
 
-#include <config.h>
-#include <types.h>
-#include <sys/char.h>
-#include <drivers/keyboard/keyboard.h> 
+#include <stddef.h>
+// typedef __SIZE_TYPE__ size_t;
+
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+
+// #define NULL 0
+#define FALSE 0
+#define TRUE 1
 
 #endif

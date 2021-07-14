@@ -14,7 +14,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#include <sys/types.h>
+#include "types.h"
 
 extern uint16* vga_buffer;
 

@@ -48,27 +48,35 @@ pacman := $(shell command -v pacman 2>/dev/null)
 # Grub
 grub := $(shell command -v grub-file 2>/dev/null)
 
+iso: build 
+	@grub-mkrescue -o $(ISO) $(BUILD_DIR)
+	@mv $(ISO) $(ISO_DIR)/
+
+build: $(TARGET_BIN)
+
 $(TARGET_BIN): clean $(OBJS)
 	@$(MKDIR_P) $(dir $@)
-	$(LD) $(LDFLAGS) $(OBJS) -o $(TARGET_BIN)
+	@echo "\nLinking -> $@"
+	@$(LD) $(LDFLAGS) $(OBJS) -o $(TARGET_BIN)
 ifndef grub
 ifdef apt
 	@echo Installing grub requirements
 	@sudo apt-get install grub-common xorriso
 endif #apt
 endif
+	@grub-file --is-x86-multiboot $(TARGET_BIN)
 	@$(MKDIR_P) $(GRUB_DIR) $(ISO_DIR)
 	@cp grub.cfg $(GRUB_DIR)/
-	@grub-mkrescue -o $(ISO) $(BUILD_DIR)
-	@mv $(ISO) $(ISO_DIR)/
 
 $(OBJ_DIR)/%.s.o: %.s
 	@$(MKDIR_P) $(dir $@)
-	$(AS) $(ASFLAGS) $< -o $@
+	@echo "AS $< -> $@"
+	@$(AS) $(ASFLAGS) $< -o $@
 
 $(OBJ_DIR)/%.c.o: %.c
 	@$(MKDIR_P) $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@echo "CC $< -> $@"
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 run:
 	qemu-system-x86_64 -cdrom build/iso/TinyKernel_Bobrossrtx-0.1.3.iso

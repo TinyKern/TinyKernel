@@ -1,7 +1,7 @@
 /**
  * @file stdio.h
  * @author Owen Boreham (owenkadeboreham@gmail.com)
- * @version 0.1.1
+ * @version 0.1.3
  * @date 2021-07-09
  * 
  * @copyright Copyright (c) 2021 TinyKernel
@@ -20,6 +20,21 @@
 #include <config.h>
 #include <types.h>
 
+/**
+ * @brief Prints a string on the screen
+ * @param str - The string to print
+ */
 extern void kprint(const char*);
+
+/**
+ * @brief Prints a format string to the kernel console
+ * @param fmt Format string
+ * @param %c - print a char
+ * @param %d - print a decimal number
+ * @param %o - print a octal number
+ * @param %s - print a string
+ * @param %x - print a hexadecimal number
+ */
+extern void kprintf(char*, ...);
 
 #endif

@@ -44,19 +44,13 @@ void kernel_entry()
   // First init vga
   vga_init();
 
-  /**
-   * @brief Printing "Hello World!\n", "1234456789\n", "Goodbye World!"
-   * Call the above function to print something
-   * here to change the fore & back color,
-   * use VGA_DEF_COLOR = vga_create_color(bg, fg)
-   */
   kprint("Hello World!\n");
-  char num[11];
-  itoa(1234456789, num);
-  kprint(num);
+  kprintf("%d", 123456789);
   vga_set_default_color(vga_create_color(BLUE, RED));
   kprint("\nGoodbye World!");
+
   if (TEST_PANIC)
     kpanic(10, "Test Error Message", FALSE);
+  
   input();
 }

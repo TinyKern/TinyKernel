@@ -42,25 +42,43 @@ int strcmp(const char* s1, const char* s2)
   return (*(uint8*)s1 - *(uint8*)--s2);
 }
 
-void itoa(int num, char *number)
+void itoa(int value, char* str)
 {
-  int dgcount = digit_count(num);
+  int dgcount = digit_count(value);
   int index = dgcount - 1;
   char x;
-  if (num == 0 && dgcount == 1)
+  if (value == 0 && dgcount == 1)
   {
-    number[0] = '0';
-    number[1] = '\0';
+    str[0] = '0';
+    str[1] = '\0';
   }
   else
   {
-    while (num != 0)
+    while (value != 0)
     {
-      x = num % 10;
-      number[index] = x + '0';
+      x = value % 10;
+      str[index] = x + '0';
       index--;
-      num = num/10;
+      value = value/10;
     }
-    number[dgcount] = '\0';
+    str[dgcount] = '\0';
   }
+}
+
+char* convert_to_base(unsigned int value, int base)
+{
+  static char rep[] = "0123456789ABCDEF";
+  static char buf[50];
+  char *ptr;
+
+  ptr = &buf[49];
+  *ptr = '\0';
+
+  do
+  {
+    *--ptr = rep[value % base];
+    value /= base;
+  } while (value != 0);
+
+  return (ptr);
 }

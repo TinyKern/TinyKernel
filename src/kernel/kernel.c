@@ -45,12 +45,10 @@ void kernel_entry()
   vga_init();
 
   kprint("Hello World!\n");
-  kprintf("%d", 123456789);
+  kprintf("my char: %c\n");
+  kprintf("my string: %s\n", "Hello World!");
   vga_set_default_color(vga_create_color(BLUE, RED));
-  kprint("\nGoodbye World!");
-
-  if (TEST_PANIC)
-    kpanic(10, "Test Error Message", FALSE);
+  kprint("Goodbye World!\n");
   
   input();
 }

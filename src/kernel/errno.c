@@ -18,9 +18,9 @@
 
 void kprint_error(char* errcode, char* errmsg)
 {
-	char* out[7] = {"[", "X", "] ", errmsg, " ", errcode, "\n"};
+	char* out[6] = {"[", "X", "] ", errmsg, " - ", errcode};
 	
-	for (uint16 i = 0; i < 7; ++i)
+	for (uint16 i = 0; i < 6; ++i)
 	{
 		if (strcmp(out[i], "X") == 0)
 			vga_set_default_color(vga_create_color(BLACK, RED));
@@ -34,14 +34,13 @@ void kprint_error(char* errcode, char* errmsg)
 int kpanic(int errcode, char* errmsg, int hlt)
 {
 	vga_set_default_color(vga_create_color(BLACK, WHITE));
-	vga_putchar('\n');
   char code[16];
   itoa(errcode, code);
   kprint_error(code, errmsg);
 
   if (hlt == TRUE)
   {
-    kprint("Halting kernel processes. Please restart system.\n");
+    kprint("\nHalting kernel processes. Please restart system.");
     for(;;) {}
   }
   

@@ -24,7 +24,8 @@
  * @brief Prints a string on the screen
  * @param str - The string to print
  */
-extern void kprint(const char*);
+extern void __kprint(const char*);
+#define kprint(...) __kprint(__VA_ARGS__)
 
 /**
  * @brief Prints a format string to the kernel console
@@ -35,6 +36,7 @@ extern void kprint(const char*);
  * @param %s - print a string
  * @param %x - print a hexadecimal number
  */
-extern void kprintf(char*, ...);
+extern void __kprintf(char*, ...);
+#define kprintf(...) __kprintf(__VA_ARGS__)
 
 #endif

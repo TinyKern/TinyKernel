@@ -18,7 +18,7 @@
 // TODO: Make the stdarg header file without using the real libc version
 #include <stdarg.h>
 
-void kprint(const char* str)
+void __kprint(const char* str)
 {
   while(*str)
   {
@@ -27,7 +27,7 @@ void kprint(const char* str)
   }
 }
 
-void kprintf(char *fmt, ...)
+void __kprintf(char *fmt, ...)
 {
   char* position;
   unsigned int i;

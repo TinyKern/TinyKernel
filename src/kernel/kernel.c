@@ -18,8 +18,6 @@
 #include <kernel/errno.h>
 #include <sys/utils.h>
 
-#define TEST_PANIC TRUE
-
 void input()
 {
   char ch = 0;

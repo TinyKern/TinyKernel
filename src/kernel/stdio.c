@@ -1,7 +1,7 @@
 /**
  * @file stdio.c
  * @author Owen Boreham (owenkadeboreham@gmail.com)
- * @version 0.1.4
+ * @version 0.1.6
  * @date 2021-07-09
  * 
  * @copyright Copyright (c) 2021 TinyKernel

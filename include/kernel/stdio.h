@@ -21,15 +21,13 @@
 #include <types.h>
 
 extern void __kprint(const char*);
+extern void __kprintf(char*, ...);
 
 /**
  * @brief Prints a string on the screen
  * @param str - The string to print
  */
 #define kprint(...) __kprint(__VA_ARGS__)
-
-
-extern void __kprintf(char*, ...);
 
 /**
  * @brief Prints a format string to the kernel console

@@ -43,7 +43,7 @@ void kernel_entry()
   vga_init();
 
   kprint("Hello World!\n");
-  kprintf("my char: %c\n");
+  kprintf("my char: %c\n"); // Will print an error because we don't have a char
   kprintf("my string: %s\n", "Hello World!");
   vga_set_default_color(vga_create_color(BLUE, RED));
   kprint("Goodbye World!\n");

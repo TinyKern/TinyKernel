@@ -12,6 +12,7 @@
  */
 
 #include <kernel/stdio.h>
+#include <kernel/errno.h>
 #include <sys/utils.h>
 
 // TODO: Make the stdarg header file without using the real libc version
@@ -26,63 +27,101 @@ void kprint(const char* str)
   }
 }
 
-// FIXME: when entering \n inside of the format string, it doesn't work
-// Instead, it just prints a \n with no text
 void kprintf(char *fmt, ...)
 {
-  char *position;
+  char* position;
   unsigned int i;
-  char *s;
+  char* s;
 
   va_list arg;
   va_start(arg, fmt);
 
   for (position = fmt; *position != '\0'; position++)
   {
-    while (*position != '%')
+    if (*position == '%')
     {
-      vga_putchar(*position);
       position++;
-    }
 
-    position++;
-
-    switch (*position)
-    {
-    case 'c':
-      i = va_arg(arg, int);
-      vga_putchar(i);
-      break;
-
-    case 'd':
-    {
-      i = va_arg(arg, int);
-      if (i < 0)
+      switch (*position)
       {
-        i = -i;
-        vga_putchar('-');
+      case 'c':
+        i = va_arg(arg, int);
+        if (i == 0)
+        {
+          kpanic(0x0116, "kprintf: Invalid argument: \"%c\"", FALSE);
+          break;
+        }
+        vga_putchar(i);
+        break;
+
+      case 'd':
+      {
+        i = va_arg(arg, int);
+        if (i < 0)
+        {
+          i = -i;
+          vga_putchar('-');
+        }
+        
+        char i_out[32];
+        itoa(i, i_out);
+        kprint(i_out);
+        break;
       }
-      
-      char i_out[32];
-      itoa(i, i_out);
-      kprint(i_out);
-      break;
+
+      case 'o':
+        i = va_arg(arg, unsigned int);
+        kprint(convert_to_base(i, 8));
+        break;
+
+      case 's':
+        s = va_arg(arg, char *);
+        if (s == 0)
+        {
+          kpanic(0x0117, "kprintf: Invalid argument: \"%s\"", FALSE);
+          break;
+        }
+        kprint(s);
+        break;
+
+      case 'x':
+        i = va_arg(arg, unsigned int);
+        kprint(convert_to_base(i, 16));
+        break;
+      }
     }
+    else
+    {
+      switch (*position)
+      {
+      case '\n':
+        vga_putchar('\n');
+        break;
 
-    case 'o':
-      i = va_arg(arg, unsigned int);
-      kprint(convert_to_base(i, 8));
-      break;
+      case '\r':
+        vga_putchar('\r');
+        break;
 
-    case 's':
-      s = va_arg(arg, char *);
-      kprint(s);
-      break;
+      case '\t':
+        vga_putchar('\t');
+        break;
+      
+      case '\b':
+        vga_putchar('\b');
+        break;
 
-    case 'x':
-      i = va_arg(arg, unsigned int);
-      kprint(convert_to_base(i, 16));
-      break;
+      case '\f':
+        vga_putchar('\f');
+        break;
+
+      case '\v':
+        vga_putchar('\v');
+        break;
+      
+      default:
+        vga_putchar(*position);
+        break;
+      }
     }
   }
   va_end(arg);

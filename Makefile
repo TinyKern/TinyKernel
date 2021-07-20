@@ -35,7 +35,7 @@ OBJS := $(SRCS:%=$(OBJ_DIR)/%.o)
 
 # Flags
 INC_FLAGS := $(addprefix -I ,$(INC_DIRS))
-CFLAGS ?= $(INC_FLAGS) -std=gnu99 -ffreestanding -O2 -Wall -Wextra -m32
+CFLAGS ?= $(INC_FLAGS) -std=gnu99 -ffreestanding -O2 -Wall -Wextra -m32 -fno-stack-protector
 LDFLAGS ?= -m elf_i386 -T linker.ld
 ASFLAGS ?= --32
 QEMUFLAGS ?= cdrom $(ISO_DIR)/$(ISO)

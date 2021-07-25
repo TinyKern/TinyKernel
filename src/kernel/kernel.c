@@ -37,16 +37,26 @@ void input()
   } while (ch > 0);
 }
 
-void kernel_entry()
+void kernel_entry(/* uint32 magic, struct kernel_args* args */)
 {
   // First init vga
   vga_init();
 
-  kprint("Hello World!\n");
+  // if (magic != KERNEL_MAGIC)
+  // {
+  //   kpanic(ERRNO_KERNEL_INVALID_MAGIC, "Invalid magic number", FALSE);
+  // }
+
+  kprintf("Hello World!\n");
   kprintf("my char: %c\n"); // Will print an error because we don't have a char
   kprintf("my string: %s\n", "Hello World!");
-  vga_set_default_color(vga_create_color(BLUE, RED));
-  kprint("Goodbye World!\n");
+  vga_set_default_color(vga_create_color(RED, WHITE));
+  kprintf("Goodbye World!\n");
+
+  for(int y =4; y < 5; y++)
+    for(int x = 0; x < VGA_WIDTH; x++)
+      draw(x, y, 0xFF);
   
+  vga_set_default_color(vga_create_color(WHITE, BLACK));
   input();
 }

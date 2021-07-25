@@ -14,7 +14,7 @@ AUTHOR := Bobrossrtx
 
 # Linkers & Compilers
 CC = gcc
-CPP = g++
+CXX = g++
 LD = ld
 AS = as
 
@@ -48,19 +48,19 @@ pacman := $(shell command -v pacman 2>/dev/null)
 # Grub
 grub := $(shell command -v grub-file 2>/dev/null)
 
-iso: build 
-	@grub-mkrescue -o $(ISO) $(BUILD_DIR)
-	@mv $(ISO) $(ISO_DIR)/
+iso: build
+	@echo "GRUB -> $(ISO)"
+	@grub-mkrescue -o $(ISO_DIR)/$(ISO) $(BUILD_DIR)
 
 build: $(TARGET_BIN)
 
 $(TARGET_BIN): clean $(OBJS)
 	@$(MKDIR_P) $(dir $@)
-	@echo "\nLinking -> $@"
+	@echo "Linking -> $@"
 	@$(LD) $(LDFLAGS) $(OBJS) -o $(TARGET_BIN)
 ifndef grub
 ifdef apt
-	@echo Installing grub requirements
+	@echo "Installing grub requirements"
 	@sudo apt-get install grub-common xorriso
 endif #apt
 endif
@@ -77,6 +77,11 @@ $(OBJ_DIR)/%.c.o: %.c
 	@$(MKDIR_P) $(dir $@)
 	@echo "CC $< -> $@"
 	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/%.cxx.o: %.cpp
+	@$(MKDIR_P) $(dir $@)
+	@echo "CXX $< -> $@"
+	@$(CXX) $(CFLAGS) -c $< -o $@
 
 run:
 	qemu-system-x86_64 -cdrom build/iso/TinyKernel_Bobrossrtx-0.1.3.iso

@@ -25,3 +25,11 @@ Currently, there is too many files for people to just manually enter commands to
 
 After installing Qemu, you can then run the Iso file, the command is:
 - `qemu-system-x86_64 -cdrom path/to/iso`
+
+## Screenshots
+
+Date: 7/25/2021
+
+<img alt="TinyKernel Cover Art" src="https://raw.githubusercontent.com/TinyKern/TinyKernel/master/Assets/TinyKernel%20Preview.png" width=650 />
+
+---

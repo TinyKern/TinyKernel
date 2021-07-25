@@ -37,6 +37,33 @@ void input()
   } while (ch > 0);
 }
 
+void put_name(uint32 x, uint32 y)
+{
+  // draw the 'T'
+  draw(x+0, y+0, 0xFF);
+  draw(x+1, y+0, 0xFF);
+  draw(x+2, y+0, 0xFF);
+  draw(x+3, y+0, 0xFF); draw(x+3, y+1, 0xFF); draw(x+3, y+2, 0xFF); draw(x+3, y+3, 0xFF);
+  draw(x+4, y+0, 0xFF);
+  draw(x+5, y+0, 0xFF);
+  draw(x+6, y+0, 0xFF);
+
+  // draw the 'i'
+  draw(x+8, y+0, 0xFF);
+  draw(x+8, y+2, 0xFF);
+  draw(x+8, y+3, 0xFF);
+
+  // draw the 'n'
+  draw(x+10, y+2, 0xFF);  draw(x+11, y+2, 0xFF);  draw(x+12, y+2, 0xFF);
+  draw(x+10, y+3, 0xFF);                          draw(x+12, y+3, 0xFF);
+
+  // draw the 'y'
+  draw(x+14, y+2, 0xFF);                          draw(x+16, y+2, 0xFF);
+  draw(x+14, y+3, 0xFF);  draw(x+15, y+3, 0xFF);  draw(x+16, y+3, 0xFF);
+                                                  draw(x+16, y+4, 0xFF);
+                          draw(x+15, y+5, 0xFF);  draw(x+16, y+5, 0xFF);
+}
+
 void kernel_entry(/* uint32 magic, struct kernel_args* args */)
 {
   // First init vga
@@ -56,6 +83,8 @@ void kernel_entry(/* uint32 magic, struct kernel_args* args */)
   for(int y =4; y < 5; y++)
     for(int x = 0; x < VGA_WIDTH; x++)
       draw(x, y, 0xFF);
+
+  put_name(10, 10);
   
   vga_set_default_color(vga_create_color(WHITE, BLACK));
   input();

@@ -14,6 +14,8 @@
 #ifndef ERRNO_H
 #define ERRNO_H
 
+#define ERRNO_KERNEL_INVALID_MAGIC 0x01
+
 extern void     kprint_error(char*, char*);
 extern int      kpanic(int errcode, char* errmsg, int hlt);
 

@@ -19,4 +19,21 @@
 #include <sys/char.h>
 #include <drivers/keyboard/keyboard.h> 
 
+#define KERNEL_MAGIC 0x1BADB002
+
+struct multiboot_info {
+    uint32 flags;
+    uint32 mem_lower;
+    uint32 mem_upper;
+    uint32 boot_device;
+    uint32 config_table;
+    uint32 boot_loader_name;
+    uint32 buffer_width;
+    uint32 buffer_height;
+};
+
+struct kernel_args {
+    struct multiboot_info* mbi;
+};
+
 #endif

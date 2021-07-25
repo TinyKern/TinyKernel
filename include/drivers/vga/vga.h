@@ -27,16 +27,20 @@ struct vga_entry_t {
 };
 
 // color
+
 extern uint8 vga_create_color(uint8 bg, uint8 fg);
 extern void vga_set_default_color(uint8 color);
 
 // entry
+
 extern struct vga_entry_t vga_create_entry(uint8 ch, uint8 color);
 extern void vga_put_entry(struct vga_entry_t, size_t x, size_t y);
 extern void vga_init();
 
 // output
+
 extern void vga_putchar(const char c);
+extern uint32 draw(uint32 x, uint32 y, uint8 color);
 
 enum vga_color {
     BLACK,

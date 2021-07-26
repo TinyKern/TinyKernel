@@ -17,5 +17,3 @@ jobs:
       run: apt-get install mtools qemu qemu-system 
     - name: make
       run: make
-    - name: make run
-      run: make run

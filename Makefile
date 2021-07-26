@@ -30,7 +30,7 @@ INC_DIRS 	:= include
 
 # Files
 ISO 		?= TinyKernel_$(AUTHOR)-$(KERNEL_VERSION).iso
-TARGET_BIN 	?= $(BOOT_DIR)/TinyKernel.bin
+TARGET_BIN 	?= $(BOOT_DIR)/TinyKernel.elf
 SRCS 		:= $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s -or -name *.asm)
 OBJS 		:= $(SRCS:%=$(OBJ_DIR)/%.o)
 
@@ -63,7 +63,7 @@ $(TARGET_BIN): clean $(OBJS)
 ifndef grub
 	@echo "Installing grub requirements"
 ifdef apt
-	@sudo apt-get install grub-common xorriso
+	@sudo apt-get install grub-common xorriso grub-pc-bin
 endif #apt
 ifdef pacman
 	@sudo pacman -S grub

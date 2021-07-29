@@ -24,4 +24,6 @@ extern uint32 vga_index;
 extern uint8 g_fore_color;
 extern uint8 g_back_color;
 
+#define KERNEL_VERSION "1.3.6"
+
 #endif

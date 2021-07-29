@@ -12,14 +12,7 @@
  */
 
 #include <sys/utils.h>
-
-uint32 strlen(const char* str)
-{
-  uint32 length = 0;
-  while (str[length])
-    length++;
-  return length;
-}
+#include <kernel/stdio.h>
 
 uint32 digit_count(int num)
 {
@@ -32,14 +25,6 @@ uint32 digit_count(int num)
     num = num/10;
   }
   return count;
-}
-
-int strcmp(const char* s1, const char* s2)
-{
-  while (*s1 == *s2++)
-    if (*s1++ == 0)
-      return 0;
-  return (*(uint8*)s1 - *(uint8*)--s2);
 }
 
 void itoa(int value, char* str)
@@ -81,4 +66,42 @@ char* convert_to_base(unsigned int value, int base)
   } while (value != 0);
 
   return (ptr);
+}
+
+char*   kernel_arguments[128];
+int     kernel_argc = 0;
+
+void init_arg_parser(struct stivale2_struct* bootinfo)
+{
+  struct stivale2_struct_tag_cmdline* cmdline = 
+    (struct stivale2_struct_tag_cmdline*)stivale2_get_tag(bootinfo, STIVALE2_STRUCT_TAG_CMDLINE_ID);
+
+  char* args = (char*)cmdline->cmdline;
+
+  kernel_arguments[kernel_argc] = strtok(args, " ");
+  while (kernel_arguments[kernel_argc])
+  {
+    kernel_argc++;
+    kernel_arguments[kernel_argc] = strtok(args, " ");
+  }
+}
+
+int arg_exist(char* arg)
+{
+  for (int i = 0; i < kernel_argc; i++)
+  {
+    if (!strcmp(arg, kernel_arguments[i]))
+      return 1;
+  }
+  return 0;
+}
+
+void print_args()
+{
+  kprint("Kernel Arguments: ");
+  for (int i = 0; i < kernel_argc; i++)
+  {
+    kprintf("%s ", kernel_arguments[i]);
+  }
+  kprint("\n");
 }

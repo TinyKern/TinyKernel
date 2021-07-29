@@ -14,16 +14,12 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <kernel/stivale2.h>
 #include <types.h>
 
-/**
-* @brief Gets the lenght of a string
-* @param str - The string to get the length of
-*/
-extern uint32   strlen(const char*);
+#include "string.h"
 
 extern uint32   digit_count(int);
-extern int      strcmp(const char*, const char*);
 
 /**
 * @brief Converts a int to a string
@@ -38,5 +34,9 @@ extern void     itoa(int, char*);
 * @param base - The base to convert the number to
 */
 extern char*    convert_to_base(unsigned int, int);
+
+void init_arg_parser(struct stivale2_struct* bootinfo);
+int arg_exist(char*);
+void print_args();
 
 #endif

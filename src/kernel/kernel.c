@@ -48,11 +48,13 @@ int readKey(char key)
   return TRUE;
 }
 
-void kernel_entry(/* uint32 magic, struct kernel_args* args */)
+void kernel_entry(struct stivale2_struct* bootinfo)
 {
   // Initialize VGA Driver
   vga_init();
   clear_screen();
+
+  init_arg_parser(bootinfo);
 
   // if (magic != KERNEL_MAGIC)
   // {
@@ -63,6 +65,7 @@ void kernel_entry(/* uint32 magic, struct kernel_args* args */)
   kprintf(" [i] Kernel Version:   %s\n", KERNEL_VERSION);
   kprintf(" [i] Keyboard Driver:  Enabled\n");
   kprintf(" [i] VGA Driver:       Enabled\n");
+  print_args();
   cpuid_test();
   kprintf("\n");
   kprintf(" Press enter to shut down\n");

@@ -13,26 +13,26 @@ KERNEL_VERSION 	:= 1.3.6
 AUTHOR 			:= Bobrossrtx
 
 # Linkers & Compilers
-CC 		:= gcc
-CXX 	:= g++
-LD 		:= ld
-AS 		:= as
-NASM 	:= nasm
+CC 				:= gcc
+CXX 			:= g++
+LD 				:= ld
+AS 				:= as
+NASM 			:= nasm
 
 # Directories
 BUILD_DIR 	?= build
-BOOT_DIR 	:= $(BUILD_DIR)/boot
-GRUB_DIR 	:= $(BOOT_DIR)/grub
+SRC_DIRS 	?= src
+INC_DIRS 	?= include
 OBJ_DIR 	:= $(BUILD_DIR)/obj
 ISO_DIR 	:= $(BUILD_DIR)/iso
-SRC_DIRS 	?= src
-INC_DIRS 	:= include
+BOOT_DIR 	:= $(BUILD_DIR)/boot
+GRUB_DIR 	:= $(BOOT_DIR)/grub
 
 # Files
-ISO 		?= TinyKernel_$(AUTHOR)-$(KERNEL_VERSION).iso
-TARGET_BIN 	?= $(BOOT_DIR)/TinyKernel.elf
 SRCS 		:= $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
 OBJS 		:= $(SRCS:%=$(OBJ_DIR)/%.o)
+TARGET_BIN 	?= $(BOOT_DIR)/TinyKernel.elf
+ISO 		?= TinyKernel_$(AUTHOR)-$(KERNEL_VERSION).iso
 
 # Flags
 INC_FLAGS 	:= $(addprefix -I ,$(INC_DIRS))
@@ -43,15 +43,16 @@ NASMFLAGS 	?= -f elf32
 QEMUFLAGS 	?= cdrom $(ISO_DIR)/$(ISO)
 
 # Package managers
-apt 	:= $(shell command -v apt 2>/dev/null)
-yum 	:= $(shell command -v yum 2>/dev/null)
-pacman 	:= $(shell command -v pacman 2>/dev/null)
+pacman 		:= $(shell command -v pacman 2>/dev/null)
+yum 		:= $(shell command -v yum 2>/dev/null)
+apt 		:= $(shell command -v apt 2>/dev/null)
 
 # Grub
-grub 	:= $(shell command -v grub-file 2>/dev/null)
+grub 		:= $(shell command -v grub-file 2>/dev/null)
 
+.PHONY: clean iso run-iso
 iso: build
-	@echo "GRUB -> $(ISO)"
+	@echo "GRUB $^ -> $(ISO)"
 	@grub-mkrescue -o $(ISO_DIR)/$(ISO) $(BUILD_DIR)
 
 build: $(TARGET_BIN)
@@ -93,8 +94,11 @@ $(OBJ_DIR)/%.cxx.o: %.cpp
 	@echo "CXX $< -> $@"
 	@$(CXX) $(CFLAGS) -c $< -o $@
 
-run:
-	qemu-system-x86_64 -cdrom build/iso/TinyKernel_Bobrossrtx-0.1.3.iso
+run: 
+	qemu-system-x86_64 -kernel $(TARGET_BIN)
+
+run-iso: 
+	qemu-system-x86_64 -cdrom $(ISO_DIR)/$(ISO)
 
 .PHONY: clean
 clean:

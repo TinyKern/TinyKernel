@@ -14,8 +14,7 @@
 #ifndef TYPES_H
 #define TYPES_H
 
-#include <stddef.h>
-// typedef __SIZE_TYPE__ size_t;
+#include <sys/stddef.h>
 
 typedef unsigned char uint8;
 typedef unsigned short uint16;

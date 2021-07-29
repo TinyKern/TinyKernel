@@ -51,6 +51,7 @@ void kernel_entry(/* uint32 magic, struct kernel_args* args */)
 {
   // Initialize VGA Driver
   vga_init();
+  clear_screen();
 
   // if (magic != KERNEL_MAGIC)
   // {

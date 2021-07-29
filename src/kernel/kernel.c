@@ -14,6 +14,7 @@
 #include <drivers/keyboard/keyboard.h>
 #include <drivers/video/video.h>
 #include <drivers/vga/vga.h>
+#include <kernel/cpu/cpu.h>
 #include <kernel/kernel.h>
 #include <kernel/stdio.h>
 #include <kernel/errno.h>
@@ -62,6 +63,7 @@ void kernel_entry(/* uint32 magic, struct kernel_args* args */)
   kprintf(" [i] Kernel Version:   %s\n", KERNEL_VERSION);
   kprintf(" [i] Keyboard Driver:  Enabled\n");
   kprintf(" [i] VGA Driver:       Enabled\n");
+  cpuid_test();
   kprintf("\n");
   kprintf(" Press enter to shut down\n");
   if (readKey(KEY_ENTER) == TRUE)

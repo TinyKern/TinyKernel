@@ -31,7 +31,7 @@ struct vga_entry_t vga_create_entry(uint8 ch, uint8 color) {
 }
 
 void vga_put_entry(struct vga_entry_t entry, size_t x, size_t y) {
-  VGA_BUFFER[y * VGA_WIDTH + x] = entry;
+  VGA_BUFFER[y * VGA_COLS + x] = entry;
 }
 
 void vga_set_pixel(uint32 x, uint32 y, uint8 color)
@@ -58,7 +58,7 @@ void vga_putchar(const char c) {
     ++VGA_ROW;
   } else {
     vga_put_entry(vga_create_entry(c, VGA_DEF_COLOR), VGA_COL, VGA_ROW);
-    if(++VGA_COL == VGA_WIDTH) {
+    if(++VGA_COL == VGA_COLS) {
       VGA_COL = 0;
       ++VGA_ROW;
     }

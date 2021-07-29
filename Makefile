@@ -31,7 +31,7 @@ GRUB_DIR 	:= $(BOOT_DIR)/grub
 # Files
 SRCS 		:= $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
 OBJS 		:= $(SRCS:%=$(OBJ_DIR)/%.o)
-TARGET_BIN 	?= $(BOOT_DIR)/TinyKernel.elf
+TARGET 	?= $(BOOT_DIR)/TinyKernel.elf
 ISO 		?= TinyKernel_$(AUTHOR)-$(KERNEL_VERSION).iso
 
 # Flags
@@ -55,12 +55,12 @@ iso: build
 	@echo "GRUB $^ -> $(ISO)"
 	@grub-mkrescue -o $(ISO_DIR)/$(ISO) $(BUILD_DIR)
 
-build: $(TARGET_BIN)
+build: $(TARGET)
 
-$(TARGET_BIN): clean $(OBJS)
+$(TARGET): clean $(OBJS)
 	@$(MKDIR_P) $(dir $@)
 	@echo "Linking -> $@"
-	@$(LD) $(LDFLAGS) $(OBJS) -o $(TARGET_BIN)
+	@$(LD) $(LDFLAGS) $(OBJS) -o $(TARGET)
 ifndef grub
 	@echo "Installing grub requirements"
 ifdef apt
@@ -70,7 +70,7 @@ ifdef pacman
 	@sudo pacman -S grub
 endif #pacman
 endif #grub
-	@grub-file --is-x86-multiboot $(TARGET_BIN)
+	@grub-file --is-x86-multiboot $(TARGET)
 	@$(MKDIR_P) $(GRUB_DIR) $(ISO_DIR)
 	@cp grub.cfg $(GRUB_DIR)/
 
@@ -95,7 +95,7 @@ $(OBJ_DIR)/%.cxx.o: %.cpp
 	@$(CXX) $(CFLAGS) -c $< -o $@
 
 run: 
-	qemu-system-x86_64 -kernel $(TARGET_BIN)
+	qemu-system-x86_64 -kernel $(TARGET)
 
 run-iso: 
 	qemu-system-x86_64 -cdrom $(ISO_DIR)/$(ISO)

@@ -42,13 +42,13 @@ void print_eax(uint32 eax)
 	ext_family_id >>= 20;     // bits 20-27
 	ext_family_id &= (2 << 7) - 1;
 
-	kprintf("EAX :\n");
-	kprintf(" Stepping ID       : %d\n", step_id);
-	kprintf(" Model             : %d\n", model);
-	kprintf(" Family ID         : %d\n", family_id);
-	kprintf(" ProcessorType     : %d\n", proc_type);
-	kprintf(" Extended Model ID : %d\n", ext_mod_id);
-	kprintf(" Extended Family   : %d\n", ext_family_id);
+	kprintf("    EAX ------------------------|\n");
+	kprintf("        Stepping ID       : %d\n", step_id);
+	kprintf("        Model             : %d\n", model);
+	kprintf("        Family ID         : %d\n", family_id);
+	kprintf("        ProcessorType     : %d\n", proc_type);
+	kprintf("        Extended Model ID : %d\n", ext_mod_id);
+	kprintf("        Extended Family   : %d\n", ext_family_id);
 }
 
 void print_ebx(uint32 ebx)
@@ -58,21 +58,20 @@ void print_ebx(uint32 ebx)
 	char *bytes = (char *)&ebx;
 
 	brand_index = bytes[0];			// bits 0-7
-	cache_line_size = bytes[1]; // bits 8-15
+	cache_line_size = bytes[1]; 	// bits 8-15
 	max_addr_id = bytes[2];			// bits 16-23
 	init_apic_id = bytes[3];		// bits 24-31
 
-	kprintf("EBX :\n");
-	kprintf("\t[0] : %d\n", brand_index);
-	kprintf("\t[1] : %d\n", cache_line_size);
-	kprintf("\t[2] : %d\n", max_addr_id);
-	kprintf("\t[3] : %d\n", init_apic_id);
+	kprintf("    EBX ------------------------|\n");
+	kprintf("        Brand Index       : %d\n", brand_index);
+	kprintf("        Cache Line Size   : %d\n", cache_line_size);
+	kprintf("        Max Address Id    : %d\n", max_addr_id);
+	kprintf("        APIC ID           : %d\n", init_apic_id);
 }
 
 void print_edx(uint32 edx)
 {
-	kprintf("EDX :\n");
-	kprintf("\t[0] : %d\n", edx);
+	kprintf("    EDX:%d\n", edx);
 }
 
 void cpuid_test()

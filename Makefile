@@ -31,7 +31,7 @@ INC_DIRS 	:= include
 # Files
 ISO 		?= TinyKernel_$(AUTHOR)-$(KERNEL_VERSION).iso
 TARGET_BIN 	?= $(BOOT_DIR)/TinyKernel.elf
-SRCS 		:= $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s -or -name *.asm)
+SRCS 		:= $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
 OBJS 		:= $(SRCS:%=$(OBJ_DIR)/%.o)
 
 # Flags

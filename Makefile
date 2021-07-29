@@ -9,7 +9,7 @@
 # * to https://www.apache.org/licenses/LICENSE-2.0 for
 # * full license details.
 
-KERNEL_VERSION 	:= 0.1.3
+KERNEL_VERSION 	:= 1.3.6
 AUTHOR 			:= Bobrossrtx
 
 # Linkers & Compilers

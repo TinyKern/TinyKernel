@@ -14,7 +14,6 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <kernel/stivale2.h>
 #include <types.h>
 
 #include "string.h"
@@ -35,8 +34,4 @@ extern void     itoa(int, char*);
 */
 extern char*    convert_to_base(unsigned int, int);
 
-void init_arg_parser(struct stivale2_struct* bootinfo);
-int arg_exist(char*);
-void print_args();
-
-#endif
+#endif // UTILS_H

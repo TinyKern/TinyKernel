@@ -33,3 +33,6 @@ Date: 7/25/2021
 <img alt="TinyKernel Cover Art" src="https://raw.githubusercontent.com/TinyKern/TinyKernel/master/Assets/TinyKernel%20Preview.png" width=650 />
 
 ---
+Date: 8/11/2021
+
+<img alt="TinyKernel Cover Art" src="https://raw.githubusercontent.com/TinyKern/TinyKernel/master/Assets/TinyKernelPreview2.png" width=650 />

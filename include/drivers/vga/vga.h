@@ -35,7 +35,7 @@ extern void vga_set_default_color(uint8 color);
 
 extern struct vga_entry_t vga_create_entry(uint8 ch, uint8 color);
 extern void vga_put_entry(struct vga_entry_t, size_t x, size_t y);
-extern void vga_init();
+extern int vga_init();
 
 // output
 

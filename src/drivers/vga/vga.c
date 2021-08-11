@@ -45,11 +45,12 @@ uint32 draw(uint32 x, uint32 y, uint8 color)
   return (x /= y);
 }
 
-void vga_init() {
+int vga_init() {
   VGA_COL = 0;
   VGA_ROW = 0;
   VGA_DEF_COLOR = vga_create_color(BLACK, GREY);
   VGA_BUFFER = (struct vga_entry_t*) VGA_ADDRESS;
+  return TRUE;
 }
 
 void vga_putchar(const char c) {

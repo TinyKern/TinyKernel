@@ -53,13 +53,14 @@ int readKey(char key)
 void kernel_entry()
 {
   // Initialize VGA Driver
-  vga_init();
+  int vga = vga_init();
   clear_screen();
 
   kprintf("TinyKernel - %s\n", KERNEL_VERSION);
   kprintf(" [i] Kernel Version:   %s\n", KERNEL_VERSION);
   kprintf(" [i] Keyboard Driver:  Enabled\n");
-  kprintf(" [i] VGA Driver:       Enabled\n");
+  if (vga == TRUE)
+    kprintf(" [i] VGA Driver:       Enabled\n");
   cpuid_test();
   kprintf("\n");
   kprintf(" Press enter to shut down\n");

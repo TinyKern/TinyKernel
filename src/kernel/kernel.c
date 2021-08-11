@@ -14,6 +14,8 @@
 #include <drivers/keyboard/keyboard.h>
 #include <drivers/video/video.h>
 #include <drivers/vga/vga.h>
+#include <kernel/cpu/arch/x86/syscalls.h>
+#include <kernel/cpu/arch/x86/syscall.h>
 #include <kernel/cpu/cpu.h>
 #include <kernel/kernel.h>
 #include <kernel/stdio.h>
@@ -48,30 +50,21 @@ int readKey(char key)
   return TRUE;
 }
 
-void kernel_entry(struct stivale2_struct* bootinfo)
+void kernel_entry()
 {
   // Initialize VGA Driver
   vga_init();
   clear_screen();
 
-  init_arg_parser(bootinfo);
-
-  // if (magic != KERNEL_MAGIC)
-  // {
-  //   kpanic(ERRNO_KERNEL_INVALID_MAGIC, "Invalid magic number", FALSE);
-  // }
-
   kprintf("TinyKernel - %s\n", KERNEL_VERSION);
   kprintf(" [i] Kernel Version:   %s\n", KERNEL_VERSION);
   kprintf(" [i] Keyboard Driver:  Enabled\n");
   kprintf(" [i] VGA Driver:       Enabled\n");
-  print_args();
   cpuid_test();
   kprintf("\n");
   kprintf(" Press enter to shut down\n");
   if (readKey(KEY_ENTER) == TRUE)
   {
-    kprint_error(NULL, "OOPS! No Shutdown method implemented yet");
-    asm("hlt");
+    syscall(sys_shutdown);
   }
 }

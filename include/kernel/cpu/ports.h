@@ -16,11 +16,11 @@
 
 #include <types.h>
 
-// returns in inbound keyboard input from
-// the keyboard port 0x60
 extern uint8 inb(uint16 port);
 extern void outb(uint16 port, uint8 data);
 extern uint16 inw(uint16 port);
 extern void outw(uint16 port, uint16 data);
+extern uint16 in16(uint16 port);
+extern void out16(uint16 port, uint16 data);
 
 #endif

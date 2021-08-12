@@ -15,10 +15,9 @@
 #define KEYBOARD_H
 
 #include <types.h>
+#include <kernel/io.h>
 
 char get_input_keycode();
-void wait_for_io(uint32 timer_count);
-void sleep(uint32 timer_count);
 
 #define KEYBOARD_PORT 0x60
 

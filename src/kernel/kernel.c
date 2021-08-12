@@ -14,8 +14,7 @@
 #include <drivers/keyboard/keyboard.h>
 #include <drivers/video/video.h>
 #include <drivers/vga/vga.h>
-#include <kernel/cpu/arch/x86/syscalls.h>
-#include <kernel/cpu/arch/x86/syscall.h>
+#include <kernel/syscalls/syscalls.h>
 #include <kernel/cpu/cpu.h>
 #include <kernel/kernel.h>
 #include <kernel/stdio.h>
@@ -63,9 +62,14 @@ void kernel_entry()
     kprintf(" [i] VGA Driver:       Enabled\n");
   cpuid_test();
   kprintf("\n");
+  sys_beep(440);
   kprintf(" Press enter to shut down\n");
-  if (readKey(KEY_ENTER) == TRUE)
+  while (TRUE)
   {
-    syscall(sys_shutdown);
+    if (readKey(KEY_ENTER) == TRUE)
+    {
+      sys_shutdown();
+    }
+
   }
 }

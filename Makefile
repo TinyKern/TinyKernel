@@ -95,10 +95,10 @@ $(OBJ_DIR)/%.cxx.o: %.cpp
 	@$(CXX) $(CFLAGS) -c $< -o $@
 
 run: 
-	qemu-system-x86_64 -kernel $(TARGET)
+	qemu-system-x86_64 -device sb16 -kernel $(TARGET)
 
 run-iso: 
-	qemu-system-x86_64 -cdrom $(ISO_DIR)/$(ISO)
+	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO)
 
 .PHONY: clean
 clean:

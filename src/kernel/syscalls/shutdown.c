@@ -1,9 +1,4 @@
-#ifndef SYSCALLS_H
-#define SYSCALLS_H
-
-#include <kernel/cpu/cpu.h>
-#include <kernel/errno.h>
-#include <types.h>
+#include <kernel/syscalls/shutdown.h>
 
 void sys_shutdown(void)
 {
@@ -12,5 +7,3 @@ void sys_shutdown(void)
   out16(0xb004, 0x2000);
   kpanic(ERRNO_FAILED_SHUTDOWN, "Failed to shutdown", TRUE);
 }
-
-#endif // SYSCALLS_H

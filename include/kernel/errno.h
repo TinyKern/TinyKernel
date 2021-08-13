@@ -16,15 +16,16 @@
 
 enum ERR_CODES
 {
-    ERRNO_KERNEL_INVALID_MAGIC      = 0x01,
-    ERRNO_KERNEL_INVALID_SYSCALL    = 0x64,
-    ERRNO_KERN_INVALID_ADDR,
-    ERRNO_NO_FREE_PAGE_FRAME,
-    ERRNO_KERNEL_KILL_PROCESS,
-    ERRNO_NO_FREE_MEMORY            = 0xA3,
-    ERRNO_MEMORY_HEAP_LIMIT         = 0xA4,
-    ERRNO_NO_AVAILABLE_PAGE,
-    ERRNO_FAILED_SHUTDOWN,
+    ERRNO_KERNEL_INVALID_MAGIC      = 0x01, //!< Invalid magic number
+    ERRNO_KERNEL_INVALID_SYSCALL    = 0x64, //!< Invalid syscall
+    ERRNO_KERN_INVALID_ADDR,                //!< Invalid address
+    ERRNO_NO_FREE_PAGE_FRAME,               //!< No free page frame available
+    ERRNO_KERNEL_KILL_PROCESS,              //!< Process killed
+    ERRNO_NO_FREE_MEMORY            = 0xA3, //!< No free memory available
+    ERRNO_MEMORY_HEAP_LIMIT         = 0xA4, //!< Memory heap limit reached
+    ERRNO_NO_AVAILABLE_PAGE,                //!< No available page
+    ERRNO_FAILED_SHUTDOWN,                  //!< Failed to shutdown
+    EINTR                           = 0xB6  //!< Interrupted system call
 };
 
 extern void     kprint_error(char*, char*);

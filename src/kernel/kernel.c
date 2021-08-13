@@ -14,8 +14,7 @@
 #include <drivers/keyboard/keyboard.h>
 #include <drivers/video/video.h>
 #include <drivers/vga/vga.h>
-#include <kernel/cpu/arch/x86/syscalls.h>
-#include <kernel/cpu/arch/x86/syscall.h>
+#include <kernel/syscalls/syscalls.h>
 #include <kernel/cpu/cpu.h>
 #include <kernel/kernel.h>
 #include <kernel/stdio.h>
@@ -53,18 +52,24 @@ int readKey(char key)
 void kernel_entry()
 {
   // Initialize VGA Driver
-  vga_init();
+  int vga = vga_init();
   clear_screen();
 
   kprintf("TinyKernel - %s\n", KERNEL_VERSION);
   kprintf(" [i] Kernel Version:   %s\n", KERNEL_VERSION);
   kprintf(" [i] Keyboard Driver:  Enabled\n");
-  kprintf(" [i] VGA Driver:       Enabled\n");
+  if (vga == TRUE)
+    kprintf(" [i] VGA Driver:       Enabled\n");
   cpuid_test();
   kprintf("\n");
+  sys_beep(440);
   kprintf(" Press enter to shut down\n");
-  if (readKey(KEY_ENTER) == TRUE)
+  while (TRUE)
   {
-    syscall(sys_shutdown);
+    if (readKey(KEY_ENTER) == TRUE)
+    {
+      sys_shutdown();
+    }
+
   }
 }

@@ -38,6 +38,18 @@ void outw(uint16 port, uint16 data)
   asm volatile("out %0, %1" : "=a"(data) : "d"(port));
 }
 
+uint8 in8(uint16 port)
+{
+  uint8 ret;
+  asm volatile("inb %1, %0" : "=a"(ret) : "Nd"(port));
+  return ret;
+}
+
+void out8(uint16 port, uint8 data)
+{
+  asm volatile("outb %0, %1" ::"a"(data), "Nd"(port));
+}
+
 uint16 in16(uint16 port)
 {
   uint16 ret;

@@ -13,6 +13,8 @@
 
 /* entry point of our kernel */
 ENTRY(_start)
+OUTPUT_FORMAT(elf32-i386)
+OUTPUT_ARCH(i386:i386)
 
 /* Tell where the various sections of the object files
     will be put in final kernel image. */
@@ -40,6 +42,11 @@ SECTIONS
     /* Read-Write data (initialized) */
     .data BLOCK(4K) : ALIGN(4K)
     {
+        start_ctors = .;
+        KEEP(*(.init_array));
+        KEEP(*(SORT_BY_INIT_PRIORITY( .init_array.* )));
+        end_ctors = .;
+
         *(.data)
     }
 

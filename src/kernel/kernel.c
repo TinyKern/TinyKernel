@@ -21,6 +21,8 @@
 #include <kernel/errno.h>
 #include <sys/utils.h>
 
+#include <kernel/devices/pcSpeaker.h>
+
 void input()
 {
   char ch = 0;
@@ -49,7 +51,20 @@ int readKey(char key)
   return TRUE;
 }
 
-void kernel_entry()
+typedef void (*constructor)();
+extern constructor* start_ctors;
+extern constructor* end_ctors;
+extern void call_constructors()
+{
+  for (constructor* i = start_ctors;
+    i != end_ctors;
+    i++)
+  {
+    (*i)();
+  }
+}
+
+void kernel_entry(uint32 magic)
 {
   // Initialize VGA Driver
   int vga = vga_init();
@@ -57,12 +72,13 @@ void kernel_entry()
 
   kprintf("TinyKernel - %s\n", KERNEL_VERSION);
   kprintf(" [i] Kernel Version:   %s\n", KERNEL_VERSION);
+  kprintf(" [i] Magic Number:     0x%x\n", magic);
   kprintf(" [i] Keyboard Driver:  Enabled\n");
   if (vga == TRUE)
     kprintf(" [i] VGA Driver:       Enabled\n");
   cpuid_test();
   kprintf("\n");
-  sys_beep(440);
+  pcs_beep();
   kprintf(" Press enter to shut down\n");
   while (TRUE)
   {

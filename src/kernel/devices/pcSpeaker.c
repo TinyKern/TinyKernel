@@ -1,32 +1,35 @@
 #include <kernel/devices/pcSpeaker.h>
 #include <kernel/time/PIT.h>
 #include <kernel/cpu/cpu.h>
+#include <kernel/io.h>
 
-void tone_on(int freq)
+void pcs_tone_on(uint32 freq)
 {
-    // out8(PIT_CTL, TIMER_T2_SELECT | WRITE_WORD | MODE_SQAURE_WAVE);
-    // uint16 timer_reload = BASE_FREQ / freq;
+    uint32 div;
+    uint8 tmp;
 
-    // out8(TIMER_T2_CTL, LSB(timer_reload));
-    // out8(TIMER_T2_CTL, MSB(timer_reload));
-
-    // out8(0x61, in8(0x61) | 3);
-
-    int scale;
-    if (freq == 0)
-    {
-        outb(0x61, inb(0x61) & ~3);
-        return;
-    }
-
-    scale = (int)(BASE_FREQ / freq);
+    // Set the PIT to the desired frequency
+    div = BASE_FREQ / freq;
     outb(0x43, 0xb6);
-    outb(0x42, scale & 0xff);
-    outb(0x42, scale >> 8);
-    outb(0x61, inb(0x61) | 3);
+    outb(0x42, (uint8)(div));
+    outb(0x42, (uint8)(div >> 8));
+
+    // Play sound using PC speaker
+    tmp = inb(0x61);
+    if (tmp != (tmp | 3))
+        outb(0x61, tmp | 3);
 }
 
-void tone_off()
+void pcs_tone_off()
 {
-    out8(0x61, in8(0x61) & ~3);
+    uint8 tmp = inb(0x61) & 0xFC;
+
+    outb(0x61, tmp);
+}
+
+void pcs_beep()
+{
+    pcs_tone_on(1000);
+    wait_for_io(1000);
+    pcs_tone_off();
 }

@@ -21,6 +21,6 @@
 
 #define WRITE_WORD          0x30
 
-#define BASE_FREQ           1193182
+#define BASE_FREQ           1193180
 
 #endif // PIT_H

@@ -29,7 +29,7 @@ BOOT_DIR 	:= $(BUILD_DIR)/boot
 GRUB_DIR 	:= $(BOOT_DIR)/grub
 
 # Files
-SRCS 		:= $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
+SRCS 		:= $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s -or -name *.asm)
 OBJS 		:= $(SRCS:%=$(OBJ_DIR)/%.o)
 TARGET 	?= $(BOOT_DIR)/TinyKernel.elf
 ISO 		?= TinyKernel_$(AUTHOR)-$(KERNEL_VERSION).iso

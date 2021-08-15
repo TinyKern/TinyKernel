@@ -12,12 +12,20 @@
 KERNEL_VERSION 	:= 1.3.6
 AUTHOR 			:= Bobrossrtx
 
+BINUTILS_VERSION:= 2.37
+GCC_VERSION		:= 11.2.0
+
 # Linkers & Compilers
-CC 				:= gcc
-CXX 			:= g++
-LD 				:= ld
-AS 				:= as
+CROSS_PREFIX 	:= $(HOME)/.local/bin/TinyKernel-Toolchain
+TARGET			:= i386-elf
+
+CC 				:= $(TARGET)-gcc
+CXX 			:= $(TARGET)-g++
+LD 				:= $(TARGET)-ld
+AS 				:= $(TARGET)-as
 NASM 			:= nasm
+
+CORES 			:= $(shell nproc)
 
 # Directories
 BUILD_DIR 	?= build
@@ -31,7 +39,7 @@ GRUB_DIR 	:= $(BOOT_DIR)/grub
 # Files
 SRCS 		:= $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s -or -name *.asm)
 OBJS 		:= $(SRCS:%=$(OBJ_DIR)/%.o)
-TARGET 	?= $(BOOT_DIR)/TinyKernel.elf
+TARGET 		?= $(BOOT_DIR)/TinyKernel.elf
 ISO 		?= TinyKernel_$(AUTHOR)-$(KERNEL_VERSION).iso
 
 # Flags
@@ -103,5 +111,18 @@ run-iso:
 .PHONY: clean
 clean:
 	@$(RM) -r $(BUILD_DIR)
+
+install-toolchain:
+	@rm -rf $(CROSS_PREFIX)
+	@echo "========================"
+	@echo "= Installing toolchain ="
+	@echo "========================"
+	@echo
+	git clone https://github.com/TinyKern/toolchain.git $(CROSS_PREFIX)
+	@echo
+	@echo "========================"
+	@echo 
+	@echo "Toolchain installed to $(CROSS_PREFIX)"
+	@echo "run 'bash install.sh' in $(CROSS_PREFIX) to build the toolchain"
 
 MKDIR_P 	?= mkdir -p

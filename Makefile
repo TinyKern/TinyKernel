@@ -10,22 +10,22 @@
 # * full license details.
 
 KERNEL_VERSION 	:= 1.3.6
-AUTHOR 			:= Bobrossrtx
+AUTHOR 		:= Bobrossrtx
 
 BINUTILS_VERSION:= 2.37
-GCC_VERSION		:= 11.2.0
+GCC_VERSION	:= 11.2.0
 
 # Linkers & Compilers
 CROSS_PREFIX 	:= $(HOME)/.local/bin/TinyKernel-Toolchain
-TARGET			:= i386-elf
+TARGET		:= i386-elf
 
-CC 				:= $(TARGET)-gcc
-CXX 			:= $(TARGET)-g++
-LD 				:= $(TARGET)-ld
-AS 				:= $(TARGET)-as
-NASM 			:= nasm
+CC 		:= $(CROSS_PREFIX)/bin/$(TARGET)-gcc
+CXX 		:= $(CROSS_PREFIX)/bin/$(TARGET)-g++
+LD 		:= $(CROSS_PREFIX)/bin/$(TARGET)-ld
+AS 		:= $(CROSS_PREFIX)/bin/$(TARGET)-as
+NASM 		:= nasm
 
-CORES 			:= $(shell nproc)
+CORES 		:= $(shell nproc)
 
 # Directories
 BUILD_DIR 	?= build

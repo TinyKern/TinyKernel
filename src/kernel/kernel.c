@@ -15,6 +15,7 @@
 #include <drivers/video/video.h>
 #include <drivers/vga/vga.h>
 #include <kernel/syscalls/syscalls.h>
+#include <kernel/cpu/gdt/gdt.h>
 #include <kernel/cpu/cpu.h>
 #include <kernel/kernel.h>
 #include <kernel/stdio.h>
@@ -66,6 +67,8 @@ extern void call_constructors()
 
 void kernel_entry(uint32 magic)
 {
+  gdt_init();
+
   // Initialize VGA Driver
   int vga = vga_init();
   clear_screen();

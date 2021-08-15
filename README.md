@@ -14,7 +14,6 @@ I thought it was time to finally create a project from the ground up, with its o
 the kernel.
 
 ## Setup
-[Disclaimer] - TinyKernel currently only builds on Linux distributions.
 
 Currently, there is too many files for people to just manually enter commands to run and build, therefor, you should really use the provided Makefile. just enter `make` into the commandline at the root of the project, & it will build the project for you. After, you can enter `make run` into the command line, & it will run the following project.
 ### ISO

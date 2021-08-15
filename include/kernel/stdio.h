@@ -29,5 +29,4 @@ extern void __kprint(const char*);
  * @param str - The string to print
  */
 #define kprint(...) __kprint(__VA_ARGS__)
-
 #endif

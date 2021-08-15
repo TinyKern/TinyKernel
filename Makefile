@@ -10,53 +10,53 @@
 # * full license details.
 
 KERNEL_VERSION 	:= 1.3.6
-AUTHOR 		:= Bobrossrtx
+AUTHOR 			:= Bobrossrtx
 
 BINUTILS_VERSION:= 2.37
-GCC_VERSION	:= 11.2.0
+GCC_VERSION		:= 11.2.0
 
 # Linkers & Compilers
 CROSS_PREFIX 	:= $(HOME)/.local/bin/TinyKernel-Toolchain
-TARGET		:= i386-elf
+ARCH			:= i386-elf
 
-CC 		:= $(CROSS_PREFIX)/bin/$(TARGET)-gcc
-CXX 		:= $(CROSS_PREFIX)/bin/$(TARGET)-g++
-LD 		:= $(CROSS_PREFIX)/bin/$(TARGET)-ld
-AS 		:= $(CROSS_PREFIX)/bin/$(TARGET)-as
-NASM 		:= nasm
+CC 				:= $(CROSS_PREFIX)/bin/$(ARCH)-gcc
+CXX 			:= $(CROSS_PREFIX)/bin/$(ARCH)-g++
+LD 				:= $(CROSS_PREFIX)/bin/$(ARCH)-ld
+AS 				:= $(CROSS_PREFIX)/bin/$(ARCH)-as
+NASM 			:= nasm
 
-CORES 		:= $(shell nproc)
+CORES 			:= $(shell nproc)
 
 # Directories
-BUILD_DIR 	?= build
-SRC_DIRS 	?= src
-INC_DIRS 	?= include
-OBJ_DIR 	:= $(BUILD_DIR)/obj
-ISO_DIR 	:= $(BUILD_DIR)/iso
-BOOT_DIR 	:= $(BUILD_DIR)/boot
-GRUB_DIR 	:= $(BOOT_DIR)/grub
+BUILD_DIR 		?= build
+SRC_DIRS 		?= src
+INC_DIRS 		?= include
+OBJ_DIR 		:= $(BUILD_DIR)/obj
+ISO_DIR 		:= $(BUILD_DIR)/iso
+BOOT_DIR 		:= $(BUILD_DIR)/boot
+GRUB_DIR 		:= $(BOOT_DIR)/grub
 
-# Files
-SRCS 		:= $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s -or -name *.asm)
-OBJS 		:= $(SRCS:%=$(OBJ_DIR)/%.o)
-TARGET 		?= $(BOOT_DIR)/TinyKernel.elf
-ISO 		?= TinyKernel_$(AUTHOR)-$(KERNEL_VERSION).iso
+# Files	
+SRCS 			:= $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s -or -name *.asm)
+OBJS 			:= $(SRCS:%=$(OBJ_DIR)/%.o)
+TARGET 			?= $(BOOT_DIR)/TinyKernel.elf
+ISO 			?= TinyKernel_$(AUTHOR)-$(KERNEL_VERSION).iso
 
 # Flags
-INC_FLAGS 	:= $(addprefix -I ,$(INC_DIRS))
-CFLAGS 		?= $(INC_FLAGS) -std=gnu99 -ffreestanding -O2 -Wall -Wextra -m32 -fno-stack-protector
-LDFLAGS 	?= -m elf_i386 -T linker.ld
-ASFLAGS 	?= --32
-NASMFLAGS 	?= -f elf32
-QEMUFLAGS 	?= cdrom $(ISO_DIR)/$(ISO)
+INC_FLAGS 		:= $(addprefix -I ,$(INC_DIRS))
+CFLAGS 			?= $(INC_FLAGS) -std=gnu99 -ffreestanding -O2 -Wall -Wextra -m32 -fno-stack-protector
+LDFLAGS 		?= -m elf_i386 -T config/linker.ld
+ASFLAGS 		?= --32
+NASMFLAGS 		?= -f elf32
+QEMUFLAGS 		?= cdrom $(ISO_DIR)/$(ISO)
 
 # Package managers
-pacman 		:= $(shell command -v pacman 2>/dev/null)
-yum 		:= $(shell command -v yum 2>/dev/null)
-apt 		:= $(shell command -v apt 2>/dev/null)
+pacman 			:= $(shell command -v pacman 2>/dev/null)
+yum 			:= $(shell command -v yum 2>/dev/null)
+apt 			:= $(shell command -v apt 2>/dev/null)
 
-# Grub
-grub 		:= $(shell command -v grub-file 2>/dev/null)
+# Grub	
+grub 			:= $(shell command -v grub-file 2>/dev/null)
 
 .PHONY: clean iso run-iso
 iso: build
@@ -80,7 +80,7 @@ endif #pacman
 endif #grub
 	@grub-file --is-x86-multiboot $(TARGET)
 	@$(MKDIR_P) $(GRUB_DIR) $(ISO_DIR)
-	@cp grub.cfg $(GRUB_DIR)/
+	@cp config/grub.cfg $(GRUB_DIR)/
 
 $(OBJ_DIR)/%.s.o: %.s
 	@$(MKDIR_P) $(dir $@)

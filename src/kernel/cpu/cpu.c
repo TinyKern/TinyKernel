@@ -55,7 +55,7 @@ void print_ebx(uint32 ebx)
 {
 	uint32 brand_index, cache_line_size, max_addr_id, init_apic_id;
 	brand_index = cache_line_size = max_addr_id = init_apic_id = 0;
-	char *bytes = (char *)&ebx;
+	char* bytes = (char *)&ebx;
 
 	brand_index = bytes[0];			// bits 0-7
 	cache_line_size = bytes[1]; 	// bits 8-15
@@ -71,7 +71,20 @@ void print_ebx(uint32 ebx)
 
 void print_edx(uint32 edx)
 {
-	kprintf("    EDX:%d\n", edx);
+    uint32 apic_id, max_log_proc, max_cores, max_threads;
+    apic_id = max_log_proc = max_cores = max_threads = 0;
+    char* bytes = (char *)&edx;
+        
+    apic_id = bytes[0];				// bits 0-7
+    max_log_proc = bytes[1];		// bits 8-15
+    max_cores = bytes[2];			// bits 16-23
+    max_threads = bytes[3];		    // bits 24-31
+
+	kprintf("    EDX ------------------------|\n");
+	kprintf("        APIC ID           : %d\n", apic_id);
+    kprintf("        Max Logical Proc  : %d\n", max_log_proc);
+    kprintf("        Max Cores         : %d\n", max_cores);
+    kprintf("        Max Threads       : %d\n", max_threads);
 }
 
 void cpuid_test()

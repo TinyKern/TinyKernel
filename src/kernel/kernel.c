@@ -65,23 +65,21 @@ extern void call_constructors()
   }
 }
 
-void kernel_entry(uint32 magic)
+void kernel_entry()
 {
-  gdt_init();
-
-  // Initialize VGA Driver
+  int gdt = gdt_init();
   int vga = vga_init();
   clear_screen();
 
   kprintf("TinyKernel - %s\n", KERNEL_VERSION);
   kprintf(" [i] Kernel Version:   %s\n", KERNEL_VERSION);
-  kprintf(" [i] Magic Number:     0x%x\n", magic);
   kprintf(" [i] Keyboard Driver:  Enabled\n");
   if (vga == TRUE)
     kprintf(" [i] VGA Driver:       Enabled\n");
-  cpuid_test();
-  kprintf("\n");
-  pcs_beep();
+  if (gdt == TRUE)
+    kprintf(" [i] GDT:              Enabled\n");
+  cpuid_info(); kprintf("\n");
+
   kprintf(" Press enter to shut down\n");
   while (TRUE)
   {

@@ -5,7 +5,7 @@ struct GDT_PTR gdt_first;
 
 extern void load_gdt(struct GDT*);
 
-void gdt_init()
+int gdt_init()
 {
     // Set null segment
     gdt_entries[NULL_SEGMENT].segment_limit = 0;
@@ -35,4 +35,6 @@ void gdt_init()
     gdt_first.base_address = (struct GDT*)&gdt_entries;
 
     load_gdt((struct GDT*)&gdt_first);
+    
+    return TRUE;
 }

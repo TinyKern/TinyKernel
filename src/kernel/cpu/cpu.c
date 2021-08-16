@@ -1,6 +1,18 @@
+/**
+ * @file cpu.c
+ * @author Owen Boreham (owenkadeboreham@gmail.com)
+ * @version 0.1.3
+ * @date 2021-07-29
+ * 
+ * @copyright Copyright (c) 2021 TinyKernel
+ * This file is part of TinyKernel which is released
+ * under Apache License 2.0.  See file LICENSE or go
+ * to https://www.apache.org/licenses/LICENSE-2.0 for
+ * full license details.
+ */
+
 #include <kernel/cpu/cpu.h>
 #include <kernel/stdio.h>
-
 
 void cpuid(uint32 value, uint32 *eax, uint32 *ebx, uint32 *ecx, uint32 *edx)
 {

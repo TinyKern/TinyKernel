@@ -36,19 +36,35 @@ ISO_DIR 		:= $(BUILD_DIR)/iso
 BOOT_DIR 		:= $(BUILD_DIR)/boot
 GRUB_DIR 		:= $(BOOT_DIR)/grub
 
-# Files	
-SRCS 			:= $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s -or -name *.asm)
+PROJ_DIRS 		:= $(SRC_DIRS) $(INC_DIRS) $(OBJ_DIR) $(ISO_DIR) $(BOOT_DIR) $(GRUB_DIR)
+
+# Files
+AUXS		 	:= Makefile README.md LICENSE CODE_OF_CONDUCT.md
+SRCS 			:= $(shell find $(PROJ_DIRS) -name *.cpp -or -name *.c -or -name *.s -or -name *.asm)
+HDRS 			:= $(shell find $(PROJ_DIRS) -name *.h -or -name *.hh)
 OBJS 			:= $(SRCS:%=$(OBJ_DIR)/%.o)
+DEPS			:= $(SRCS:%=$(OBJ_DIR)/%.d)
 TARGET 			?= $(BOOT_DIR)/TinyKernel.elf
 ISO 			?= TinyKernel_$(AUTHOR)-$(KERNEL_VERSION).iso
 
+ALLFILES 		:= $(SRCS) $(HDRS) $(OBJS) $(AUXS)
+
 # Flags
+WARNING_FLAGS	:= -Wall -Wextra -pedantic -Wshadow -Wpointer-arith -Wcast-align \
+					-Wwrite-strings -Wmissing-prototypes -Wmissing-declarations \
+					-Wredundant-decls -Wnested-externs -Winline -Wno-long-long \
+					-Wconversion -Wstrict-prototypes
 INC_FLAGS 		:= $(addprefix -I ,$(INC_DIRS))
-CFLAGS 			?= $(INC_FLAGS) -std=gnu99 -ffreestanding -O2 -Wall -Wextra -m32 -fno-stack-protector
+CFLAGS 			?= $(INC_FLAGS) -MMD -MP -std=gnu99 -ffreestanding -O2 -m32 -fno-stack-protector $(WARNING_FLAGS) -g
 LDFLAGS 		?= -m elf_i386 -T config/linker.ld
 ASFLAGS 		?= --32
 NASMFLAGS 		?= -f elf32
 QEMUFLAGS 		?= cdrom $(ISO_DIR)/$(ISO)
+
+# Backups
+CURR_DIR		:= $(shell basename `pwd`)
+TODAY 			:= $(shell date +%Y-%m-%d)
+BACKUP_DIR		:= Backups/$(TODAY)
 
 # Package managers
 pacman 			:= $(shell command -v pacman 2>/dev/null)
@@ -130,5 +146,22 @@ install-toolchain:
 	@echo 
 	@echo "Toolchain installed to $(CROSS_PREFIX)"
 	@echo "run 'bash install.sh' in $(CROSS_PREFIX) to build the toolchain"
+
+.PHONY: clean todos
+todolist: todos
+todos:
+	@echo "============="
+	@echo "= TODO List ="
+	@echo "============="
+	-@for file in $(ALLFILES:Makefile=); do fgrep -H -e TODO -e FIXME $$file; done; true
+
+backup: clean
+ifndef /usr/bin/7z
+	$(error 7Zip is not installed, please install 7zip)
+endif
+	@echo "===================="
+	@echo "= Backing up files ="
+	@echo "===================="
+	@tar cf - ../$(CURR_DIR) | 7za a -si ../$(BACKUP_DIR)/$(CURR_DIR).$(TODAY)_`date +%H%M`.tar.7z
 
 MKDIR_P 	?= mkdir -p

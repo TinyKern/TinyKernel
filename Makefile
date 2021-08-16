@@ -105,8 +105,14 @@ $(OBJ_DIR)/%.cxx.o: %.cpp
 run: 
 	qemu-system-x86_64 -device sb16 -kernel $(TARGET)
 
+run-debug: 
+	qemu-system-x86_64 -device sb16 -kernel $(TARGET) -S -s
+
 run-iso: 
 	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO)
+
+run-iso-debug: 
+	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO)  -S -s
 
 .PHONY: clean
 clean:

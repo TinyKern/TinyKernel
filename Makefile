@@ -50,12 +50,16 @@ ISO 			?= TinyKernel_$(AUTHOR)-$(KERNEL_VERSION).iso
 ALLFILES 		:= $(SRCS) $(HDRS) $(OBJS) $(AUXS)
 
 # Flags
-WARNING_FLAGS	:= -Wall -Wextra -pedantic -Wshadow -Wpointer-arith -Wcast-align \
+LOWER_WARNINGS	:= -Wall -Wextra
+
+## Warning flags for later use when refactoring & cleaning
+WARNING_FLAGS	:= $(LOWER_WARNINGS) -pedantic -Wshadow -Wpointer-arith -Wcast-align \
 					-Wwrite-strings -Wmissing-prototypes -Wmissing-declarations \
 					-Wredundant-decls -Wnested-externs -Winline -Wno-long-long \
 					-Wconversion -Wstrict-prototypes
+
 INC_FLAGS 		:= $(addprefix -I ,$(INC_DIRS))
-CFLAGS 			?= $(INC_FLAGS) -MMD -MP -std=gnu99 -ffreestanding -O2 -m32 -fno-stack-protector $(WARNING_FLAGS) -g
+CFLAGS 			?= $(INC_FLAGS) -MMD -MP -std=gnu99 -ffreestanding -O2 -m32 -fno-stack-protector $(LOWER_WARNINGS) -g
 LDFLAGS 		?= -m elf_i386 -T config/linker.ld
 ASFLAGS 		?= --32
 NASMFLAGS 		?= -f elf32

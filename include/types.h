@@ -44,10 +44,11 @@ typedef int64_t s64;
 typedef float32_t f32;
 typedef float64_t f64;
 
-typedef uint32_t size_t;
+// unsigned pointers
+typedef unsigned long int uintptr_t;
 
-// #define NULL 0
-#define FALSE 0
-#define TRUE 1
+#define NULLPTR NULL
+
+typedef enum {false, true} bool;
 
 #endif

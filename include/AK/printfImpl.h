@@ -39,7 +39,7 @@ int printf_internal(char *fmt, va_list arg)
         i = va_arg(arg, int);
         if (i == 0)
         {
-          kpanic(0x0116, "kprintf: Invalid argument: \"%c\"", FALSE);
+          kpanic(0x0116, "kprintf: Invalid argument: \"%c\"", false);
           break;
         }
         vga_putchar(i);
@@ -69,7 +69,7 @@ int printf_internal(char *fmt, va_list arg)
         s = va_arg(arg, char *);
         if (s == 0)
         {
-          kpanic(0x0117, "kprintf: Invalid argument: \"%s\"", FALSE);
+          kpanic(0x0117, "kprintf: Invalid argument: \"%s\"", false);
           break;
         }
         kprint(s);

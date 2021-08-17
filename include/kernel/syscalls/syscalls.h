@@ -14,6 +14,8 @@
 #ifndef SYSCALLS_H
 #define SYSCALLS_H
 
+#include <cdefs.h>
+
 #include "shutdown.h"
 
 #endif // SYSCALLS_H

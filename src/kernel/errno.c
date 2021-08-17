@@ -30,15 +30,15 @@ void kprint_error(char* errcode, char* errmsg)
 }
 
 /*
- * hlt = TRUE || FALSE*/
-int kpanic(int errcode, char* errmsg, int hlt)
+ * hlt = true || false*/
+int kpanic(int errcode, char* errmsg, bool hlt)
 {
 	vga_set_default_color(vga_create_color(BLACK, WHITE));
   char code[16];
   itoa(errcode, code);
   kprint_error(code, errmsg);
 
-  if (hlt == TRUE)
+  if (hlt == true)
   {
     kprint("\nHalting kernel processes. Please restart system.");
     for(;;) {}

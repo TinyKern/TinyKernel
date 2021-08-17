@@ -29,6 +29,6 @@ enum ERR_CODES
 };
 
 extern void     kprint_error(char*, char*);
-extern int      kpanic(int errcode, char* errmsg, int hlt);
+extern int      kpanic(int errcode, char* errmsg, bool hlt);
 
 #endif

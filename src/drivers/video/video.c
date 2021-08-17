@@ -31,9 +31,9 @@ void set_cursor_offset(int offset)
 {
 	offset /= 2;
 	outb(CTRL_SCREEN_REG, 14);
-	outb(DATA_SCREEN_REG, (uint8)(offset >> 8));
+	outb(DATA_SCREEN_REG, (uint8_t)(offset >> 8));
 	outb(CTRL_SCREEN_REG, 15);
-	outb(DATA_SCREEN_REG, (uint8)(offset & 0xff));
+	outb(DATA_SCREEN_REG, (uint8_t)(offset & 0xff));
 }
 
 void clear_screen()

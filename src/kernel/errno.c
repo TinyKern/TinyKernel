@@ -20,7 +20,7 @@ void kprint_error(char* errcode, char* errmsg)
 {
 	char* out[6] = {"[", "X", "] ", errmsg, " - ", errcode};
 	
-	for (uint16 i = 0; i < 6; ++i)
+	for (uint16_t i = 0; i < 6; ++i)
 	{
 		if (strcmp(out[i], "X") == 0)
 			vga_set_default_color(vga_create_color(BLACK, RED));

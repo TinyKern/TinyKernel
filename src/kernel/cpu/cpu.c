@@ -14,9 +14,9 @@
 #include <kernel/cpu/cpu.h>
 #include <kernel/stdio.h>
 
-void cpuid(uint32 value, uint32 *eax, uint32 *ebx, uint32 *ecx, uint32 *edx)
+void cpuid(uint32_t value, uint32_t *eax, uint32_t *ebx, uint32_t *ecx, uint32_t *edx)
 {
-	uint32 eaxres, ebxres, ecxres, edxres;
+	uint32_t eaxres, ebxres, ecxres, edxres;
 	asm("xorl\t%eax, %eax");
 	asm("xorl\t%ebx, %ebx");
 	asm("xorl\t%ecx, %ecx");
@@ -38,9 +38,9 @@ void cpuid(uint32 value, uint32 *eax, uint32 *ebx, uint32 *ecx, uint32 *edx)
 	*edx = edxres;
 }
 
-static void print_eax(uint32 eax)
+static void print_eax(uint32_t eax)
 {
-	uint32 step_id, model, family_id, proc_type, ext_mod_id, ext_family_id;
+	uint32_t step_id, model, family_id, proc_type, ext_mod_id, ext_family_id;
 	step_id = model = family_id = proc_type = ext_mod_id = ext_family_id = eax;
 
 	step_id &= (2 << 3) - 1;  // bits 0-3
@@ -64,9 +64,9 @@ static void print_eax(uint32 eax)
 	kprintf("        Extended Family   : %d\n", ext_family_id);
 }
 
-static void print_ebx(uint32 ebx)
+static void print_ebx(uint32_t ebx)
 {
-	uint32 brand_index, cache_line_size, max_addr_id, init_apic_id;
+	uint32_t brand_index, cache_line_size, max_addr_id, init_apic_id;
 	brand_index = cache_line_size = max_addr_id = init_apic_id = 0;
 	char* bytes = (char *)&ebx;
 
@@ -82,9 +82,9 @@ static void print_ebx(uint32 ebx)
 	kprintf("        APIC ID           : %d\n", init_apic_id);
 }
 
-static void print_edx(uint32 edx)
+static void print_edx(uint32_t edx)
 {
-    uint32 apic_id, max_log_proc, max_cores, max_threads;
+    uint32_t apic_id, max_log_proc, max_cores, max_threads;
     apic_id = max_log_proc = max_cores = max_threads = 0;
     char* bytes = (char *)&edx;
         
@@ -102,7 +102,7 @@ static void print_edx(uint32 edx)
 
 void cpuid_info()
 {
-	uint32 eax, ebx, ecx, edx;
+	uint32_t eax, ebx, ecx, edx;
 
 	kprintf("CPUID :\n");
 

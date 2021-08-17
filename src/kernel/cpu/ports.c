@@ -13,51 +13,51 @@
 
 #include <kernel/cpu/ports.h>
 
-uint8 inb(uint16 port)
+uint8_t inb(uint16_t port)
 {
-  uint8 ret;
+  uint8_t ret;
   asm volatile("inb %1, %0" : "=a"(ret) : "d"(port));
   return ret;
 }
 
-void outb(uint16 port, uint8 data)
+void outb(uint16_t port, uint8_t data)
 {
   asm volatile("outb %0, %1" : "=a"(data) : "d"(port));
 }
 
-uint16 inw(uint16 port)
+uint16_t inw(uint16_t port)
 {
-  uint16 ret;
+  uint16_t ret;
   asm volatile("in %%dx, %%ax" : "=a"(ret) : "d"(port));
   return ret;
 }
 
 
-void outw(uint16 port, uint16 data)
+void outw(uint16_t port, uint16_t data)
 {
   asm volatile("out %0, %1" : "=a"(data) : "d"(port));
 }
 
-uint8 in8(uint16 port)
+uint8_t in8(uint16_t port)
 {
-  uint8 ret;
+  uint8_t ret;
   asm volatile("inb %1, %0" : "=a"(ret) : "Nd"(port));
   return ret;
 }
 
-void out8(uint16 port, uint8 data)
+void out8(uint16_t port, uint8_t data)
 {
   asm volatile("outb %0, %1" ::"a"(data), "Nd"(port));
 }
 
-uint16 in16(uint16 port)
+uint16_t in16(uint16_t port)
 {
-  uint16 ret;
+  uint16_t ret;
   asm volatile("inw %1, %0" : "=a"(ret) : "Nd"(port));
   return ret;
 }
 
-void out16(uint16 port, uint16 data)
+void out16(uint16_t port, uint16_t data)
 {
   asm volatile("outw %0, %1" ::"a"(data), "Nd"(port));
 }

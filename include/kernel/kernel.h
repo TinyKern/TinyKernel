@@ -22,14 +22,14 @@
 #define KERNEL_MAGIC 0x1BADB002
 
 struct multiboot_info {
-    uint32 flags;
-    uint32 mem_lower;
-    uint32 mem_upper;
-    uint32 boot_device;
-    uint32 config_table;
-    uint32 boot_loader_name;
-    uint32 buffer_width;
-    uint32 buffer_height;
+    uint32_t flags;
+    uint32_t mem_lower;
+    uint32_t mem_upper;
+    uint32_t boot_device;
+    uint32_t config_table;
+    uint32_t boot_loader_name;
+    uint32_t buffer_width;
+    uint32_t buffer_height;
 };
 
 struct kernel_args {

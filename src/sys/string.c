@@ -13,9 +13,9 @@
 
 #include <sys/string.h>
 
-uint32 strlen(const char *str)
+uint32_t strlen(const char *str)
 {
-  uint32 length = 0;
+  uint32_t length = 0;
   while (str[length])
     length++;
   return length;
@@ -26,7 +26,7 @@ int strcmp(const char *s1, const char *s2)
   while (*s1 == *s2++)
     if (*s1++ == 0)
       return 0;
-  return (*(uint8*)s1 - *(uint8*)--s2);
+  return (*(uint8_t*)s1 - *(uint8_t*)--s2);
 }
 
 const char *strchr(const char* s, char ch)

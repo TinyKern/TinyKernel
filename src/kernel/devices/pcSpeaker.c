@@ -16,16 +16,16 @@
 #include <kernel/cpu/cpu.h>
 #include <kernel/io.h>
 
-void pcs_tone_on(uint32 freq)
+void pcs_tone_on(uint32_t freq)
 {
-    uint32 div;
-    uint8 tmp;
+    uint32_t div;
+    uint8_t tmp;
 
     // Set the PIT to the desired frequency
     div = BASE_FREQ / freq;
     outb(0x43, 0xb6);
-    outb(0x42, (uint8)(div));
-    outb(0x42, (uint8)(div >> 8));
+    outb(0x42, (uint8_t)(div));
+    outb(0x42, (uint8_t)(div >> 8));
 
     // Play sound using PC speaker
     tmp = inb(0x61);
@@ -35,7 +35,7 @@ void pcs_tone_on(uint32 freq)
 
 void pcs_tone_off()
 {
-    uint8 tmp = inb(0x61) & 0xFC;
+    uint8_t tmp = inb(0x61) & 0xFC;
 
     outb(0x61, tmp);
 }

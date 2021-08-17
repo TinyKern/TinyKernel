@@ -20,7 +20,7 @@
 * @brief Gets the length of provided string
 * @param str - The string to get the length of
 */
-uint32  strlen(const char*);
+uint32_t  strlen(const char*);
 
 /**
  * @brief Compares two strings

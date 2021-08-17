@@ -18,7 +18,7 @@
 
 #include "string.h"
 
-extern uint32   digit_count(int);
+extern uint32_t   digit_count(int);
 
 /**
 * @brief Converts a int to a string

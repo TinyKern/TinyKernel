@@ -16,8 +16,8 @@
 
 #include <types.h>
 
-extern uint8 cmod_lowmem();
-extern uint8 cmod_highmem();
-extern uint16 cmod_totalmem();
+extern uint8_t cmod_lowmem();
+extern uint8_t cmod_highmem();
+extern uint16_t cmod_totalmem();
 
 #endif // CMOS_C

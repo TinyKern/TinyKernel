@@ -22,7 +22,7 @@
 #define LSB(x) ((x)&0xFF)
 #define MSB(x) (((x) >> 8) & 0xFF)
 
-extern void cpuid(uint32 value, uint32 *eax, uint32 *ebx, uint32 *ecx, uint32 *edx);
+extern void cpuid(uint32_t value, uint32_t *eax, uint32_t *ebx, uint32_t *ecx, uint32_t *edx);
 extern void cpuid_info();
 
 #endif // CPU_H

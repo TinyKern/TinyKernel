@@ -13,7 +13,7 @@
 
 #include <sys/char.h>
 
-char get_ascii_char(uint8 key_code)
+char get_ascii_char(uint8_t key_code)
 {
   switch (key_code)
   {

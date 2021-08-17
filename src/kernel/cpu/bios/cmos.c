@@ -14,9 +14,9 @@
 #include <kernel/cpu/bios/cmos.h>
 #include <kernel/cpu/cpu.h>
 
-uint8 cmod_lowmem()
+uint8_t cmod_lowmem()
 {
-    uint8 lowmem;
+    uint8_t lowmem;
 
     // Get the low memory size from CMOS
     outb(0x70, 0x30);
@@ -24,9 +24,9 @@ uint8 cmod_lowmem()
     return lowmem;
 }
 
-uint8 cmod_highmem()
+uint8_t cmod_highmem()
 {
-    uint8 highmem;
+    uint8_t highmem;
 
     // Get the high memory size from CMOS
     outb(0x70, 0x31);
@@ -34,10 +34,10 @@ uint8 cmod_highmem()
     return highmem;
 }
 
-uint16 cmod_totalmem()
+uint16_t cmod_totalmem()
 {
-    uint16 totalmem;
-    uint8 lowmem, highmem;
+    uint16_t totalmem;
+    uint8_t lowmem, highmem;
 
     lowmem = cmod_lowmem();
     highmem = cmod_highmem();

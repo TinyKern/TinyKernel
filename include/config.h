@@ -16,13 +16,13 @@
 
 #include "types.h"
 
-extern uint16* vga_buffer;
+extern uint16_t* vga_buffer;
 
 // Index for video buffer array
-extern uint32 vga_index;
+extern uint32_t vga_index;
 
-extern uint8 g_fore_color;
-extern uint8 g_back_color;
+extern uint8_t g_fore_color;
+extern uint8_t g_back_color;
 
 #define KERNEL_VERSION "1.3.6"
 

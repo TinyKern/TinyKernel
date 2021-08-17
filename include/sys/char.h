@@ -17,6 +17,6 @@
 #include <types.h>
 #include <drivers/keyboard/keyboard.h>
 
-extern char get_ascii_char(uint8);
+extern char get_ascii_char(uint8_t);
 
 #endif

@@ -14,9 +14,9 @@
 #include <sys/utils.h>
 #include <kernel/stdio.h>
 
-uint32 digit_count(int num)
+uint32_t digit_count(int num)
 {
-  uint32 count = 0;
+  uint32_t count = 0;
   if (num == 0)
     return 1;
   while (num > 0)

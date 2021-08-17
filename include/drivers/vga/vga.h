@@ -22,25 +22,25 @@
 #define VGA_ROWS 25
 
 struct vga_entry_t {
-  uint8 ch;
-  uint8 color;
+  uint8_t ch;
+  uint8_t color;
 };
 
 // color
 
-extern uint8 vga_create_color(uint8 bg, uint8 fg);
-extern void vga_set_default_color(uint8 color);
+extern uint8_t vga_create_color(uint8_t bg, uint8_t fg);
+extern void vga_set_default_color(uint8_t color);
 
 // entry
 
-extern struct vga_entry_t vga_create_entry(uint8 ch, uint8 color);
+extern struct vga_entry_t vga_create_entry(uint8_t ch, uint8_t color);
 extern void vga_put_entry(struct vga_entry_t, size_t x, size_t y);
 extern int vga_init();
 
 // output
 
 extern void vga_putchar(const char c);
-extern uint32 draw(uint32 x, uint32 y, uint8 color);
+extern uint32_t draw(uint32_t x, uint32_t y, uint8_t color);
 
 enum vga_color {
     BLACK,

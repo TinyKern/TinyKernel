@@ -26,12 +26,20 @@ void vga_set_default_color(uint8_t color) {
   VGA_DEF_COLOR = color;
 }
 
-struct vga_entry_t vga_create_entry(uint8_t ch, uint8_t color) {
-  return (struct vga_entry_t){ ch, color };
+struct vga_entry_t vga_create_entry(uint8_t ch, uint8_t color)
+{ return (struct vga_entry_t){ ch, color }; }
+
+void vga_put_entry(struct vga_entry_t entry, size_t x, size_t y) 
+{
+  VGA_BUFFER[y * VGA_COLS + x] = entry;
 }
 
-void vga_put_entry(struct vga_entry_t entry, size_t x, size_t y) {
-  VGA_BUFFER[y * VGA_COLS + x] = entry;
+void vga_write_string(const char* str, size_t x, size_t y)
+{
+  for (size_t i = 0; str[i] != '\0'; i++)
+  {
+    vga_put_entry(vga_create_entry(str[i], VGA_DEF_COLOR), x + i, y);
+  }
 }
 
 void vga_set_pixel(uint32_t x, uint32_t y, uint8_t color)
@@ -45,12 +53,12 @@ uint32_t draw(uint32_t x, uint32_t y, uint8_t color)
   return (x /= y);
 }
 
-int vga_init() {
+bool vga_init() {
   VGA_COL = 0;
   VGA_ROW = 0;
   VGA_DEF_COLOR = vga_create_color(BLACK, GREY);
   VGA_BUFFER = (struct vga_entry_t*) VGA_ADDRESS;
-  return TRUE;
+  return true;
 }
 
 void vga_putchar(const char c) {

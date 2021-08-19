@@ -17,6 +17,7 @@
 #include <kernel/syscalls/syscalls.h>
 #include <kernel/cpu/gdt/gdt.h>
 #include <kernel/cpu/cpu.h>
+#include <kernel/time/time.h>
 #include <kernel/memory.h>
 #include <kernel/kernel.h>
 #include <kernel/stdio.h>
@@ -68,11 +69,13 @@ extern void call_constructors()
 
 void kernel_entry()
 {
+    // Initialise the kernel since interupts are not enabled
     bool gdt = gdt_init();
     bool vga = vga_init();
-    disable_cursor();
+    time_init();
     heap_init(0x100000, 0x100000);
 
+    disable_cursor();
     clear_screen();
     kprintf("TinyKernel - %s\n", KERNEL_VERSION);
 
@@ -108,6 +111,10 @@ void kernel_entry()
     while (true)
     {
         if (readKey(KEY_ENTER) == true)
+        {
             sys_shutdown();
+        }
     }
+
+    sti();
 }

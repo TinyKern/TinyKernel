@@ -25,4 +25,19 @@ extern void out8(uint16_t port, uint8_t data);
 extern uint16_t in16(uint16_t port);
 extern void out16(uint16_t port, uint16_t data);
 
+#define outb_p(port, value) \
+__asm__("outb %%al, %%dx\n" \
+        "\tjmp 1f\n"        \
+        "1:\tjmp 1f\n"      \
+        "1:"::"a" (value), "d" (port))
+
+#define inb_p(port) ({                  \
+uint8_t __res;                          \
+__asm__ volatile ("inb %%dx, %%al\n"    \
+    "\tjmp 1f\n"                        \
+    "1:\tjmp 1f\n"                      \
+    "1:":"=a" (__res):"d" (port));      \
+__res;                                  \
+})
+
 #endif

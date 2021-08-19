@@ -15,6 +15,12 @@
 #define CMOS_C
 
 #include <types.h>
+#include <kernel/cpu/cpu.h>
+
+#define READ_CMOS(addr) ({ \
+    outb_p(0x80 | addr, 0x70); \
+    inb_p(0x71); \
+})
 
 extern uint8_t cmod_lowmem();
 extern uint8_t cmod_highmem();

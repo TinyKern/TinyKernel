@@ -22,6 +22,12 @@
 #define LSB(x) ((x)&0xFF)
 #define MSB(x) (((x) >> 8) & 0xFF)
 
+#define sti() __asm__ ("sti"::)
+#define cli() __asm__ ("cli"::)
+#define nop() __asm__ ("nop"::)
+
+#define iret() __asm__ ("iret"::)
+
 extern void cpuid(uint32_t value, uint32_t *eax, uint32_t *ebx, uint32_t *ecx, uint32_t *edx);
 extern void cpuid_info();
 

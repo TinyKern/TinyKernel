@@ -17,6 +17,8 @@
 #include <types.h>
 #include <config.h>
 
+#include "cursor.h"
+
 #define VGA_ADDRESS 0xB8000
 #define VGA_COLS 80
 #define VGA_ROWS 25
@@ -42,6 +44,8 @@ extern bool vga_init();
 
 extern void vga_putchar(const char c);
 extern uint32_t draw(uint32_t x, uint32_t y, uint8_t color);
+
+extern void set_buffer_position(size_t x, size_t y);
 
 enum vga_color {
     BLACK,

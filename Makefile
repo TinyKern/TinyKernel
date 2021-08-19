@@ -53,14 +53,15 @@ grub 			:= $(shell command -v grub-file 2>/dev/null)
 
 .PHONY: clean iso run-iso
 iso: build
-	@echo "GRUB $^ -> $(ISO)"
+	@echo "${YELLOW}GRUB $^ -> ${BLUE}$(ISO)${GREEN}"
 	@grub-mkrescue -o $(ISO_DIR)/$(ISO) $(BUILD_DIR)
+	@echo "${RESET}"
 
 build: $(TARGET)
 
 $(TARGET): clean $(OBJS)
 	@$(MKDIR_P) $(dir $@)
-	@echo "Linking -> $@"
+	@echo "${YELLOW}Linking -> ${BLUE}$@${RESET}"
 	@$(LD) $(LDFLAGS) $(OBJS) -o $(TARGET)
 ifndef grub
 	@echo "Installing grub requirements"
@@ -77,22 +78,22 @@ endif #grub
 
 $(OBJ_DIR)/%.s.o: %.s
 	@$(MKDIR_P) $(dir $@)
-	@echo "AS $< -> $@"
+	@echo "${YELLOW}AS $< -> ${BLUE}$@${RESET}"
 	@$(AS) $(ASFLAGS) $< -o $@
 
 $(OBJ_DIR)/%.asm.o: %.asm
 	@$(MKDIR_P) $(dir $@)
-	@echo "NASM $< -> $@"
+	@echo "${YELLOW}NASM $< -> ${BLUE}$@${RESET}"
 	@$(NASM) $(NASMFLAGS) $< -o $@
 
 $(OBJ_DIR)/%.c.o: %.c
 	@$(MKDIR_P) $(dir $@)
-	@echo "CC $< -> $@"
+	@echo "${YELLOW}CC $< -> ${BLUE}$@${RESET}"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR)/%.cxx.o: %.cpp
 	@$(MKDIR_P) $(dir $@)
-	@echo "CXX $< -> $@"
+	@echo "${YELLOW}CXX $< -> ${BLUE}$@${RESET}"
 	@$(CXX) $(CFLAGS) -c $< -o $@
 
 run: 
@@ -113,16 +114,16 @@ clean:
 
 install-toolchain:
 	@rm -rf $(CROSS_PREFIX)
-	@echo "========================"
-	@echo "= Installing toolchain ="
-	@echo "========================"
+	@echo "${PURPLE}========================${RESET}"
+	@echo "${PURPLE}=${RESET} Installing toolchain ${PURPLE}=${RESET}"
+	@echo "${PURPLE}========================${RESET}"
 	@echo
 	git clone https://github.com/TinyKern/toolchain.git $(CROSS_PREFIX)
 	@echo
-	@echo "========================"
+	@echo "${PURPLE}========================${RESET}"
 	@echo 
-	@echo "Toolchain installed to $(CROSS_PREFIX)"
-	@echo "run 'bash install.sh' in $(CROSS_PREFIX) to build the toolchain"
+	@echo "Toolchain installed to ${LIGHT_PURPLE}$(CROSS_PREFIX)${RESET}"
+	@echo "run ${LIGHT_PURPLE}'bash install.sh'${RESET} in ${LIGHT_PURPLE}$(CROSS_PREFIX)${RESET} to build the toolchain"
 
 .PHONY: clean todos
 todolist: todos

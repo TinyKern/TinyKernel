@@ -70,6 +70,7 @@ void kernel_entry()
 {
     bool gdt = gdt_init();
     bool vga = vga_init();
+    disable_cursor();
     heap_init(0x100000, 0x100000);
 
     clear_screen();
@@ -102,7 +103,6 @@ void kernel_entry()
     vga_write_string("[3] kmalloc: 0x10 -> 0x", 40, 5); vga_write_string(convert_to_base((uint64_t)kmalloc_test3, 16), 63, 5);
     vga_write_string("[4] kmalloc: 0x10 -> 0x", 40, 6); vga_write_string(convert_to_base((uint64_t)kmalloc_test4, 16), 63, 6);
     vga_write_string("[5] kmalloc: 0x10 -> 0x", 40, 7); vga_write_string(convert_to_base((uint64_t)kmalloc_test5, 16), 63, 7);
-
 
     kprintf("\nPress enter to shut down\n");
     while (true)

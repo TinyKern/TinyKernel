@@ -73,3 +73,9 @@ void vga_putchar(const char c) {
     }
   }
 }
+
+void set_buffer_position(size_t x, size_t y)
+{
+  VGA_COL = x;
+  VGA_ROW = y;
+}

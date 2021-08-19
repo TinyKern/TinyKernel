@@ -48,6 +48,7 @@ void clear_screen()
 
 	vga_set_default_color(vga_create_color(BLACK, GREY));
 	set_cursor_offset(get_offset(0, 0));
+	set_buffer_position(0, 0);
 }
 
 int get_offset(int col, int row) { return 2 * (row * VGA_COLS + col); }

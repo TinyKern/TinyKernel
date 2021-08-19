@@ -1,8 +1,8 @@
 /**
- * @file syscalls.h
+ * @file shutdown.c
  * @author Owen Boreham (owenkadeboreham@gmail.com)
- * @version 0.1.2
- * @date 2021-07-06
+ * @version 0.1.1
+ * @date 2021-08-12
  * 
  * @copyright Copyright (c) 2021 TinyKernel
  * This file is part of TinyKernel which is released
@@ -11,14 +11,12 @@
  * full license details.
  */
 
-#ifndef SYSCALLS_H
-#define SYSCALLS_H
+#include <kernel/syscalls/syscalls.h>
 
-#include <kernel/cpu/cpu.h>
-#include <kernel/errno.h>
-#include <kernel/panic.h>
-#include <cdefs.h>
-
-extern void sys_shutdown(void);
-
-#endif // SYSCALLS_H
+void sys_shutdown(void)
+{
+  out16(0x604, 0x2000);
+  out16(0x4004, 3400);
+  out16(0xb004, 0x2000);
+  kpanic(ESHUTD, "Failed to shutdown");
+}

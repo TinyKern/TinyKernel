@@ -25,7 +25,9 @@ ISO_DIR 		:= $(BUILD_DIR)/iso
 BOOT_DIR 		:= $(BUILD_DIR)/boot
 GRUB_DIR 		:= $(BOOT_DIR)/grub
 
-PROJ_DIRS 		:= $(SRC_DIRS) $(INC_DIRS) $(OBJ_DIR) 
+PROJ_DIRS 		:= $(SRC_DIRS) $(INC_DIRS) $(OBJ_DIR)
+
+SERIAL_LOG_FILE := $(BUILD_DIR)/serial.log
 
 ifneq (,$(findstring xterm,${TERM}))
 	BLACK		:= $(shell tput -Txterm setaf 0)

@@ -99,14 +99,26 @@ $(OBJ_DIR)/%.cxx.o: %.cpp
 run: 
 	qemu-system-x86_64 -device sb16 -kernel $(TARGET)
 
+run-serial:
+	qemu-system-x86_64 -device sb16 -kernel $(TARGET) -monitor stdio -serial file:$(SERIAL_LOG_FILE)
+
 run-debug: 
 	qemu-system-x86_64 -device sb16 -kernel $(TARGET) -S -s
+
+run-debug-serial:
+	qemu-system-x86_64 -device sb16 -kernel $(TARGET) -monitor stdio -serial file:$(SERIAL_LOG_FILE) -S -s
 
 run-iso: 
 	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO)
 
+run-iso-serial:
+	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -monitor stdio -serial file:$(SERIAL_LOG_FILE)
+
 run-iso-debug: 
 	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO)  -S -s
+
+run-iso-debug-serial:
+	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -monitor stdio -serial file:$(SERIAL_LOG_FILE) -S -s
 
 .PHONY: clean
 clean:

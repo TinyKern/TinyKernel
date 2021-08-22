@@ -59,7 +59,14 @@ iso: build
 
 build: $(TARGET)
 
-$(TARGET): clean $(OBJS)
+setup-dirs:
+	@mkdir -p $(BUILD_DIR)
+	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(ISO_DIR)
+	@mkdir -p $(BOOT_DIR)
+	@mkdir -p $(GRUB_DIR)
+
+$(TARGET): clean setup-dirs $(OBJS)
 	@$(MKDIR_P) $(dir $@)
 	@echo "${YELLOW}Linking -> ${BLUE}$@${RESET}"
 	@$(LD) $(LDFLAGS) $(OBJS) -o $(TARGET)
@@ -100,25 +107,33 @@ run:
 	qemu-system-x86_64 -device sb16 -kernel $(TARGET)
 
 run-serial:
-	qemu-system-x86_64 -device sb16 -kernel $(TARGET) -monitor stdio -serial file:$(SERIAL_LOG_FILE)
+	touch $(SERIAL_LOG_FILE)
+	qemu-system-x86_64 -device sb16 -kernel $(TARGET) -monitor stdio -serial file:$(SERIAL_LOG_FILE) & 
+	tail -f $(SERIAL_LOG_FILE)
 
 run-debug: 
 	qemu-system-x86_64 -device sb16 -kernel $(TARGET) -S -s
 
 run-debug-serial:
-	qemu-system-x86_64 -device sb16 -kernel $(TARGET) -monitor stdio -serial file:$(SERIAL_LOG_FILE) -S -s
+	touch $(SERIAL_LOG_FILE)
+	qemu-system-x86_64 -device sb16 -kernel $(TARGET) -monitor stdio -serial file:$(SERIAL_LOG_FILE) -S -s &
+	tail -f $(SERIAL_LOG_FILE)
 
 run-iso: 
 	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO)
 
 run-iso-serial:
-	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -monitor stdio -serial file:$(SERIAL_LOG_FILE)
+	touch $(SERIAL_LOG_FILE)
+	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -monitor stdio -serial file:$(SERIAL_LOG_FILE) &
+	tail -f $(SERIAL_LOG_FILE)
 
 run-iso-debug: 
 	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO)  -S -s
 
 run-iso-debug-serial:
-	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -monitor stdio -serial file:$(SERIAL_LOG_FILE) -S -s
+	touch $(SERIAL_LOG_FILE)
+	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -monitor stdio -serial file:$(SERIAL_LOG_FILE) -S -s &
+	tail -f $(SERIAL_LOG_FILE)
 
 .PHONY: clean
 clean:

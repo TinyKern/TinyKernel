@@ -11,6 +11,9 @@
  * full license details.
  */
 
+#include <multiboot.h>
+
+#include <multiboot.h>
 #include <drivers/keyboard/keyboard.h>
 #include <drivers/video/video.h>
 #include <drivers/vga/vga.h>
@@ -24,6 +27,8 @@
 #include <kernel/stdio.h>
 #include <kernel/errno.h>
 #include <sys/utils.h>
+
+void kernel_entry();
 
 void input()
 {

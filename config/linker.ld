@@ -23,6 +23,9 @@ SECTIONS
     /* we need 1MB of space atleast */
     . = 1M;
 
+    /* Define kernel image base address */
+    kernel_start = .;
+
     /* First we put the multiboot header, as it is required
         to be put very early in the image or the bootloader
         won't recognize the file format. */
@@ -30,6 +33,7 @@ SECTIONS
     .text BLOCK(4K) : ALIGN(4K)
     {
         *(.multiboot)
+        *(.multiboot_header)
         *(.text)
     }
 
@@ -56,4 +60,7 @@ SECTIONS
         *(COMMON)
         *(.bss)
     }
+
+    /* Define kernel image end address */
+    kernel_end = .;
 }

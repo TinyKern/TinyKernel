@@ -128,7 +128,7 @@ run-iso-debug:
 	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO)  -S -s
 
 run-iso-debug-serial:
-	touch $(SERIAL_LOG_FILE)
+	touch $(SERIAL_LOG_FILE)	
 	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -serial stdio -S -s
 
 .PHONY: clean
@@ -157,9 +157,6 @@ todos:
 	-@for file in $(ALLFILES:Makefile=); do fgrep -H -e TODO -e FIXME $$file; done; true
 
 backup: clean
-ifndef /usr/bin/7z
-	$(error 7Zip is not installed, please install 7zip)
-endif
 	@echo "===================="
 	@echo "= Backing up files ="
 	@echo "===================="

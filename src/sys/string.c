@@ -73,3 +73,23 @@ char *strtok(char* s, const char* delim)
 
   return word;
 }
+
+void* memcpy(void* dest, const void* src, uint32_t size)
+{
+  char* d = dest;
+  const char* s = src;
+  while (size--)
+    *d++ = *s++;
+  return dest;
+}
+
+char* strcpy(char* dest, const char* src)
+{
+  return memcpy(dest, src, strlen(src) + 1);
+}
+
+char* strcat(char* dest, const char* src)
+{
+  strcpy(dest + strlen(dest), src);
+  return dest;
+}

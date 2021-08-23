@@ -26,8 +26,8 @@ extern uint8_t g_back_color;
 
 #define KERNEL_VERSION "1.3.6"
 
-#define INFO_COLORS     "[\033[1;33minfo\033[0m]"
-#define DEBUG_COLORS    "[\033[0;33m\033[4mdebug\033[0m]"
+#define INFO_COLORS     "[\033[1;36minfo\033[0m] "
+#define DEBUG_COLORS    "[\033[0;33m\033[4mdebug\033[0m] "
 #define SUCCESS_COLORS  "[\033[1;32msuccess\033[0m] "
 
 #endif

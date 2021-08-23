@@ -113,3 +113,38 @@ void qemu_printf(char *fmt, ...)
     qemu_print(fmt, args);
     va_end(args);
 }
+
+char* output;
+
+void qemu_dbg(char *fmt, ...)
+{
+    strcpy(output, DEBUG_COLORS);
+    strcat(output, fmt);
+
+    va_list args;
+    va_start(args, fmt);
+    qemu_print(output, args);
+    va_end(args);
+}
+
+void qemu_success(char *fmt, ...)
+{
+    strcpy(output, SUCCESS_COLORS);
+    strcat(output, fmt);
+
+    va_list args;
+    va_start(args, fmt);
+    qemu_print(output, args);
+    va_end(args);
+}
+
+void qemu_info(char *fmt, ...)
+{
+    strcpy(output, INFO_COLORS);
+    strcat(output, fmt);
+
+    va_list args;
+    va_start(args, fmt);
+    qemu_print(output, args);
+    va_end(args);
+}

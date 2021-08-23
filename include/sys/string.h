@@ -31,4 +31,9 @@ int     strcmp(const char*, const char*);
 
 const char *strchr(const char*, char);
 char*   strtok(char*, const char*);
+
+void* memcpy(void* dest, const void* src, uint32_t size);
+
+char* strcpy(char* dest, const char* src);
+char* strcat(char* dest, const char* src);
 #endif // STRING_H

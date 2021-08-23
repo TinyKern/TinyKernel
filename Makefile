@@ -108,32 +108,28 @@ run:
 
 run-serial:
 	touch $(SERIAL_LOG_FILE)
-	qemu-system-x86_64 -device sb16 -kernel $(TARGET) -monitor stdio -serial file:$(SERIAL_LOG_FILE) & 
-	tail -f $(SERIAL_LOG_FILE)
+	qemu-system-x86_64 -device sb16 -kernel $(TARGET) -append "root=/dev/sda console=ttyS0" -serial stdio
 
 run-debug: 
 	qemu-system-x86_64 -device sb16 -kernel $(TARGET) -S -s
 
 run-debug-serial:
 	touch $(SERIAL_LOG_FILE)
-	qemu-system-x86_64 -device sb16 -kernel $(TARGET) -monitor stdio -serial file:$(SERIAL_LOG_FILE) -S -s &
-	tail -f $(SERIAL_LOG_FILE)
+	qemu-system-x86_64 -device sb16 -kernel $(TARGET) -append "root=/dev/sda console=ttyS0" -serial stdio -S -s
 
 run-iso: 
 	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO)
 
 run-iso-serial:
 	touch $(SERIAL_LOG_FILE)
-	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -monitor stdio -serial file:$(SERIAL_LOG_FILE) &
-	tail -f $(SERIAL_LOG_FILE)
+	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -append "root=/dev/sda console=ttyS0" -serial stdio
 
 run-iso-debug: 
 	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO)  -S -s
 
 run-iso-debug-serial:
 	touch $(SERIAL_LOG_FILE)
-	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -monitor stdio -serial file:$(SERIAL_LOG_FILE) -S -s &
-	tail -f $(SERIAL_LOG_FILE)
+	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -append "root=/dev/sda console=ttyS0" -serial stdio -S -s
 
 .PHONY: clean
 clean:

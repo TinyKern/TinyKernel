@@ -122,14 +122,14 @@ run-iso:
 
 run-iso-serial:
 	touch $(SERIAL_LOG_FILE)
-	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -append "root=/dev/sda console=ttyS0" -serial stdio
+	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -serial stdio
 
 run-iso-debug: 
 	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO)  -S -s
 
 run-iso-debug-serial:
 	touch $(SERIAL_LOG_FILE)
-	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -append "root=/dev/sda console=ttyS0" -serial stdio -S -s
+	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -serial stdio -S -s
 
 .PHONY: clean
 clean:

@@ -13,5 +13,7 @@ void qemu_printf(char* fmt, ...);
 void qemu_dbg(char *fmt, ...);
 void qemu_success(char *fmt, ...);
 void qemu_info(char *fmt, ...);
+void qemu_error(char* fmt, ...);
+void qemu_panic(char* fmt, ...);
 
 #endif // QEMU_H

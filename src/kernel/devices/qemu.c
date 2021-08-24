@@ -148,3 +148,25 @@ void qemu_info(char *fmt, ...)
     qemu_print(output, args);
     va_end(args);
 }
+
+void qemu_error(char* fmt, ...)
+{
+    strcpy(output, ERROR_COLORS);
+    strcat(output, fmt);
+
+    va_list args;
+    va_start(args, fmt);
+    qemu_print(output, args);
+    va_end(args);
+}
+
+void qemu_panic(char* fmt, ...)
+{
+    strcpy(output, PANIC_COLORS);
+    strcat(output, fmt);
+
+    va_list args;
+    va_start(args, fmt);
+    qemu_print(output, args);
+    va_end(args);
+}

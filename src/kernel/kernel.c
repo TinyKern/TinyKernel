@@ -95,8 +95,11 @@ void loading_bar(int x, int y, int len, char* message, uint8_t color)
 
 void kernel_entry()
 {
+#ifdef QEMU_SERIAL_ENABLED
     qemu_info("Kernel Initializing\r\n");
     qemu_info("Version: %s\r\n", KERNEL_VERSION);
+    qemu_info("Compiler: %s - %u\r\n", COMPILER_NAME, COMPILER_VERSION);
+#endif // QEMU_SERIAL_ENABLED
 
     // Initialise the kernel since interupts are not enabled
     bool gdt = gdt_init();
@@ -111,7 +114,9 @@ void kernel_entry()
     char* loading_message = "TinyKernel Booting";
     loading_bar(VGA_COLS / 2, VGA_ROWS / 2, strlen(loading_message), loading_message, 0xff);
 
+#ifdef QEMU_SERIAL_ENABLED
     qemu_success("Kernel Initialization Complete\r\n");
+#endif // QEMU_SERIAL_ENABLED
 
     kprintf("TinyKernel - %s\n", KERNEL_VERSION);
     kprintf(" [i] Kernel Version:   %s\n", KERNEL_VERSION);
@@ -119,12 +124,16 @@ void kernel_entry()
     if (gdt == true)
     {
         kprintf(" [i] GDT:              Enabled\n");
+#ifdef QEMU_SERIAL_ENABLED
         qemu_success("GDT Initialized: %x\r\n", gdt);
+#endif // QEMU_SERIAL_ENABLED
     }
     if (vga == true)
     {
         kprintf(" [i] VGA Driver:       Enabled\n");
+#ifdef QEMU_SERIAL_ENABLED
         qemu_success("VGA Initialized: %x\r\n", vga);
+#endif // QEMU_SERIAL_ENABLED
     }
 
     cpuid_info();
@@ -132,9 +141,11 @@ void kernel_entry()
     void* kmalloc_test = kmalloc(0x10);
     void* kmalloc_test1 = kmalloc(0x10);
     void* kmalloc_test2 = kmalloc(0x10);
+#ifdef QEMU_SERIAL_ENABLED
     qemu_dbg("kmalloc_test: %x\r\n", kmalloc_test);
     qemu_dbg("kmalloc_test1: %x\r\n", kmalloc_test1);
     qemu_dbg("kmalloc_test2: %x\r\n", kmalloc_test2);
+#endif // QEMU_SERIAL_ENABLED
     vga_write_string("Heap Allocation Test:     --------", 35, 0);
     vga_write_string("[0] kmalloc: 0x10 -> 0x", 40, 1); vga_write_string(convert_to_base((uint64_t)kmalloc_test, 16), 63, 1);
     vga_write_string("[1] kmalloc: 0x10 -> 0x", 40, 2); vga_write_string(convert_to_base((uint64_t)kmalloc_test1, 16), 63, 2);
@@ -144,16 +155,20 @@ void kernel_entry()
     kfree(kmalloc_test);
     kfree(kmalloc_test1);
     kfree(kmalloc_test2);
+#ifdef QEMU_SERIAL_ENABLED
     qemu_dbg("kmalloc_test: %x\r\n", kmalloc_test);
     qemu_dbg("kmalloc_test1: %x\r\n", kmalloc_test1);
     qemu_dbg("kmalloc_test2: %x\r\n", kmalloc_test2);
+#endif // QEMU_SERIAL_ENABLED
 
     void* kmalloc_test3 = kmalloc(0x10);
     void* kmalloc_test4 = kmalloc(0x10);
     void* kmalloc_test5 = kmalloc(0x10);
+#ifdef QEMU_SERIAL_ENABLED
     qemu_dbg("kmalloc_test3: %x\r\n", kmalloc_test3);
     qemu_dbg("kmalloc_test4: %x\r\n", kmalloc_test4);
     qemu_dbg("kmalloc_test5: %x\r\n", kmalloc_test5);
+#endif // QEMU_SERIAL_ENABLED
     vga_write_string("Heap Free Test:           --------", 35, 4);
     vga_write_string("[3] kmalloc: 0x10 -> 0x", 40, 5); vga_write_string(convert_to_base((uint64_t)kmalloc_test3, 16), 63, 5);
     vga_write_string("[4] kmalloc: 0x10 -> 0x", 40, 6); vga_write_string(convert_to_base((uint64_t)kmalloc_test4, 16), 63, 6);
@@ -164,9 +179,10 @@ void kernel_entry()
     {
         if (readKey(KEY_ENTER) == true)
         {
+#ifdef QEMU_SERIAL_ENABLED
             qemu_info("Shutting Down\r\n");
-            // sys_shutdown();
-            kpanic(1000, "Kernel Shutdown");
+#endif // QEMU_SERIAL_ENABLED
+            sys_shutdown();
         }
     }
 

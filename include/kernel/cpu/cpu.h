@@ -51,7 +51,10 @@ struct regs
     size_t es;
     size_t fs;
     size_t gs;
+    size_t edi, esi, ebp, esp, ebx, edx, ecx, eax;
 };
+
+typedef struct regs regs_t;
 
 #define sti() __asm__ ("sti"::)
 #define cli() __asm__ ("cli"::)

@@ -15,6 +15,7 @@
 #define TYPES_H
 
 #include <sys/stddef.h>
+#include "cdefs.h"
 
 // Unsigned types
 typedef unsigned char uint8_t;
@@ -50,5 +51,7 @@ typedef unsigned long int uintptr_t;
 #define NULLPTR NULL
 
 typedef enum {false, true} bool;
+
+#define ALWAYS_INLINE __attribute__((always_inline))
 
 #endif

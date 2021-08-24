@@ -43,6 +43,6 @@ void pcs_tone_off()
 void pcs_beep()
 {
     pcs_tone_on(1000);
-    wait_for_io(1000);
+    sleep(10000000);
     pcs_tone_off();
 }

@@ -14,6 +14,8 @@
 #ifndef ERRNO_H
 #define ERRNO_H
 
+#define EFAULT 14
+
 // Syscall error codes
 #define ENOSYS      38  // Invalid system call number
 

@@ -18,6 +18,7 @@
 #include <drivers/video/video.h>
 #include <drivers/vga/vga.h>
 #include <kernel/syscalls/syscalls.h>
+#include <kernel/devices/pcSpeaker.h>
 #include <kernel/devices/qemu.h>
 #include <kernel/cpu/gdt/gdt.h>
 #include <kernel/cpu/cpu.h>
@@ -34,10 +35,9 @@ void kernel_entry();
 void input()
 {
     char ch = 0;
-    char keycode = 0;
     do
     {
-        keycode = get_input_keycode();
+        char keycode = get_input_keycode();
         if (keycode == KEY_ENTER)
         {
             vga_putchar('\n');
@@ -165,7 +165,8 @@ void kernel_entry()
         if (readKey(KEY_ENTER) == true)
         {
             qemu_info("Shutting Down\r\n");
-            sys_shutdown();
+            // sys_shutdown();
+            kpanic(1000, "Kernel Shutdown");
         }
     }
 

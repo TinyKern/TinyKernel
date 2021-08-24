@@ -30,4 +30,13 @@ extern uint8_t g_back_color;
 #define DEBUG_COLORS    "[\033[0;33m\033[4mdebug\033[0m] "
 #define SUCCESS_COLORS  "[\033[1;32msuccess\033[0m] "
 
+#define KB (1024u)
+#define MB (1024u*KB)
+
+#define USE_ELF32
+#define KERNEL_SYMBOLS 1
+
+#define KERNEL_BASE_VA  0xC0000000
+#define KERNEL_PADDR    0x00100000
+
 #endif

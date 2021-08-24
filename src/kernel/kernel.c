@@ -84,11 +84,12 @@ void loading_bar(int x, int y, int len, char* message, uint8_t color)
     x -= (len / 2);
     for (i = 0; i < len; i++)
     {
-        sleep(10000000);
         draw(x, y, color);
+        sleep(15000000);
         x += 1;
     }
-
+    
+    sleep(200000000);
     clear_screen();
 }
 

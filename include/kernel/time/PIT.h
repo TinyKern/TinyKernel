@@ -16,6 +16,8 @@
 
 #include <types.h>
 
+#include <kernel/cpu/cpu.h>
+
 /* Timer related ports */
 #define TIMER_T0_CTL		0x40
 #define TIMER_T1_CTL		0x41
@@ -35,5 +37,8 @@
 #define WRITE_WORD          0x30
 
 #define BASE_FREQ           1193180
+
+extern unsigned read_pit_count(void);
+extern void     set_pit_count(unsigned count);
 
 #endif // PIT_H

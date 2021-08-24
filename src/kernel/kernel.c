@@ -22,6 +22,7 @@
 #include <kernel/cpu/gdt/gdt.h>
 #include <kernel/cpu/cpu.h>
 #include <kernel/time/time.h>
+#include <kernel/time/PIT.h>
 #include <kernel/memory.h>
 #include <kernel/kernel.h>
 #include <kernel/stdio.h>
@@ -73,6 +74,24 @@ extern void call_constructors()
     }
 }
 
+void loading_bar(int x, int y, int len, char* message, uint8_t color)
+{
+    int i = 0;
+
+    set_buffer_position((x - (len / 2)), y - 1);
+    kprintf(message);
+
+    x -= (len / 2);
+    for (i = 0; i < len; i++)
+    {
+        sleep(10000000);
+        draw(x, y, color);
+        x += 1;
+    }
+
+    clear_screen();
+}
+
 void kernel_entry()
 {
     qemu_info("Kernel Initializing\r\n");
@@ -87,6 +106,9 @@ void kernel_entry()
 
     disable_cursor();
     clear_screen();
+
+    char* loading_message = "TinyKernel Booting";
+    loading_bar(VGA_COLS / 2, VGA_ROWS / 2, strlen(loading_message), loading_message, 0xff);
 
     qemu_success("Kernel Initialization Complete\r\n");
 

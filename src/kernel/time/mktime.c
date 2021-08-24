@@ -5,7 +5,7 @@
 #define DAY (24 * HOUR)
 #define YEAR (365 * DAY)
 
-static int month[12] = {
+static int monthk[12] = {
     0,
     DAY * (31),
     DAY * (31+29),
@@ -51,7 +51,7 @@ long mktime(struct tm *tm)
     year = tm->tm_year - 70;
 
     res = YEAR*year + DAY*((year+1)/4);
-    res += month[tm->tm_mon];
+    res += monthk[tm->tm_mon];
 
     if (tm->tm_mon > 1 && ((year+2) % 4))
         res -= DAY;

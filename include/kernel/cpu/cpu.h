@@ -22,6 +22,37 @@
 #define LSB(x) ((x)&0xFF)
 #define MSB(x) (((x) >> 8) & 0xFF)
 
+struct regs
+{
+    size_t r15;
+    size_t r14;
+    size_t r13;
+    size_t r12;
+    size_t rbp;
+    size_t rbx;
+    size_t r11;
+    size_t r10;
+    size_t r9;
+    size_t r8;
+    size_t rax;
+    size_t rcx;
+    size_t rdx;
+    size_t rsi;
+    size_t rdi;
+    size_t orig_rax;
+    size_t rip;
+    size_t cs;
+    size_t eflags;
+    size_t rsp;
+    size_t ss;
+    size_t fs_base;
+    size_t gs_base;
+    size_t ds;
+    size_t es;
+    size_t fs;
+    size_t gs;
+};
+
 #define sti() __asm__ ("sti"::)
 #define cli() __asm__ ("cli"::)
 #define nop() __asm__ ("nop"::)

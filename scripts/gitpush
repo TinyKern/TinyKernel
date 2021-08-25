@@ -1,0 +1,37 @@
+#!/bin/sh
+
+remotes="origin"
+while getopts r:b: flag
+do
+  case "${flag}" in
+    r) remotes="${remotes} ${OPTARG}";;
+    b) branch=${OPTARG} ;;
+  esac
+done
+
+function usage {
+  echo "GitPush"
+  echo "Push to multiple remotes on a single branch at the same time."
+  echo
+  echo "Syntax: gitpush <options> -b [branch]"
+  echo
+  echo "options:"
+  echo "  -b    branch name"
+  echo "  -r    extra remotes"
+  echo
+  echo "refs:"
+  for branch_t in $(git for-each-ref --shell --format='%(refname)')
+  do
+    echo "  $branch_t"
+  done
+}
+
+if [ -z "$branch" ]; then
+  usage
+else
+  for remote in $remotes
+  do
+    echo "$remote -> $branch"
+    git push -u $remote $branch
+  done
+fi

@@ -122,6 +122,8 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     ASSERT(mbi->mods_count > 0);
 
 #ifdef QEMU_SERIAL_ENABLED
+    multiboot_uint32_t checksum = -(mbi->flags + magic);
+
     qemu_info("Multiboot flags:             %x\n", mbi->flags);
     qemu_info("Multiboot mem_lower:         %x\n", mbi->mem_lower);
     qemu_info("Multiboot mem_upper:         %x\n", mbi->mem_upper);
@@ -133,6 +135,7 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     qemu_info("Multiboot drives_length:     %u\n", mbi->drives_length);
     qemu_info("Multiboot drives_addr:       %x\n", mbi->drives_addr);
     qemu_info("Multiboot modules_count:     %u\n", mbi->mods_count);
+    qemu_info("Multiboot checksum:          %x\n", checksum);
 #endif
 
     time_init();

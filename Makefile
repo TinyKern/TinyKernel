@@ -148,13 +148,13 @@ install-toolchain:
 	@echo "Toolchain installed to ${LIGHT_PURPLE}$(CROSS_PREFIX)${RESET}"
 	@echo "run ${LIGHT_PURPLE}'bash install.sh'${RESET} in ${LIGHT_PURPLE}$(CROSS_PREFIX)${RESET} to build the toolchain"
 
-.PHONY: clean todos
+.PHONY: clean todos todolist
 todolist: todos
 todos:
 	@echo "============="
 	@echo "= TODO List ="
 	@echo "============="
-	-@for file in $(ALLFILES:Makefile=); do fgrep -H -e TODO -e FIXME $$file; done; true
+	-@for file in $(ALLFILES:Makefile=); do fgrep -H -n -e TODO -e FIXME $$file; done; true
 
 backup: clean
 	@echo "===================="

@@ -41,7 +41,10 @@ stackTop:
 .global     _start
 .type       _start, @function
 
+
 _start:
+    cli
+    cld
 
     # assign current stack pointer location to stackTop
     mov     $stackTop, %esp

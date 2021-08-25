@@ -17,23 +17,6 @@
 #include <config.h>
 #include <types.h>
 #include <sys/char.h>
-#include <drivers/keyboard/keyboard.h> 
-
-#define KERNEL_MAGIC 0x1BADB002
-
-struct multiboot_info {
-    uint32_t flags;
-    uint32_t mem_lower;
-    uint32_t mem_upper;
-    uint32_t boot_device;
-    uint32_t config_table;
-    uint32_t boot_loader_name;
-    uint32_t buffer_width;
-    uint32_t buffer_height;
-};
-
-struct kernel_args {
-    struct multiboot_info* mbi;
-};
+#include <drivers/keyboard/keyboard.h>
 
 #endif

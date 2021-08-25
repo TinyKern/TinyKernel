@@ -30,6 +30,7 @@
 enum ERR_CODES
 {
     ERRNO_KERNEL_INVALID_MAGIC      = 0x01, //!< Invalid magic number
+    ERRNO_KERNEL_INVALID_FLAGS,             //!< Invalid flags
     ERRNO_KERNEL_INVALID_SYSCALL    = 0x64, //!< Invalid syscall
     ERRNO_KERN_INVALID_ADDR,                //!< Invalid address
     ERRNO_NO_FREE_PAGE_FRAME,               //!< No free page frame available

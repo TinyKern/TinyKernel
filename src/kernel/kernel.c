@@ -12,8 +12,6 @@
  */
 
 #include <multiboot.h>
-
-#include <multiboot.h>
 #include <drivers/keyboard/keyboard.h>
 #include <drivers/video/video.h>
 #include <drivers/vga/vga.h>
@@ -29,6 +27,7 @@
 #include <kernel/stdio.h>
 #include <kernel/errno.h>
 #include <sys/utils.h>
+#include <cdefs.h>
 
 void kernel_entry();
 
@@ -93,23 +92,42 @@ void loading_bar(int x, int y, int len, char* message, uint8_t color)
     clear_screen();
 }
 
-void kernel_entry()
+void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
 {
+
 #ifdef QEMU_SERIAL_ENABLED
     qemu_info("Kernel Initializing\r\n");
     qemu_info("Version: %s\r\n", KERNEL_VERSION);
     qemu_info("Compiler: %s - %u\r\n", COMPILER_NAME, COMPILER_VERSION);
+    qemu_info("magic x: %x\n", magic);
+    qemu_info("magic u: %u\n", magic);
 #endif // QEMU_SERIAL_ENABLED
+
 
     // Initialise the kernel since interupts are not enabled
     bool gdt = gdt_init();
     bool vga = vga_init();
 
+    if (magic != MULTIBOOT_BOOTLOADER_MAGIC)
+        kpanic(ERRNO_KERNEL_INVALID_MAGIC, "Invalid magic number");
+
+    ASSERT(mbi->mods_count > 0);
+
+    qemu_info("Multiboot flags:             %x\n", mbi->flags);
+    qemu_info("Multiboot mem_lower:         %x\n", mbi->mem_lower);
+    qemu_info("Multiboot mem_upper:         %x\n", mbi->mem_upper);
+    qemu_info("Multiboot boot_device:       %x\n", mbi->boot_device);
+    qemu_info("Multiboot cmdline:           %x\n", mbi->cmdline);
+    qemu_info("Multiboot mmap_length:       %x\n", mbi->mmap_length);
+    qemu_info("Multiboot mmap_addr:         %x\n", mbi->mmap_addr);
+
     time_init();
     heap_init(0x100000, 0x100000);
 
+
     disable_cursor();
     clear_screen();
+
 
     char* loading_message = "TinyKernel Booting";
     loading_bar(VGA_COLS / 2, VGA_ROWS / 2, strlen(loading_message), loading_message, 0xff);
@@ -180,7 +198,7 @@ void kernel_entry()
         if (readKey(KEY_ENTER) == true)
         {
 #ifdef QEMU_SERIAL_ENABLED
-            qemu_info("Shutting Down\r\n");
+            qemu_success("Shutting Down\r\n");
 #endif // QEMU_SERIAL_ENABLED
             sys_shutdown();
         }

@@ -12,21 +12,21 @@
  */
 
 # set magic number to 0x1BADB002 to be identified by bootloader
-.set  MAGIC, 0x1BADB002
+.set        MAGIC, 0x1BADB002
 
 # set flags to 0
-.set  FLAGS, 0
+.set        FLAGS, 0
 
 # set the checksum
-.set  CHECKSUM, -(MAGIC + FLAGS)
+.set        CHECKSUM, -(MAGIC + FLAGS)
 
 # set multiboot enabled
-.section .multiboot
+.section    .multiboot
 
 # define type to long for each data defined as above
-.long MAGIC
-.long FLAGS
-.long CHECKSUM
+.long       MAGIC
+.long       FLAGS
+.long       CHECKSUM
 
 # set the stack bottom
 stackBottom:
@@ -37,23 +37,25 @@ stackBottom:
 # set the stack top which grows from higher to lower
 stackTop:
 
-.section .text
-.global _start
-.type _start, @function
+.section    .text
+.global     _start
+.type       _start, @function
 
 _start:
 
     # assign current stack pointer location to stackTop
-    mov   $stackTop, %esp
+    mov     $stackTop, %esp
 
     # call the kernel main source
-    call  kernel_entry
+    push    %eax
+    push    %ebx
+    call    kernel_entry
 
     cli
 
 # put system in infinite loop
 hltLoop:
     hlt
-    jmp   hltLoop
+    jmp     hltLoop
 
 .size _start, . - _start

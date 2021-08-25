@@ -26,4 +26,24 @@ extern uint8_t cmod_lowmem();
 extern uint8_t cmod_highmem();
 extern uint16_t cmod_totalmem();
 
+extern uint8_t  second;
+extern uint8_t  minute;
+extern uint8_t  hour;
+extern uint8_t  day;
+extern uint8_t  month;
+extern uint32_t year;
+extern uint8_t  century;
+extern uint8_t  last_second;
+extern uint8_t  last_minute;
+extern uint8_t  last_hour;
+extern uint8_t  last_day;
+extern uint8_t  last_month;
+extern uint8_t  last_year;
+extern uint8_t  last_century;
+extern uint8_t  registerB;
+
+void read_rtc();
+
+void get_current_time();
+
 #endif // CMOS_C

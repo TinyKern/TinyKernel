@@ -56,4 +56,6 @@ extern uint8_t g_back_color;
 
 #define QEMU_SERIAL_ENABLED
 
+#define CURRENT_YEAR    2021
+
 #endif

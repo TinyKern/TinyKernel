@@ -101,6 +101,7 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     qemu_info("Compiler: %s - %u\r\n", COMPILER_NAME, COMPILER_VERSION);
     qemu_info("magic x: %x\n", magic);
     qemu_info("magic u: %u\n", magic);
+    get_current_time();
 #endif // QEMU_SERIAL_ENABLED
 
 
@@ -113,6 +114,7 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
 
     ASSERT(mbi->mods_count > 0);
 
+#ifdef QEMU_SERIAL_ENABLED
     qemu_info("Multiboot flags:             %x\n", mbi->flags);
     qemu_info("Multiboot mem_lower:         %x\n", mbi->mem_lower);
     qemu_info("Multiboot mem_upper:         %x\n", mbi->mem_upper);
@@ -120,6 +122,7 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     qemu_info("Multiboot cmdline:           %x\n", mbi->cmdline);
     qemu_info("Multiboot mmap_length:       %x\n", mbi->mmap_length);
     qemu_info("Multiboot mmap_addr:         %x\n", mbi->mmap_addr);
+#endif
 
     time_init();
     heap_init(0x100000, 0x100000);

@@ -87,7 +87,6 @@ void loading_bar(int x, int y, int len, char* message, uint8_t color)
         sleep(15000000);
         x += 1;
     }
-    
     sleep(200000000);
     clear_screen();
 }
@@ -99,6 +98,8 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     qemu_info("Kernel Initializing\r\n");
     qemu_info("Version: %s\r\n", KERNEL_VERSION);
     qemu_info("Compiler: %s - %u\r\n", COMPILER_NAME, COMPILER_VERSION);
+    qemu_info("Architecture: %s\r\n", __BUILD_ARCH__);
+    qemu_info("Build: %s\r\n", __BUILD_DATE__);
     qemu_info("magic x: %x\n", magic);
     qemu_info("magic u: %u\n", magic);
     get_current_time();
@@ -115,14 +116,14 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     ASSERT(mbi->mods_count > 0);
 
 #ifdef QEMU_SERIAL_ENABLED
-    qemu_info("Multiboot flags:             %x\n", mbi->flags);
-    qemu_info("Multiboot mem_lower:         %x\n", mbi->mem_lower);
-    qemu_info("Multiboot mem_upper:         %x\n", mbi->mem_upper);
-    qemu_info("Multiboot boot_device:       %x\n", mbi->boot_device);
-    qemu_info("Multiboot cmdline:           %x\n", mbi->cmdline);
-    qemu_info("Multiboot mmap_length:       %x\n", mbi->mmap_length);
-    qemu_info("Multiboot mmap_addr:         %x\n", mbi->mmap_addr);
-#endif
+    qemu_info("Multiboot flags: %x\n", mbi->flags);
+    qemu_info("Multiboot mem_lower: %x\n", mbi->mem_lower);
+    qemu_info("Multiboot mem_upper: %x\n", mbi->mem_upper);
+    qemu_info("Multiboot boot_device: %x\n", mbi->boot_device);
+    qemu_info("Multiboot cmdline: %x\n", mbi->cmdline);
+    qemu_info("Multiboot mmap_length: %x\n", mbi->mmap_length);
+    qemu_info("Multiboot mmap_addr: %x\n", mbi->mmap_addr);
+#endif // QEMU_SERIAL_ENABLED
 
     time_init();
     heap_init(0x100000, 0x100000);

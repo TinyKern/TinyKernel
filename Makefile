@@ -9,7 +9,11 @@
 # * to https://www.apache.org/licenses/LICENSE-2.0 for
 # * full license details.
 
+# Basic infomation about the project
 include make.mk
+
+# Project imports
+include src/arch/build.mk
 
 # Files
 AUXS		 	:= Makefile README.md LICENSE CODE_OF_CONDUCT.md
@@ -22,6 +26,14 @@ ISO 			?= TinyKernel_$(AUTHOR)-$(KERNEL_VERSION).iso
 
 ALLFILES 		:= $(SRCS) $(HDRS) $(OBJS) $(AUXS)
 
+# GCC Definitions
+BUILD_DEFS		:= \
+	-D__BUILD_ARCH__=\""$(CONFIG_ARCH)"\" 	\
+	-D__BUID_GITREF__=\""$(BUILD_GITREF)"\"	\
+	-D__BUILD_UNAME__=\""$(BUILD_UNAME)"\" 	\
+	-D__BUILD_DATE__=\""$(BUILD_DATE)"\" 	\
+	-D__BUILD_VERSION__=\""$(BUILD_VERSION)"\"
+
 # Flags
 LOWER_WARNINGS	:= -Wall -Wextra
 
@@ -32,11 +44,12 @@ WARNING_FLAGS	:= $(LOWER_WARNINGS) -pedantic -Wshadow -Wpointer-arith -Wcast-ali
 					-Wconversion -Wstrict-prototypes
 
 INC_FLAGS 		:= $(addprefix -I ,$(INC_DIRS))
-CFLAGS 			?= $(INC_FLAGS) -MMD -MP -std=gnu99 -ffreestanding -O2 -m32 -fno-stack-protector $(LOWER_WARNINGS) -g
-LDFLAGS 		?= -m elf_i386 -T config/linker.ld
-ASFLAGS 		?= --32
-NASMFLAGS 		?= -f elf32
-QEMUFLAGS 		?= cdrom $(ISO_DIR)/$(ISO)
+CFLAGS 			:= $(INC_FLAGS) $(BUILD_DEFS) -MMD -MP -std=gnu99 -ffreestanding -O2 -m32 -fno-stack-protector $(LOWER_WARNINGS) -g
+LDFLAGS			:= -nostdlib -znocombreloc -shared -Bsymbolic
+LDFLAGS 		+= -m elf_i386 -T config/linker.ld
+ASFLAGS 		:= --32
+NASMFLAGS 		:= -f elf32
+QEMUFLAGS 		:= cdrom $(ISO_DIR)/$(ISO)
 
 # Backups
 CURR_DIR		:= $(shell basename `pwd`)
@@ -51,7 +64,7 @@ apt 			:= $(shell command -v apt 2>/dev/null)
 # Grub	
 grub 			:= $(shell command -v grub-file 2>/dev/null)
 
-.PHONY: clean iso run-iso
+.PHONY: clean iso build
 iso: build
 	@echo "${YELLOW}GRUB $^ -> ${BLUE}$(ISO)${GREEN}"
 	@grub-mkrescue -o $(ISO_DIR)/$(ISO) $(BUILD_DIR)
@@ -59,17 +72,10 @@ iso: build
 
 build: $(TARGET)
 
-setup-dirs:
-	@mkdir -p $(BUILD_DIR)
-	@mkdir -p $(OBJ_DIR)
-	@mkdir -p $(ISO_DIR)
-	@mkdir -p $(BOOT_DIR)
-	@mkdir -p $(GRUB_DIR)
-
-$(TARGET): clean setup-dirs $(OBJS)
+$(TARGET): clean $(OBJS)
 	@$(MKDIR_P) $(dir $@)
 	@echo "${YELLOW}Linking -> ${BLUE}$@${RESET}"
-	@$(LD) $(LDFLAGS) $(OBJS) -o $(TARGET)
+	@$(LD) $(KERNEL_LDFLAGS) $(LDFLAGS) -ffreestanding -nostdlib $(OBJS) -o $(TARGET)
 ifndef grub
 	@echo "Installing grub requirements"
 ifdef apt

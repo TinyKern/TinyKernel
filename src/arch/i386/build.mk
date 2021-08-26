@@ -1,0 +1,1 @@
+KERNEL_LDFLAGS	+= -z max-page-size=0x1000

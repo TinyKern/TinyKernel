@@ -1,6 +1,12 @@
 KERNEL_VERSION 	:= 1.3.6
 AUTHOR 			:= Bobrossrtx
 
+CONFIG_ARCH		:= i386
+BUILD_GITREF	:=	$(shell git rev-parse --abbrev-ref HEAD || echo unknown)@$(shell git rev-parse --short HEAD || echo unknown)
+BUILD_UNAME 	:=	$(shell uname -s -o -m -r)
+BUILD_DATE		:=	$(shell date "+%Y-%m-%d %H:%M:%S")
+BUILD_VERSION	:=	$(KERNEL_VERSION)
+
 BINUTILS_VERSION:= 2.37
 GCC_VERSION		:= 11.2.0
 

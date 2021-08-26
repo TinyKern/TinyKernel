@@ -1,0 +1,1 @@
+-include src/arch/$(CONFIG_ARCH)/build.mk 

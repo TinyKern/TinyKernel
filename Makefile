@@ -45,7 +45,7 @@ WARNING_FLAGS	:= $(LOWER_WARNINGS) -pedantic -Wshadow -Wpointer-arith -Wcast-ali
 
 INC_FLAGS 		:= $(addprefix -I ,$(INC_DIRS))
 CFLAGS 			:= $(INC_FLAGS) $(BUILD_DEFS) -MMD -MP -std=gnu99 -ffreestanding -O2 -m32 -fno-stack-protector $(LOWER_WARNINGS) -g
-LDFLAGS			:= -nostdlib -znocombreloc -shared -Bsymbolic
+LDFLAGS			:= -nostdlib -znocombreloc 
 LDFLAGS 		+= -m elf_i386 -T config/linker.ld
 ASFLAGS 		:= --32
 NASMFLAGS 		:= -f elf32
@@ -75,7 +75,7 @@ build: $(TARGET)
 $(TARGET): clean $(OBJS)
 	@$(MKDIR_P) $(dir $@)
 	@echo "${YELLOW}Linking -> ${BLUE}$@${RESET}"
-	@$(LD) $(KERNEL_LDFLAGS) $(LDFLAGS) -ffreestanding -nostdlib $(OBJS) -o $(TARGET)
+	@$(LD) $(KERNEL_LDFLAGS) $(LDFLAGS) -nostdlib $(OBJS) -o $(TARGET)
 ifndef grub
 	@echo "Installing grub requirements"
 ifdef apt

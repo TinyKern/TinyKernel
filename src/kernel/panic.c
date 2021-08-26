@@ -17,7 +17,7 @@ void kpanic(int errcode, char* errmsg)
     kprintf("Kernel panic: %s - 0x%x\n", errmsg, errcode);
 
 #ifdef QEMU_SERIAL_ENABLED
-    qemu_panic("Kernel panic: %s - 0x%x\n", errmsg, errcode);
+    qemu_panic("Kernel panic: %s - %x\n", errmsg, errcode);
 #endif // QEMU_SERIAL_ENABLED
 
     for(;;) {}

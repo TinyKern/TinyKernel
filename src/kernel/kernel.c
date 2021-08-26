@@ -110,8 +110,15 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     bool gdt = gdt_init();
     bool vga = vga_init();
 
-    if (magic != MULTIBOOT_BOOTLOADER_MAGIC)
-        kpanic(ERRNO_KERNEL_INVALID_MAGIC, "Invalid magic number");
+    switch (magic)
+    {
+        case MULTIBOOT_BOOTLOADER_MAGIC:
+            break;
+        case MULTIBOOT_BOOTLOADER_MAGIC_S:
+            break;
+        default:
+            kpanic(ERRNO_KERNEL_INVALID_MAGIC, "Invalid magic number");
+    }
 
     ASSERT(mbi->mods_count > 0);
 
@@ -124,6 +131,23 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     qemu_info("Multiboot mmap_length: %x\n", mbi->mmap_length);
     qemu_info("Multiboot mmap_addr: %x\n", mbi->mmap_addr);
 #endif // QEMU_SERIAL_ENABLED
+
+#ifdef QEMU_SERIAL_ENABLED
+    multiboot_uint32_t checksum = -(mbi->flags + magic);
+
+    qemu_info("Multiboot flags:             %x\n", mbi->flags);
+    qemu_info("Multiboot mem_lower:         %x\n", mbi->mem_lower);
+    qemu_info("Multiboot mem_upper:         %x\n", mbi->mem_upper);
+    qemu_info("Multiboot boot_device:       %x\n", mbi->boot_device);
+    qemu_info("Multiboot cmdline:           %x\n", mbi->cmdline);
+    qemu_info("Multiboot mmap_length:       %u\n", mbi->mmap_length);
+    qemu_info("Multiboot mmap_addr:         %x\n", mbi->mmap_addr);
+    qemu_info("Multiboot config_table:      %x\n", mbi->config_table);
+    qemu_info("Multiboot drives_length:     %u\n", mbi->drives_length);
+    qemu_info("Multiboot drives_addr:       %x\n", mbi->drives_addr);
+    qemu_info("Multiboot modules_count:     %u\n", mbi->mods_count);
+    qemu_info("Multiboot checksum:          %x\n", checksum);
+#endif
 
     time_init();
     heap_init(0x100000, 0x100000);

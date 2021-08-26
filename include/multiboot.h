@@ -5,7 +5,8 @@
 #define MULTIBOOT_HEADER_ALIGN          8
 
 #define MULTIBOOT_MAGIC                 0xe85250d6
-#define MULTIBOOT_BOOTLOADER_MAGIC      0x2BADB002
+#define MULTIBOOT_BOOTLOADER_MAGIC      0x36D76289
+#define MULTIBOOT_BOOTLOADER_MAGIC_S    0x2BADB002
 
 #define MULTIBOOT_MOD_ALIGN             0x00001000
 #define MULTIBOOT_INFO_ALIGN            0x00000008
@@ -32,8 +33,8 @@
 #define MULTIBOOT_HEADER_TAG_MODULE_ALIGN           6
 #define MULTIBOOT_HEADER_TAG_OPTIONAL               1
 
-#define MULTIBOOT_ARCHITECTURE_I386     0
-#define MULTIBOOT_ARCHITECTURE_MIPS32   4
+#define MULTIBOOT_ARCHITECTURE_I386                 0
+#define MULTIBOOT_ARCHITECTURE_MIPS32               4
 
 #define MULTIBOOT_CONSOLE_FLAGS_REQUIRED            1
 #define MULTIBOOT_CONSOLE_FLAGS_EGA_TEXT_SUPPORTED  2
@@ -325,7 +326,7 @@ struct multiboot_info
     multiboot_uint32_t  config_table;
 
     // Boot loader name
-    multiboot_uint32_t  boot_loader_name;
+    multiboot_uint8_t   boot_loader_name[6];
 
     // APM table
     multiboot_uint32_t  apm_table;

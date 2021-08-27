@@ -9,10 +9,9 @@
 # * to https://www.apache.org/licenses/LICENSE-2.0 for
 # * full license details.
 
-# Basic infomation about the project
-include make.mk
-
 # Project imports
+include config.cfg
+include colors.mk
 include src/arch/build.mk
 
 # Files
@@ -28,7 +27,7 @@ ALLFILES 		:= $(SRCS) $(HDRS) $(OBJS) $(AUXS)
 
 # GCC Definitions
 BUILD_DEFS		:= \
-	-D__BUILD_ARCH__=\""$(CONFIG_ARCH)"\" 	\
+	-D__BUILD_ARCH__=\""$(BUILD_ARCH)"\" 	\
 	-D__BUID_GITREF__=\""$(BUILD_GITREF)"\"	\
 	-D__BUILD_UNAME__=\""$(BUILD_UNAME)"\" 	\
 	-D__BUILD_DATE__=\""$(BUILD_DATE)"\" 	\
@@ -113,28 +112,24 @@ run:
 	qemu-system-x86_64 -device sb16 -kernel $(TARGET)
 
 run-serial:
-	touch $(SERIAL_LOG_FILE)
 	qemu-system-x86_64 -device sb16 -kernel $(TARGET) -append "root=/dev/sda console=ttyS0" -serial stdio
 
 run-debug: 
 	qemu-system-x86_64 -device sb16 -kernel $(TARGET) -S -s
 
 run-debug-serial:
-	touch $(SERIAL_LOG_FILE)
 	qemu-system-x86_64 -device sb16 -kernel $(TARGET) -append "root=/dev/sda console=ttyS0" -serial stdio -S -s
 
 run-iso: 
 	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO)
 
 run-iso-serial:
-	touch $(SERIAL_LOG_FILE)
 	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -serial stdio
 
 run-iso-debug: 
 	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO)  -S -s
 
 run-iso-debug-serial:
-	touch $(SERIAL_LOG_FILE)	
 	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -serial stdio -S -s
 
 .PHONY: clean

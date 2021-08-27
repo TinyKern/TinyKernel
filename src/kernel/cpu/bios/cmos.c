@@ -14,8 +14,8 @@
 #include <config.h>
 
 #include <kernel/cpu/bios/cmos.h>
-#include <kernel/devices/qemu.h>
 #include <kernel/cpu/cpu.h>
+#include <debug/qemu.h>
 
 uint8_t cmod_lowmem()
 {

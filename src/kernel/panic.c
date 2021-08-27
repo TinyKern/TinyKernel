@@ -1,7 +1,7 @@
 #include <config.h>
 
-#include <kernel/devices/qemu.h>
 #include <kernel/panic.h>
+#include <debug/qemu.h>
 
 #include <arch/i386/elf_core.h>
 #include <arch/i386/paging.h>

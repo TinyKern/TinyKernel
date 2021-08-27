@@ -17,7 +17,6 @@
 #include <drivers/vga/vga.h>
 #include <kernel/syscalls/syscalls.h>
 #include <kernel/devices/pcSpeaker.h>
-#include <kernel/devices/qemu.h>
 #include <kernel/cpu/gdt/gdt.h>
 #include <kernel/cpu/cpu.h>
 #include <kernel/time/time.h>
@@ -28,6 +27,8 @@
 #include <kernel/errno.h>
 #include <sys/utils.h>
 #include <cdefs.h>
+
+#include <debug/qemu.h>
 
 void kernel_entry();
 

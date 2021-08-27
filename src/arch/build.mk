@@ -1,1 +1,1 @@
--include src/arch/$(CONFIG_ARCH)/build.mk 
+-include src/arch/$(BUILD_ARCH)/build.mk 

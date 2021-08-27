@@ -1,5 +1,5 @@
 #include <drivers/serial/serial.h>
-#include <kernel/devices/qemu.h>
+#include <debug/qemu.h>
 #include <sys/string.h>
 
 void qemu_puts(const char *str)

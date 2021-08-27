@@ -11,7 +11,7 @@
 # TinyKernel - 0.1.3
 Tiny Kernel is a work in progress Operating System kernel.
 
-By the end of the project, I hope to have a fully functional and working Kernel. Since System development is my prefered type of development, 
+By the end of the project, I hope to have a fully functional and working Kernel. Since System development is my preferred type of development, 
 I thought it was time to finally create a project from the ground up, with its own x86 architecture and its own operating system to end up using
 the kernel.
 

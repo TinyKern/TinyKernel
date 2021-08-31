@@ -15,6 +15,7 @@
 #include <drivers/keyboard/keyboard.h>
 #include <drivers/video/video.h>
 #include <drivers/vga/vga.h>
+#include <drivers/pci/bus.h>
 #include <kernel/syscalls/syscalls.h>
 #include <kernel/devices/pcSpeaker.h>
 #include <kernel/cpu/gdt/gdt.h>
@@ -133,6 +134,8 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     qemu_info("Multiboot mmap_addr: %x\n", mbi->mmap_addr);
 #endif // QEMU_SERIAL_ENABLED
 
+    pci_enum_bus();
+
 #ifdef QEMU_SERIAL_ENABLED
     multiboot_uint32_t checksum = -(mbi->flags + magic);
 
@@ -153,10 +156,8 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     time_init();
     heap_init(0x100000, 0x100000);
 
-
     disable_cursor();
     clear_screen();
-
 
     char* loading_message = "TinyKernel Booting";
     loading_bar(VGA_COLS / 2, VGA_ROWS / 2, strlen(loading_message), loading_message, 0xff);
@@ -172,14 +173,14 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     {
         kprintf(" [i] GDT:              Enabled\n");
 #ifdef QEMU_SERIAL_ENABLED
-        qemu_success("GDT Initialized: %x\r\n", gdt);
+        qemu_success("GDT Initialized\r\n", gdt);
 #endif // QEMU_SERIAL_ENABLED
     }
     if (vga == true)
     {
         kprintf(" [i] VGA Driver:       Enabled\n");
 #ifdef QEMU_SERIAL_ENABLED
-        qemu_success("VGA Initialized: %x\r\n", vga);
+        qemu_success("VGA Initialized\r\n", vga);
 #endif // QEMU_SERIAL_ENABLED
     }
 

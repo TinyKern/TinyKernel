@@ -51,9 +51,8 @@ int printf_internal(char *fmt, va_list arg)
           vga_putchar('-');
         }
         
-        char i_out[32];
-        itoa(i, i_out);
-        kprint(i_out);
+        char *s = convert_to_base(i, 10);
+        kprint(s);
         break;
       }
 

@@ -31,12 +31,12 @@ void qemu_putuint(int i)
 void qemu_putint(int i)
 {
     if (i < 0)
-        qemu_putuint(i);
-    else
     {
-        com_send_char(COM1_PORT, '-');
-        qemu_putuint(-i);
+        i = -i;
+        qemu_puts("-");
     }
+
+    qemu_putuint(i);
 }
 
 void qemu_puthex(uint32_t i)

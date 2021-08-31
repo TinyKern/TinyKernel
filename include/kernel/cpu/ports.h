@@ -24,6 +24,8 @@ extern uint8_t in8(uint16_t port);
 extern void out8(uint16_t port, uint8_t data);
 extern uint16_t in16(uint16_t port);
 extern void out16(uint16_t port, uint16_t data);
+uint32_t in32(uint16_t port);
+void out32(uint16_t port, uint32_t data);
 
 #define outb_p(port, value) \
 __asm__("outb %%al, %%dx\n" \

@@ -44,7 +44,7 @@ WARNING_FLAGS	:= $(LOWER_WARNINGS) -pedantic -Wshadow -Wpointer-arith -Wcast-ali
 
 INC_FLAGS 		:= $(addprefix -I ,$(INC_DIRS))
 CFLAGS 			:= $(INC_FLAGS) $(BUILD_DEFS) -MMD -MP -std=gnu99 -ffreestanding -O2 -m32 -fno-stack-protector $(LOWER_WARNINGS) -g
-LDFLAGS			:= -nostdlib -znocombreloc 
+LDFLAGS			:= -nostdlib -znocombreloc
 LDFLAGS 		+= -m elf_i386 -T config/linker.ld
 ASFLAGS 		:= --32
 NASMFLAGS 		:= -f elf32
@@ -108,29 +108,17 @@ $(OBJ_DIR)/%.cxx.o: %.cpp
 	@echo "${YELLOW}CXX $< -> ${BLUE}$@${RESET}"
 	@$(CXX) $(CFLAGS) -c $< -o $@
 
-run: 
-	qemu-system-x86_64 -device sb16 -kernel $(TARGET)
+run:
+	qemu-system-x86_64 -kernel build/boot/TinyKernel.elf -append "root=/dev/sda console=ttyS0" -serial stdio -m 256M
 
-run-serial:
-	qemu-system-x86_64 -device sb16 -kernel $(TARGET) -append "root=/dev/sda console=ttyS0" -serial stdio
+run-debug:
+	qemu-system-x86_64 -kernel build/boot/TinyKernel.elf -append "root=/dev/sda console=ttyS0" -serial stdio -m 256M -S -s
 
-run-debug: 
-	qemu-system-x86_64 -device sb16 -kernel $(TARGET) -S -s
+run-iso:
+	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -serial stdio -m 256M
 
-run-debug-serial:
-	qemu-system-x86_64 -device sb16 -kernel $(TARGET) -append "root=/dev/sda console=ttyS0" -serial stdio -S -s
-
-run-iso: 
-	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO)
-
-run-iso-serial:
-	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -serial stdio
-
-run-iso-debug: 
-	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO)  -S -s
-
-run-iso-debug-serial:
-	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -serial stdio -S -s
+run-iso-debug:
+	qemu-system-x86_64 -device sb16 -cdrom $(ISO_DIR)/$(ISO) -serial stdio -m 256M -S -s
 
 .PHONY: clean
 clean:
@@ -145,7 +133,7 @@ install-toolchain:
 	git clone https://github.com/TinyKern/toolchain.git $(CROSS_PREFIX)
 	@echo
 	@echo "${PURPLE}========================${RESET}"
-	@echo 
+	@echo
 	@echo "Toolchain installed to ${LIGHT_PURPLE}$(CROSS_PREFIX)${RESET}"
 	@echo "run ${LIGHT_PURPLE}'bash install.sh'${RESET} in ${LIGHT_PURPLE}$(CROSS_PREFIX)${RESET} to build the toolchain"
 

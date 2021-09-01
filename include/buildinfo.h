@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef __BUILD_ARCH__
 # define __BUILD_ARCH__ "unknown"
 #endif

@@ -17,6 +17,11 @@
 #include <types.h>
 #include <drivers/keyboard/keyboard.h>
 
+/**
+ * @brief Get the ascii char object from the keyboard
+ * 
+ * @return char
+ */
 extern char get_ascii_char(uint8_t);
 
 #endif

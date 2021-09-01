@@ -41,8 +41,6 @@ extern uint8_t g_back_color;
 #define INFO_COLORS     "[\033[1;36minfo\033[0m]    "
 #define DEBUG_COLORS    "[\033[0;33m\033[4mdebug\033[0m]   "
 #define SUCCESS_COLORS  "[\033[1;32msuccess\033[0m] "
-
-// line, file, function
 #define ERROR_COLORS    "[\033[1;31merror\033[0m] %u, %s | "
 #define PANIC_COLORS    "[\033[1;31mpanic\033[0m]   "
 

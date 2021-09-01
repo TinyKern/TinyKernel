@@ -18,20 +18,31 @@
 
 #include "string.h"
 
-extern uint32_t   digit_count(int);
+/**
+ * @brief Counts the number of digits in a number
+ * 
+ * @param num The number to count the digits of
+ * 
+ * @return uint32_t - Number of digits
+ */
+extern uint32_t digit_count(int);
 
 /**
 * @brief Converts a int to a string
+* 
 * @param value - The value to convert
 * @param str - The string to write to
 */
-extern void     itoa(int, char*);
+extern void itoa(int, char*);
 
 /**
 * @brief Converts a number into a base string
+*
 * @param value - The number to convert
 * @param base - The base to convert the number to
+*
+* @return char* - The converted string.
 */
-extern char*    convert_to_base(unsigned int, int);
+extern char* convert_to_base(unsigned int, int);
 
 #endif // UTILS_H

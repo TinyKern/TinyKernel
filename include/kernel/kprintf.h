@@ -24,6 +24,10 @@ extern int __kprintf(char *fmt, ...);
  * @param %o - print a octal number
  * @param %s - print a string
  * @param %x - print a hexadecimal number
+ * @param %p - print a pointer
+ * @param %u - print an unsigned decimal number
+ * @param %f - print a float
+ * @param %b - print a binary number
  */
 #define kprintf(...) __kprintf(__VA_ARGS__)
 

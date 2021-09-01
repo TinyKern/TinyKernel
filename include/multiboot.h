@@ -41,11 +41,22 @@
 
 #ifndef ASM_FILE
 
+/**
+ * @brief multiboot type definitions
+ */
 typedef unsigned char   multiboot_uint8_t;
 typedef unsigned short  multiboot_uint16_t;
 typedef unsigned int    multiboot_uint32_t;
 typedef unsigned long   multiboot_uint64_t;
 
+/**
+ * @brief multiboot header
+ * @details This structure is used to store the information
+ *         about the multiboot header.
+ * 
+ * @note The header is always located at the beginning of the
+ *      memory map. The header is always aligned to 8 bytes.
+ */
 struct multiboot_header
 {
     // Must be MULTIBOOT_MAGIC

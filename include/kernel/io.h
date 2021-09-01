@@ -23,6 +23,11 @@
  */
 extern void wait_for_io(uint32_t timer_count);
 
+/**
+ * @brief Sleep for a given number of milliseconds
+ * 
+ * @param timer_count 
+ */
 extern void sleep(uint32_t timer_count);
 
 #endif // IO_H

@@ -19,6 +19,9 @@
 #include <kernel/panic.h>
 #include <cdefs.h>
 
+/**
+ * @brief Shutdown the system.
+ */
 extern void sys_shutdown(void);
 
 #endif // SYSCALLS_H

@@ -16,15 +16,85 @@
 
 #include <types.h>
 
+
+/**
+ * @brief Reads a byte from the specified port.
+ * 
+ * @param port 
+ * @return uint8_t 
+ */
 extern uint8_t inb(uint16_t port);
+
+/**
+ * @brief Writes a byte to the specified port.
+ * 
+ * @param port 
+ * @param data 
+ */
 extern void outb(uint16_t port, uint8_t data);
+
+/**
+ * @brief Reads a word from the specified port.
+ * 
+ * @param port 
+ * @return uint16_t 
+ */
 extern uint16_t inw(uint16_t port);
+
+/**
+ * @brief Writes a word to the specified port.
+ * 
+ * @param port 
+ * @param data 
+ */
 extern void outw(uint16_t port, uint16_t data);
+
+/**
+ * @brief Reads a double word from the specified port.
+ * 
+ * @param port 
+ * @return uint8_t 
+ */
 extern uint8_t in8(uint16_t port);
+
+/**
+ * @brief Writes a double word to the specified port.
+ * 
+ * @param port 
+ * @param data 
+ */
 extern void out8(uint16_t port, uint8_t data);
+
+/**
+ * @brief Reads a double word from the specified port.
+ * 
+ * @param port 
+ * @return uint16_t 
+ */
 extern uint16_t in16(uint16_t port);
+
+/**
+ * @brief Writes a double word to the specified port.
+ * 
+ * @param port 
+ * @param data 
+ */
 extern void out16(uint16_t port, uint16_t data);
+
+/**
+ * @brief Reads a double word from the specified port.
+ * 
+ * @param port 
+ * @return uint32_t 
+ */
 uint32_t in32(uint16_t port);
+
+/**
+ * @brief Writes a double word to the specified port.
+ * 
+ * @param port 
+ * @param data 
+ */
 void out32(uint16_t port, uint32_t data);
 
 #define outb_p(port, value) \

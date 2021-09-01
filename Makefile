@@ -21,7 +21,7 @@ HDRS 			:= $(shell find $(PROJ_DIRS) -name *.h -or -name *.hh)
 OBJS 			:= $(SRCS:%=$(OBJ_DIR)/%.o)
 DEPS			:= $(SRCS:%=$(OBJ_DIR)/%.d)
 TARGET 			?= $(BOOT_DIR)/TinyKernel.elf
-ISO 			?= TinyKernel_$(AUTHOR)-$(KERNEL_VERSION).iso
+ISO 			?= TinyKernel_$(AUTHOR)-$(BUILD_VERSION).iso
 
 ALLFILES 		:= $(SRCS) $(HDRS) $(OBJS) $(AUXS)
 

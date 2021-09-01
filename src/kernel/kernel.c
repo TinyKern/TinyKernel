@@ -1,7 +1,7 @@
 /**
  * @file kernel.c
  * @author Owen Boreham (owenkadeboreham@gmail.com)
- * @version 0.1.5
+ * @version 0.1.9
  * @date 2021-07-06
  * 
  * @copyright Copyright (c) 2021 TinyKernel

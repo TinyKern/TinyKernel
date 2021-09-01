@@ -21,9 +21,6 @@ char get_input_keycode();
 
 #define KEYBOARD_PORT 0x60
 
-// Looking for inb() default return value
-// #define KEY_NULL 0x0
-
 #define KEY_A 0x1E
 #define KEY_B 0x30
 #define KEY_C 0x2E

@@ -1,7 +1,7 @@
 /**
  * @file kprintf.c
  * @author Owen Boreham (owenkadeboreham@gmail.com)
- * @version 0.1.2
+ * @version 0.1.3
  * @date 2021-08-11
  * 
  * @copyright Copyright (c) 2021 TinyKernel

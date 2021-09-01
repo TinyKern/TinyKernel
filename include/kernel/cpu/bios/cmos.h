@@ -1,7 +1,7 @@
 /**
  * @file cmos.h
  * @author Owen Boreham (owenkadeboreham@gmail.com)
- * @version 0.1.0
+ * @version 0.1.1
  * @date 2021-08-15
  * 
  * @copyright Copyright (c) 2021 TinyKernel

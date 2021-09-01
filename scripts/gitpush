@@ -6,10 +6,11 @@ do
   case "${flag}" in
     r) remotes="${remotes} ${OPTARG}";;
     b) branch=${OPTARG} ;;
+    *) branch=${OPTARG} ;;
   esac
 done
 
-function usage {
+usage() {
   echo "GitPush"
   echo "Push to multiple remotes on a single branch at the same time."
   echo
@@ -32,6 +33,6 @@ else
   for remote in $remotes
   do
     echo "$remote -> $branch"
-    git push -u $remote $branch
+    git push -u "$remote" "$branch"
   done
 fi

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-git log --pretty="%as    %h    <%cE> %n%an %n%s %n" > CHANGELOG
+git log --pretty="%as    %an    <%cE>%n%n	%s%n" > CHANGELOG

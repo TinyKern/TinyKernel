@@ -1,5 +1,9 @@
 2021-09-02    bobrossrtx    <bobrossrtx@gmail.com>
 
+	Updated changelog
+
+2021-09-02    bobrossrtx    <bobrossrtx@gmail.com>
+
 	* scripts/changelog_gen: Updated changelog output format
 
 2021-09-02    bobrossrtx    <bobrossrtx@gmail.com>
@@ -874,3 +878,9 @@
 
 	Created .gitignore
 
+Local Variables:
+mode: change-log
+left-margin: 8
+fill-column: 76
+version-control: never
+End:

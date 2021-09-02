@@ -23,10 +23,52 @@
 void qemu_puthex(uint32_t i);
 void qemu_printf(char* fmt, ...);
 
+/**
+ * @brief Prints a debug message to the QEMU console.
+ * 
+ * @param fmt 
+ * @param ... 
+ */
 void qemu_dbg(char *fmt, ...);
+
+/**
+ * @brief Prints a ssuccess message to the QEMU console.
+ * 
+ * @param fmt 
+ * @param ... 
+ */
 void qemu_success(char *fmt, ...);
+
+/**
+ * @brief Prints a info message to the QEMU console.
+ * 
+ * @param fmt 
+ * @param ... 
+ */
 void qemu_info(char *fmt, ...);
+
+/**
+ * @brief Prints a error message to the QEMU console.
+ * 
+ * @param fmt 
+ * @param ... 
+ */
 void qemu_error(char* fmt, ...);
+
+/**
+ * @brief prints a panic message to the QEMU console.
+ * 
+ * @param fmt 
+ * @param ... 
+ */
 void qemu_panic(char* fmt, ...);
+
+/**
+ * @brief Prints a device message to the QEMU console.
+ * 
+ * @param fmt 
+ * @param ... 
+ */
+void qemu_device(char* fmt, ...);
 
 #endif // QEMU_H

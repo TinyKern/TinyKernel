@@ -23,7 +23,7 @@ usage() {
   echo "refs:"
   for branch_t in $(git for-each-ref --shell --format='%(refname)')
   do
-    echo "  $branch_t"
+      echo "  $(basename ${branch_t%\'}),"
   done
 }
 

@@ -1,868 +1,876 @@
-2021-09-02    7d218e0    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated gitpush script 
-
-2021-09-02    216b17e    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added device qemu print option 
-
-2021-09-02    8f7249b    <noreply@github.com> 
-Owen Boreham 
-Add files via upload 
-
-2021-09-01    4c4d645    <noreply@github.com> 
-Owen Boreham 
-Update gitpush 
-
-2021-09-01    87c3c54    <noreply@github.com> 
-Owen Boreham 
-Updated README to show latest version 
-
-2021-09-01    3abc5e6    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated changelog 
-
-2021-09-01    a5f1f82    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added new / Updated copyright headers 
-
-2021-09-01    874252e    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated version 
-
-2021-09-01    67b02e2    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated comments & documentation 
-
-2021-09-01    641c875    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Generated a super simple changelog 
-
-2021-09-01    e4395b1    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added a changelog generator 
-
-2021-09-01    bd085a0    <noreply@github.com> 
-Owen Boreham 
-Delete codeql-analysis.yml 
-
-2021-09-01    339423e    <noreply@github.com> 
-Owen Boreham 
-Delete c-cpp.yml 
-
-2021-09-01    b64643b    <noreply@github.com> 
-Owen Boreham 
-Added CodeQL security analysis 
-
-2021-08-31    0cec22e    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Types: Added more types & more __attribute__ definitions 
-
-2021-08-31    3bc37e3    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Drivers: Added a PCI Driver, reading data 
-
-2021-08-27    2a88a6b    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated makefile & used config.cfg instead of make.mk 
-
-2021-08-27    dc2025b    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Moved qemu.h/c to debug dirs instead of devices 
-
-2021-08-26    e413cf5    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added all_video & disk modules to grub 
-
-2021-08-26    d2dc1cb    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Fixed iso file 
-
-2021-08-26    d9823ec    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated Makefile configuration && even'd out spacing between serial output 
-
-2021-08-26    31c6875    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated Makefile configuration && even'd out spacing between serial output 
-
-2021-08-25    c92202b    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added checksum serial output & fixed kpanic serial output 
-
-2021-08-25    9795341    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Worked a little on multiboot2 
-
-2021-08-25    70a0e54    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Started adding scripts 
-
-2021-08-25    364572a    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated todolist in makefile & added a todolist.txt 
-
-2021-08-25    a9afeff    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added system time, but not working properly 
-
-2021-08-25    9f0e3ff    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Got multiboot headers to work & magic number verification 
-
-2021-08-24    9f309a2    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added more qemu serial output 
-
-2021-08-24    f3bfe72    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Worked on some stuff :p 
-
-2021-08-24    c0959a8    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Made loading bar work cleaner 
-
-2021-08-24    bb7d2b1    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Worked on some time stuff & added a loading bar 
-
-2021-08-23    3c4b64a    <noreply@github.com> 
-Owen Boreham 
-Create semgrep.yml 
-
-2021-08-23    bbe30eb    <noreply@github.com> 
-Owen Boreham 
-Delete semgrep.yml 
-
-2021-08-23    4e455b6    <support@r2c.dev> 
-semgrep.dev on behalf of @bobrossrtx 
-Add Semgrep CI 
-
-2021-08-23    f8f2abc    <noreply@github.com> 
-Owen Boreham 
-Create semgrep.yml 
-
-2021-08-23    15931bb    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Working on multiboot2 headers 
-
-2021-08-23    a31145b    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Fixed iso serial output 
-
-2021-08-23    2014021    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated qemu serial output 
-
-2021-08-23    a4cd24c    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Merge branch 'master' of github.com:TinyKern/TinyKernel 
-
-2021-08-23    5fc6e0e    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated serial output 
-
-2021-08-22    96b82be    <noreply@github.com> 
-Owen Boreham 
-Update README.md 
-
-2021-08-22    57c98d2    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added qemu output to terminal 
-
-2021-08-22    a6eda43    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added qemu com1 serial logging 
-
-2021-08-19    0f4896d    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added time (Not working atm) 
-
-2021-08-19    33cb8dd    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Moved a hole tonne of methods and defined new ones 
-
-2021-08-19    1f1946f    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added some new stuff to vga text mode 
-
-2021-08-19    9b1ed44    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Removed files and moved content to more appropriate position 
-
-2021-08-19    76b708e    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Removed uneccecery panics 
-
-2021-08-19    75c5432    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added makefile colors :p (for xterm) 
-
-2021-08-18    9588712    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added makefile colors :p (for xterm) 
-
-2021-08-18    b43d27b    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Fixed small warning 
-
-2021-08-17    e795f99    <noreply@github.com> 
-Owen Boreham 
-Added new screenshot :p 
-
-2021-08-17    65d4039    <noreply@github.com> 
-Owen Boreham 
-Add files via upload 
-
-2021-08-17    3b5e5e1    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added memory management & memory management output 
-
-2021-08-17    39d21e7    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added new function to vga driver 
-
-2021-08-17    bbf2a86    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added new types 
-
-2021-08-17    e9baa11    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated types 
-
-2021-08-17    57eda3c    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated Makefiles 
-
-2021-08-17    ad8d0e7    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated types 
-
-2021-08-16    d71ac9c    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated warnings 
-
-2021-08-16    227cb3f    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Made some makefile changes 
-
-2021-08-16    239c3a0    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added GDB debugging tags 
-
-2021-08-16    550a74f    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added copyrights & updated 
-
-2021-08-15    aeb1eeb    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added some stuff :p 
-
-2021-08-15    2fd9fdd    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Some changes 
-
-2021-08-15    31f5fdb    <noreply@github.com> 
-Owen Boreham 
-Update Makefile 
-
-2021-08-15    d7072de    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Implemented toolchain 
-
-2021-08-15    d068cef    <noreply@github.com> 
-Owen Boreham 
-Update README.md 
-
-2021-08-15    afe773a    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added Global_Descriptor_Table 
-
-2021-08-13    a82d3d5    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Removed unused scripts 
-
-2021-08-13    f8fa80c    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Some new stuff & Deleted some stuff 
-
-2021-08-13    9458a40    <noreply@github.com> 
-Owen Boreham 
-Merge pull request #10 from TinyKern/main 
-
-2021-08-12    29d44fa    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Working on sound (Quick commit) 
-
-2021-08-11    9468bdd    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated driver output for vga 
-
-2021-08-11    dddc2bf    <noreply@github.com> 
-Owen Boreham 
-Update README.md 
-
-2021-08-11    091ee2f    <noreply@github.com> 
-Owen Boreham 
-Add files via upload 
-
-2021-08-11    cc33bd0    <noreply@github.com> 
-Owen Boreham 
-Merge pull request #9 from TinyKern/main 
-
-2021-08-11    158e043    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Removed stivale2 & updated outputs & added shutdown 
-
-2021-08-11    bb70484    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated utils to remove stivale2 
-
-2021-08-11    e7a8fea    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Removed stivale2 & make updates to output functions 
-
-2021-08-11    e82bead    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated CPU ports & added syscalls 
-
-2021-08-11    af8f9e1    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added printfImplementation file 
-
-2021-07-29    91000eb    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Used new stuff inside of kernel 
-
-2021-07-29    d9b0203    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated CPU output 
-
-2021-07-29    3b23b78    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Created string functions & moved current ones 
-
-2021-07-29    223b4e9    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Included Stivale2 & Working on adding limine 
-
-2021-07-29    e34618e    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated Makefile 
-
-2021-07-29    41f66b6    <bobrossrtx@gmail.com> 
-bobrossrtx 
-New argument functions 
-
-2021-07-29    13b05e7    <bobrossrtx@gmail.com> 
-bobrossrtx 
-CPU STUFF (WIP) 
-
-2021-07-29    f9bb0af    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Makefile: Organised & Updated 
-
-2021-07-29    46e1442    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Fixed elf output 
-
-2021-07-29    104e362    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Merge branch 'master' of https://github.com/TinyKern/TinyKernel 
-
-2021-07-29    030e10d    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added copyright 
-
-2021-07-29    a9436f7    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Update Kernel Versions 
-
-2021-07-29    d997c06    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated kernel.c 
-
-2021-07-29    62b8c52    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Created new video driver 
-
-2021-07-29    20dff5f    <bobrossrtx@gmail.com> 
-bobrossrtx 
-2 New CPU ports (inw, outw) 
-
-2021-07-29    6ada0b0    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated VGA_COL/ROW names 
-
-2021-07-29    a536f9c    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added customized stddef.h header 
-
-2021-07-29    c00e7a9    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated types.h 
-
-2021-07-29    2fa4582    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Defined KERNEL_VERSION 
-
-2021-07-29    c6cf365    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Removed .asm src files for time being 
-
-2021-07-29    e1bdbe4    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Initial Commit on new bootloader 
-
-2021-07-26    e234085    <noreply@github.com> 
-Owen Boreham 
-This is annoying me now 
-
-2021-07-26    39eda2a    <noreply@github.com> 
-Owen Boreham 
-Fixed Workflow 
-
-2021-07-26    d30e394    <noreply@github.com> 
-Owen Boreham 
-Update c-cpp.yml 
-
-2021-07-26    2c06751    <noreply@github.com> 
-Owen Boreham 
-Update c-cpp.yml 
-
-2021-07-26    8254fad    <noreply@github.com> 
-Owen Boreham 
-Create c-cpp.yml 
-
-2021-07-26    14f92b1    <owen@owens-laptop.localdomain> 
-owen 
-Updated requirements & bin 
-
-2021-07-26    488bc02    <owen@owens-laptop.localdomain> 
-owen 
-Updated boot binary nam 
-
-2021-07-25    9d1863b    <noreply@github.com> 
-Owen Boreham 
-Update README.md 
-
-2021-07-25    dbd2a84    <noreply@github.com> 
-Owen Boreham 
-Add files via upload 
-
-2021-07-25    886baad    <noreply@github.com> 
-Owen Boreham 
-Delete Screenshot (83).png 
-
-2021-07-25    7467794    <noreply@github.com> 
-Owen Boreham 
-Add files via upload 
-
-2021-07-25    54b48a6    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Created a temporary put_name to print Tiny to screen 
-
-2021-07-25    db86811    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Drew a text box & started testing magic number 
-
-2021-07-25    871bbb0    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added some boot flags to the kernel 
-
-2021-07-25    74237ee    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Created Invalid magic number err code 
-
-2021-07-25    1befadd    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added draw & vga_set_pixel function 
-
-2021-07-25    928c707    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated Makefile & Cleaned 
-
-2021-07-25    ceac632    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added C++ Object compilation & Updated output 
-
-2021-07-20    d5e943d    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Merge branch 'master' of github.com:TinyKern/TinyKernel 
-
-2021-07-20    80620b2    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Fix for #6 (Possible) 
-
-2021-07-20    6d91d1f    <73446766+bobrossrtx@users.noreply.github.com> 
-Owen Boreham 
-Set theme jekyll-theme-slate 
-
-2021-07-19    d746487    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Fixed the clang config file 
-
-2021-07-19    f794f6c    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Moved function definitions 
-
-2021-07-19    fa249a4    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Merge branch 'master' of github.com:TinyKern/TinyKernel 
-
-2021-07-19    fd6c19b    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added more comments 
-
-2021-07-19    79ccbec    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Just cleaned up & fixed some things 
-
-2021-07-19    9026b4c    <noreply@github.com> 
-Owen Boreham 
-Update README.md 
-
-2021-07-19    8a1e5d5    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added `__` prefixes 
-
-2021-07-19    7c0b704    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Merge branch 'master' of github.com:TinyKern/TinyKernel 
-
-2021-07-19    80e50b9    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Tested kprintf 
-
-2021-07-19    5592d90    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Fixed escape char issue & added some error handling 
-
-2021-07-19    3e72f35    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Removed uneccecery chars 
-
-2021-07-19    599fcf5    <noreply@github.com> 
-Owen Boreham 
-Update README.md 
-
-2021-07-18    16fb39e    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Kernel: Used kprintf with %d && cleaned up code 
-
-2021-07-18    2cf27f9    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Created kprintf() function 
-
-2021-07-18    985bcf3    <bobrossrtx@gmail.com> 
-bobrossrtx 
-kernel: Changed variable names & convert_to_base() 
-
-2021-07-18    0cbc229    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated compilerPath 
-
-2021-07-15    0eaf2b2    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Cleaned up install-debian.sh 
-
-2021-07-15    c4b103c    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Created new Targets & cleaned output 
-
-2021-07-14    a251576    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Created drivers include directory & errno, stdio 
-
-2021-07-14    36a5364    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Created a clang config file 
-
-2021-07-14    59d6064    <bobrossrtx@gmail.com> 
-bobrossrtx 
-stdio, errno, drivers 
-
-2021-07-14    61a192a    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Included <types.h> inside of all, modified utils.h 
-
-2021-07-14    e2d4f14    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Moved types.h to root of include 
-
-2021-07-14    a94a424    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added more files to .gitignore 
-
-2021-07-13    0369978    <noreply@github.com> 
-Owen Boreham 
-Added cover art to README 
-
-2021-07-13    db45d5c    <noreply@github.com> 
-Owen Boreham 
-Delete placeholder 
-
-2021-07-13    93a14e9    <noreply@github.com> 
-Owen Boreham 
-Uploaded Cover art 
-
-2021-07-13    2a28547    <noreply@github.com> 
-Owen Boreham 
-Create placeholder 
-
-2021-07-12    68b8fba    <noreply@github.com> 
-Owen Boreham 
-Merge pull request #5 from ikb4l/master 
-
-2021-07-12    5d1bc14    <ikbalie@protonmail.com> 
-ikb4l 
-chore(vga): used struct in VGA driver for readability 
-
-2021-07-12    9ed927b    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added run method to Makefile 
-
-2021-07-12    3c67885    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Fixed function calls 
-
-2021-07-12    033a599    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Stopped using next_line_index inside of vga 
-
-2021-07-12    57341d6    <bobrossrtx@gmail.com> 
-bobrossrtx 
-moved inb & outb to kernel.cpy/ports 
-
-2021-07-12    0bc46d3    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Moved next_line_index to config 
-
-2021-07-09    b192549    <bobrossrtx@gmail.com> 
-bobrossrtx 
-You can now type input, between bootmenu & loaded 
-
-2021-07-09    2bcfe7c    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Merge branch 'master' of https://github.com/bobrossrtx/TinyKernel 
-
-2021-07-09    376d2aa    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Massive overhaul on kernel.c 
-
-2021-07-09    121a05d    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Moved itoa, strlen, digit_count to utils.c 
-
-2021-07-09    37617e8    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Setup all vga functions inside of vga.c 
-
-2021-07-09    a794cb8    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Setup the get_ascii_char() function inside char.c 
-
-2021-07-09    00e6173    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Removed the get_ascii_char from keyboard 
-
-2021-07-09    5119be4    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Moved the strlen, digit_count, itoa functions 
-
-2021-07-09    5a688b3    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Moved types to types.h 
-
-2021-07-09    2b78b29    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Created char.h + created get_ascii_char function 
-
-2021-07-09    b62bfe4    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Fixed comment 
-
-2021-07-09    8828600    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Moved vga.h & moved vga methods 
-
-2021-07-09    68653bb    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Created a config.h 
-
-2021-07-09    ec4ce5c    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added some more comments to linker 
-
-2021-07-09    4fb54a1    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added tests to .gitignore 
-
-2021-07-09    fbb1d2d    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Moved get_ascii_char function to char.h/char.c 
-
-2021-07-09    599b04a    <noreply@github.com> 
-Owen Boreham 
-Update README.md 
-
-2021-07-08    4966699    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Created Keyboard functions 
-
-2021-07-08    4a8f4f0    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Attempted to use keyboard for character input. 
-
-2021-07-08    ecf2e45    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added Keyboard functions 
-
-2021-07-08    16408f9    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Improved Makefile (cross platform compatibility) 
-
-2021-07-08    7e9bd39    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Moved VGA stuff to vga.h 
-
-2021-07-08    9356012    <noreply@github.com> 
-Owen Boreham 
-Update README.md 
-
-2021-07-08    9a4cdac    <bobrossrtx@gmail.com> 
-Owen Boreham 
-Created configure script & configure.ac 
-
-2021-07-08    e922d07    <bobrossrtx@gmail.com> 
-Owen Boreham 
-Updated .gitignore 
-
-2021-07-08    733a133    <bobrossrtx@gmail.com> 
-Owen Boreham 
-Fixed makefile, working now 
-
-2021-07-08    ee8369b    <bobrossrtx@gmail.com> 
-Owen Boreham 
-Moved kernel.c & keyboard.c 
-
-2021-07-08    e7fd600    <bobrossrtx@gmail.com> 
-Owen Boreham 
-Moved boot.s 
-
-2021-07-08    aabfcc1    <noreply@github.com> 
-Owen Boreham 
-Merge pull request #2 from bobrossrtx/bobrossrtx/gitpod-setup 
-
-2021-07-08    db3d047    <bobrossrtx@gmail.com> 
-Owen Boreham 
-Fully automate dev setup with Gitpod 
-
-2021-07-07    9e74c8a    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Merge branch 'master' of https://github.com/bobrossrtx/TinyKernel 
-
-2021-07-07    6bdafdc    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Completely remade Makefile (Still not working) 
-
-2021-07-07    e62fb61    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Created template keyboard.c file for later use 
-
-2021-07-07    73d422b    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Cleaned up menuentry 
-
-2021-07-07    4fc3d23    <noreply@github.com> 
-Owen Boreham 
-Update README.md 
-
-2021-07-06    39b49fe    <noreply@github.com> 
-Owen Boreham 
-Create README 
-
-2021-07-06    f08802c    <noreply@github.com> 
-Owen Boreham 
-Removed un-necessary new "\n"s 
-
-2021-07-06    5425dc3    <noreply@github.com> 
-Owen Boreham 
-Fixed issues with requirements 
-
-2021-07-06    23741e4    <bobrossrtx@gmail.com> 
-bobrossrtx 
-New version, License & new implementations 
-
-2021-07-06    1365047    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated version + License 
-
-2021-07-06    56d3c43    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Edited menu entry for grub + added license 
-
-2021-07-06    5aef5d1    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Created keyboard header 
-
-2021-07-06    caad798    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Added license 
-
-2021-07-06    14d6088    <bobrossrtx@gmail.com> 
-Owen Boreham 
-Fixed a few issues 
-
-2021-07-05    d4d727f    <noreply@github.com> 
-Owen Boreham 
-Update issue templates 
-
-2021-07-05    375e94a    <noreply@github.com> 
-Owen Boreham 
-Merge pull request #1 from bobrossrtx/add-license-1 
-
-2021-07-05    ebb0575    <noreply@github.com> 
-Owen Boreham 
-Create LICENSE 
-
-2021-07-05    825bd89    <noreply@github.com> 
-Owen Boreham 
-Create CODE_OF_CONDUCT.md 
-
-2021-07-05    270d8a5    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Install script (debian) 
-
-2021-07-05    a8803eb    <bobrossrtx@gmail.com> 
-bobrossrtx 
-kernel entry point 
-
-2021-07-05    e83e144    <bobrossrtx@gmail.com> 
-bobrossrtx 
-kernal header file 
-
-2021-07-05    446a97b    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Created Makefile (WIP) 
-
-2021-07-05    a61daaa    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Setup linker 
-
-2021-07-05    88ad5af    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Created Grub Config 
-
-2021-07-05    2933980    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Created BootLoader 
-
-2021-07-05    d674a08    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Updated .gitignore 
-
-2021-07-05    28721a6    <bobrossrtx@gmail.com> 
-bobrossrtx 
-Created .gitignore 
+2021-09-02    bobrossrtx    <bobrossrtx@gmail.com>
+
+	* scripts/changelog_gen: Updated changelog output format
+
+2021-09-02    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated changelog
+
+2021-09-02    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated gitpush script
+
+2021-09-02    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added device qemu print option
+
+2021-09-02    Owen Boreham    <noreply@github.com>
+
+	Add files via upload
+
+2021-09-01    Owen Boreham    <noreply@github.com>
+
+	Update gitpush
+
+2021-09-01    Owen Boreham    <noreply@github.com>
+
+	Updated README to show latest version
+
+2021-09-01    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated changelog
+
+2021-09-01    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added new / Updated copyright headers
+
+2021-09-01    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated version
+
+2021-09-01    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated comments & documentation
+
+2021-09-01    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Generated a super simple changelog
+
+2021-09-01    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added a changelog generator
+
+2021-09-01    Owen Boreham    <noreply@github.com>
+
+	Delete codeql-analysis.yml
+
+2021-09-01    Owen Boreham    <noreply@github.com>
+
+	Delete c-cpp.yml
+
+2021-09-01    Owen Boreham    <noreply@github.com>
+
+	Added CodeQL security analysis
+
+2021-08-31    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Types: Added more types & more __attribute__ definitions
+
+2021-08-31    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Drivers: Added a PCI Driver, reading data
+
+2021-08-27    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated makefile & used config.cfg instead of make.mk
+
+2021-08-27    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Moved qemu.h/c to debug dirs instead of devices
+
+2021-08-26    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added all_video & disk modules to grub
+
+2021-08-26    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Fixed iso file
+
+2021-08-26    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated Makefile configuration && even'd out spacing between serial output
+
+2021-08-26    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated Makefile configuration && even'd out spacing between serial output
+
+2021-08-25    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added checksum serial output & fixed kpanic serial output
+
+2021-08-25    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Worked a little on multiboot2
+
+2021-08-25    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Started adding scripts
+
+2021-08-25    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated todolist in makefile & added a todolist.txt
+
+2021-08-25    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added system time, but not working properly
+
+2021-08-25    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Got multiboot headers to work & magic number verification
+
+2021-08-24    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added more qemu serial output
+
+2021-08-24    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Worked on some stuff :p
+
+2021-08-24    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Made loading bar work cleaner
+
+2021-08-24    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Worked on some time stuff & added a loading bar
+
+2021-08-23    Owen Boreham    <noreply@github.com>
+
+	Create semgrep.yml
+
+2021-08-23    Owen Boreham    <noreply@github.com>
+
+	Delete semgrep.yml
+
+2021-08-23    semgrep.dev on behalf of @bobrossrtx    <support@r2c.dev>
+
+	Add Semgrep CI
+
+2021-08-23    Owen Boreham    <noreply@github.com>
+
+	Create semgrep.yml
+
+2021-08-23    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Working on multiboot2 headers
+
+2021-08-23    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Fixed iso serial output
+
+2021-08-23    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated qemu serial output
+
+2021-08-23    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Merge branch 'master' of github.com:TinyKern/TinyKernel
+
+2021-08-23    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated serial output
+
+2021-08-22    Owen Boreham    <noreply@github.com>
+
+	Update README.md
+
+2021-08-22    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added qemu output to terminal
+
+2021-08-22    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added qemu com1 serial logging
+
+2021-08-19    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added time (Not working atm)
+
+2021-08-19    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Moved a hole tonne of methods and defined new ones
+
+2021-08-19    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added some new stuff to vga text mode
+
+2021-08-19    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Removed files and moved content to more appropriate position
+
+2021-08-19    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Removed uneccecery panics
+
+2021-08-19    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added makefile colors :p (for xterm)
+
+2021-08-18    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added makefile colors :p (for xterm)
+
+2021-08-18    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Fixed small warning
+
+2021-08-17    Owen Boreham    <noreply@github.com>
+
+	Added new screenshot :p
+
+2021-08-17    Owen Boreham    <noreply@github.com>
+
+	Add files via upload
+
+2021-08-17    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added memory management & memory management output
+
+2021-08-17    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added new function to vga driver
+
+2021-08-17    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added new types
+
+2021-08-17    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated types
+
+2021-08-17    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated Makefiles
+
+2021-08-17    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated types
+
+2021-08-16    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated warnings
+
+2021-08-16    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Made some makefile changes
+
+2021-08-16    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added GDB debugging tags
+
+2021-08-16    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added copyrights & updated
+
+2021-08-15    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added some stuff :p
+
+2021-08-15    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Some changes
+
+2021-08-15    Owen Boreham    <noreply@github.com>
+
+	Update Makefile
+
+2021-08-15    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Implemented toolchain
+
+2021-08-15    Owen Boreham    <noreply@github.com>
+
+	Update README.md
+
+2021-08-15    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added Global_Descriptor_Table
+
+2021-08-13    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Removed unused scripts
+
+2021-08-13    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Some new stuff & Deleted some stuff
+
+2021-08-13    Owen Boreham    <noreply@github.com>
+
+	Merge pull request #10 from TinyKern/main
+
+2021-08-12    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Working on sound (Quick commit)
+
+2021-08-11    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated driver output for vga
+
+2021-08-11    Owen Boreham    <noreply@github.com>
+
+	Update README.md
+
+2021-08-11    Owen Boreham    <noreply@github.com>
+
+	Add files via upload
+
+2021-08-11    Owen Boreham    <noreply@github.com>
+
+	Merge pull request #9 from TinyKern/main
+
+2021-08-11    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Removed stivale2 & updated outputs & added shutdown
+
+2021-08-11    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated utils to remove stivale2
+
+2021-08-11    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Removed stivale2 & make updates to output functions
+
+2021-08-11    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated CPU ports & added syscalls
+
+2021-08-11    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added printfImplementation file
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Used new stuff inside of kernel
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated CPU output
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Created string functions & moved current ones
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Included Stivale2 & Working on adding limine
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated Makefile
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	New argument functions
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	CPU STUFF (WIP)
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Makefile: Organised & Updated
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Fixed elf output
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Merge branch 'master' of https://github.com/TinyKern/TinyKernel
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added copyright
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Update Kernel Versions
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated kernel.c
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Created new video driver
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	2 New CPU ports (inw, outw)
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated VGA_COL/ROW names
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added customized stddef.h header
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated types.h
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Defined KERNEL_VERSION
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Removed .asm src files for time being
+
+2021-07-29    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Initial Commit on new bootloader
+
+2021-07-26    Owen Boreham    <noreply@github.com>
+
+	This is annoying me now
+
+2021-07-26    Owen Boreham    <noreply@github.com>
+
+	Fixed Workflow
+
+2021-07-26    Owen Boreham    <noreply@github.com>
+
+	Update c-cpp.yml
+
+2021-07-26    Owen Boreham    <noreply@github.com>
+
+	Update c-cpp.yml
+
+2021-07-26    Owen Boreham    <noreply@github.com>
+
+	Create c-cpp.yml
+
+2021-07-26    owen    <owen@owens-laptop.localdomain>
+
+	Updated requirements & bin
+
+2021-07-26    owen    <owen@owens-laptop.localdomain>
+
+	Updated boot binary nam
+
+2021-07-25    Owen Boreham    <noreply@github.com>
+
+	Update README.md
+
+2021-07-25    Owen Boreham    <noreply@github.com>
+
+	Add files via upload
+
+2021-07-25    Owen Boreham    <noreply@github.com>
+
+	Delete Screenshot (83).png
+
+2021-07-25    Owen Boreham    <noreply@github.com>
+
+	Add files via upload
+
+2021-07-25    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Created a temporary put_name to print Tiny to screen
+
+2021-07-25    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Drew a text box & started testing magic number
+
+2021-07-25    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added some boot flags to the kernel
+
+2021-07-25    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Created Invalid magic number err code
+
+2021-07-25    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added draw & vga_set_pixel function
+
+2021-07-25    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated Makefile & Cleaned
+
+2021-07-25    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added C++ Object compilation & Updated output
+
+2021-07-20    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Merge branch 'master' of github.com:TinyKern/TinyKernel
+
+2021-07-20    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Fix for #6 (Possible)
+
+2021-07-20    Owen Boreham    <73446766+bobrossrtx@users.noreply.github.com>
+
+	Set theme jekyll-theme-slate
+
+2021-07-19    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Fixed the clang config file
+
+2021-07-19    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Moved function definitions
+
+2021-07-19    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Merge branch 'master' of github.com:TinyKern/TinyKernel
+
+2021-07-19    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added more comments
+
+2021-07-19    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Just cleaned up & fixed some things
+
+2021-07-19    Owen Boreham    <noreply@github.com>
+
+	Update README.md
+
+2021-07-19    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added `__` prefixes
+
+2021-07-19    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Merge branch 'master' of github.com:TinyKern/TinyKernel
+
+2021-07-19    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Tested kprintf
+
+2021-07-19    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Fixed escape char issue & added some error handling
+
+2021-07-19    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Removed uneccecery chars
+
+2021-07-19    Owen Boreham    <noreply@github.com>
+
+	Update README.md
+
+2021-07-18    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Kernel: Used kprintf with %d && cleaned up code
+
+2021-07-18    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Created kprintf() function
+
+2021-07-18    bobrossrtx    <bobrossrtx@gmail.com>
+
+	kernel: Changed variable names & convert_to_base()
+
+2021-07-18    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated compilerPath
+
+2021-07-15    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Cleaned up install-debian.sh
+
+2021-07-15    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Created new Targets & cleaned output
+
+2021-07-14    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Created drivers include directory & errno, stdio
+
+2021-07-14    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Created a clang config file
+
+2021-07-14    bobrossrtx    <bobrossrtx@gmail.com>
+
+	stdio, errno, drivers
+
+2021-07-14    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Included <types.h> inside of all, modified utils.h
+
+2021-07-14    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Moved types.h to root of include
+
+2021-07-14    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added more files to .gitignore
+
+2021-07-13    Owen Boreham    <noreply@github.com>
+
+	Added cover art to README
+
+2021-07-13    Owen Boreham    <noreply@github.com>
+
+	Delete placeholder
+
+2021-07-13    Owen Boreham    <noreply@github.com>
+
+	Uploaded Cover art
+
+2021-07-13    Owen Boreham    <noreply@github.com>
+
+	Create placeholder
+
+2021-07-12    Owen Boreham    <noreply@github.com>
+
+	Merge pull request #5 from ikb4l/master
+
+2021-07-12    ikb4l    <ikbalie@protonmail.com>
+
+	chore(vga): used struct in VGA driver for readability
+
+2021-07-12    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added run method to Makefile
+
+2021-07-12    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Fixed function calls
+
+2021-07-12    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Stopped using next_line_index inside of vga
+
+2021-07-12    bobrossrtx    <bobrossrtx@gmail.com>
+
+	moved inb & outb to kernel.cpy/ports
+
+2021-07-12    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Moved next_line_index to config
+
+2021-07-09    bobrossrtx    <bobrossrtx@gmail.com>
+
+	You can now type input, between bootmenu & loaded
+
+2021-07-09    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Merge branch 'master' of https://github.com/bobrossrtx/TinyKernel
+
+2021-07-09    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Massive overhaul on kernel.c
+
+2021-07-09    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Moved itoa, strlen, digit_count to utils.c
+
+2021-07-09    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Setup all vga functions inside of vga.c
+
+2021-07-09    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Setup the get_ascii_char() function inside char.c
+
+2021-07-09    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Removed the get_ascii_char from keyboard
+
+2021-07-09    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Moved the strlen, digit_count, itoa functions
+
+2021-07-09    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Moved types to types.h
+
+2021-07-09    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Created char.h + created get_ascii_char function
+
+2021-07-09    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Fixed comment
+
+2021-07-09    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Moved vga.h & moved vga methods
+
+2021-07-09    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Created a config.h
+
+2021-07-09    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added some more comments to linker
+
+2021-07-09    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added tests to .gitignore
+
+2021-07-09    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Moved get_ascii_char function to char.h/char.c
+
+2021-07-09    Owen Boreham    <noreply@github.com>
+
+	Update README.md
+
+2021-07-08    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Created Keyboard functions
+
+2021-07-08    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Attempted to use keyboard for character input.
+
+2021-07-08    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added Keyboard functions
+
+2021-07-08    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Improved Makefile (cross platform compatibility)
+
+2021-07-08    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Moved VGA stuff to vga.h
+
+2021-07-08    Owen Boreham    <noreply@github.com>
+
+	Update README.md
+
+2021-07-08    Owen Boreham    <bobrossrtx@gmail.com>
+
+	Created configure script & configure.ac
+
+2021-07-08    Owen Boreham    <bobrossrtx@gmail.com>
+
+	Updated .gitignore
+
+2021-07-08    Owen Boreham    <bobrossrtx@gmail.com>
+
+	Fixed makefile, working now
+
+2021-07-08    Owen Boreham    <bobrossrtx@gmail.com>
+
+	Moved kernel.c & keyboard.c
+
+2021-07-08    Owen Boreham    <bobrossrtx@gmail.com>
+
+	Moved boot.s
+
+2021-07-08    Owen Boreham    <noreply@github.com>
+
+	Merge pull request #2 from bobrossrtx/bobrossrtx/gitpod-setup
+
+2021-07-08    Owen Boreham    <bobrossrtx@gmail.com>
+
+	Fully automate dev setup with Gitpod
+
+2021-07-07    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Merge branch 'master' of https://github.com/bobrossrtx/TinyKernel
+
+2021-07-07    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Completely remade Makefile (Still not working)
+
+2021-07-07    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Created template keyboard.c file for later use
+
+2021-07-07    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Cleaned up menuentry
+
+2021-07-07    Owen Boreham    <noreply@github.com>
+
+	Update README.md
+
+2021-07-06    Owen Boreham    <noreply@github.com>
+
+	Create README
+
+2021-07-06    Owen Boreham    <noreply@github.com>
+
+	Removed un-necessary new "\n"s
+
+2021-07-06    Owen Boreham    <noreply@github.com>
+
+	Fixed issues with requirements
+
+2021-07-06    bobrossrtx    <bobrossrtx@gmail.com>
+
+	New version, License & new implementations
+
+2021-07-06    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated version + License
+
+2021-07-06    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Edited menu entry for grub + added license
+
+2021-07-06    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Created keyboard header
+
+2021-07-06    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Added license
+
+2021-07-06    Owen Boreham    <bobrossrtx@gmail.com>
+
+	Fixed a few issues
+
+2021-07-05    Owen Boreham    <noreply@github.com>
+
+	Update issue templates
+
+2021-07-05    Owen Boreham    <noreply@github.com>
+
+	Merge pull request #1 from bobrossrtx/add-license-1
+
+2021-07-05    Owen Boreham    <noreply@github.com>
+
+	Create LICENSE
+
+2021-07-05    Owen Boreham    <noreply@github.com>
+
+	Create CODE_OF_CONDUCT.md
+
+2021-07-05    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Install script (debian)
+
+2021-07-05    bobrossrtx    <bobrossrtx@gmail.com>
+
+	kernel entry point
+
+2021-07-05    bobrossrtx    <bobrossrtx@gmail.com>
+
+	kernal header file
+
+2021-07-05    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Created Makefile (WIP)
+
+2021-07-05    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Setup linker
+
+2021-07-05    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Created Grub Config
+
+2021-07-05    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Created BootLoader
+
+2021-07-05    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Updated .gitignore
+
+2021-07-05    bobrossrtx    <bobrossrtx@gmail.com>
+
+	Created .gitignore
 

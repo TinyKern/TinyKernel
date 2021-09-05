@@ -1,3 +1,9 @@
 #!/bin/bash
 
-git log --pretty="%as    %h    <%cE>%n%an%n%s%n" > CHANGELOG
+git log --pretty="%as    %an    <%cE>%n%n%s%n%n%b" > CHANGELOG
+echo "Local Variables:
+mode: change-log
+left-margin: 8
+fill-column: 76
+version-control: never
+End:" >> CHANGELOG

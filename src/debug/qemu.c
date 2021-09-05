@@ -183,3 +183,14 @@ void _qemu_panic(char* fmt, ...)
     qemu_print(output, args);
     va_end(args);
 }
+
+void _qemu_device(char* fmt, ...)
+{
+    strcpy(output, DEVICE_COLORS);
+    strcat(output, fmt);
+
+    va_list args;
+    va_start(args, fmt);
+    qemu_print(output, args);
+    va_end(args);
+}

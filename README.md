@@ -8,7 +8,7 @@
 [![CodeQuality](https://www.code-inspector.com/project/26723/score/svg)](https://github.com/TinyKern/TinyKernel/)
 [![CodeGrade](https://www.code-inspector.com/project/26723/status/svg)](https://github.com/TinyKern/TinyKernel/)
 
-# TinyKernel - 0.1.3
+# TinyKernel - 0.1.4
 Tiny Kernel is a work in progress Operating System kernel.
 
 By the end of the project, I hope to have a fully functional and working Kernel. Since System development is my prefered type of development, 

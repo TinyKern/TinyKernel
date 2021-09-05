@@ -43,7 +43,7 @@ extern uint8_t g_back_color;
 #define SUCCESS_COLORS  "[\033[1;32msuccess\033[0m] "
 #define ERROR_COLORS    "[\033[1;31merror\033[0m] %u, %s | "
 #define PANIC_COLORS    "[\033[1;31mpanic\033[0m]   "
-
+#define DEVICE_COLORS   "[\033[1;34mdevice\033[0m]  "
 #define KB (1024u)
 #define MB (1024u*KB)
 

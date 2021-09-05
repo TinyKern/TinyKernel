@@ -23,10 +23,24 @@
 void qemu_puthex(uint32_t i);
 void qemu_printf(char* fmt, ...);
 
-void qemu_dbg(char *fmt, ...);
-void qemu_success(char *fmt, ...);
-void qemu_info(char *fmt, ...);
-void qemu_error(char* fmt, ...);
-void qemu_panic(char* fmt, ...);
+void _qemu_dbg(char *fmt, ...);
+void _qemu_success(char *fmt, ...);
+void _qemu_info(char *fmt, ...);
+void _qemu_error(char* fmt, ...);
+void _qemu_panic(char* fmt, ...);
+
+#if CONFIG_QEMU_DEBUG
+# define qemu_dbg(fmt, ...) _qemu_dbg(fmt, ##__VA_ARGS__)
+# define qemu_success(fmt, ...) _qemu_success(fmt, ##__VA_ARGS__)
+# define qemu_info(fmt, ...) _qemu_info(fmt, ##__VA_ARGS__)
+# define qemu_error(fmt, ...) _qemu_error(fmt, ##__VA_ARGS__)
+# define qemu_panic(fmt, ...) _qemu_panic(fmt, ##__VA_ARGS__)
+#else
+# define qemu_dbg(fmt, ...)
+# define qemu_success(fmt, ...)
+# define qemu_info(fmt, ...)
+# define qemu_error(fmt, ...)
+# define qemu_panic(fmt, ...)
+#endif /* CONFIG_QEMU_DEBUG */
 
 #endif // QEMU_H

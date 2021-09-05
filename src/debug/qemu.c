@@ -129,7 +129,7 @@ void qemu_printf(char *fmt, ...)
 
 char* output;
 
-void qemu_dbg(char *fmt, ...)
+void _qemu_dbg(char *fmt, ...)
 {
     strcpy(output, DEBUG_COLORS);
     strcat(output, fmt);
@@ -140,7 +140,7 @@ void qemu_dbg(char *fmt, ...)
     va_end(args);
 }
 
-void qemu_success(char *fmt, ...)
+void _qemu_success(char *fmt, ...)
 {
     strcpy(output, SUCCESS_COLORS);
     strcat(output, fmt);
@@ -151,7 +151,7 @@ void qemu_success(char *fmt, ...)
     va_end(args);
 }
 
-void qemu_info(char *fmt, ...)
+void _qemu_info(char *fmt, ...)
 {
     strcpy(output, INFO_COLORS);
     strcat(output, fmt);
@@ -162,7 +162,7 @@ void qemu_info(char *fmt, ...)
     va_end(args);
 }
 
-void qemu_error(char* fmt, ...)
+void _qemu_error(char* fmt, ...)
 {
     strcpy(output, ERROR_COLORS);
     strcat(output, fmt);
@@ -173,7 +173,7 @@ void qemu_error(char* fmt, ...)
     va_end(args);
 }
 
-void qemu_panic(char* fmt, ...)
+void _qemu_panic(char* fmt, ...)
 {
     strcpy(output, PANIC_COLORS);
     strcat(output, fmt);

@@ -65,10 +65,8 @@ void pci_slot_check(uint8_t bus, uint8_t slot)
         uint32_t class_register = pci_read_config_reg(bus, slot, func, 0x08);
         uint8_t class = (uint8_t)(class_register >> 24);
 
-        kprintf("Pci devices at %d:%d:%d has vendor %x and device %x, of class %s.\n", bus, slot, func, device_and_vendor&0xFFFF, device_and_vendor>>16, class_names[class]);
-#ifdef QEMU_SERIAL_ENABLED
+        // kprintf("Pci devices at %d:%d:%d has vendor %x and device %x, of class %s.\n", bus, slot, func, device_and_vendor&0xFFFF, device_and_vendor>>16, class_names[class]);
         qemu_info("Pci devices at %d:%d:%d has vendor %x and device %x, of class %s.\n", bus, slot, func, device_and_vendor&0xFFFF, device_and_vendor>>16, class_names[class]);
-#endif
     }
 }
 

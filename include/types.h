@@ -74,6 +74,8 @@ typedef float128_t  *float128ptr;
 
 
 typedef enum {false, true} bool;
+#define FALSE   false
+#define TRUE    true
 
 #define ALWAYS_INLINE __attribute__((always_inline))
 #define NO_RETURN __attribute__((noreturn))

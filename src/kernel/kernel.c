@@ -95,23 +95,10 @@ void loading_bar(int x, int y, int len, char* message, uint8_t color)
 
 void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
 {
-
-#ifdef QEMU_SERIAL_ENABLED
-    qemu_info("Kernel Initializing\r\n");
-    qemu_info("Version: %s\r\n", KERNEL_VERSION);
-    qemu_info("Compiler: %s - %u\r\n", COMPILER_NAME, COMPILER_VERSION);
-    qemu_info("Architecture: %s\r\n", __BUILD_ARCH__);
-    qemu_info("Build: %s\r\n", __BUILD_DATE__);
-    qemu_info("magic x: %x\n", magic);
-    qemu_info("magic u: %u\n", magic);
-    get_current_time();
-#endif // QEMU_SERIAL_ENABLED
-
-
     // Initialise the kernel since interupts are not enabled
     bool gdt = gdt_init();
     bool vga = vga_init();
-
+    
     switch (magic)
     {
         case MULTIBOOT_BOOTLOADER_MAGIC:
@@ -122,36 +109,33 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
             kpanic(ERRNO_KERNEL_INVALID_MAGIC, "Invalid magic number");
     }
 
-    ASSERT(mbi->mods_count > 0);
+    qemu_info("Kernel Initializing\r\n");
+    qemu_info("Version: %s\r\n", KERNEL_VERSION);
+    qemu_info("Compiler: %s - %u\r\n", COMPILER_NAME, COMPILER_VERSION);
+    qemu_info("Architecture: %s\r\n", __BUILD_ARCH__);
+    qemu_info("Build: %s\r\n", __BUILD_DATE__);
+    qemu_info("magic x: %x\n", magic);
+    qemu_info("magic u: %u\n", magic);
+    get_current_time();
 
-#ifdef QEMU_SERIAL_ENABLED
-    qemu_info("Multiboot flags: %x\n", mbi->flags);
-    qemu_info("Multiboot mem_lower: %x\n", mbi->mem_lower);
-    qemu_info("Multiboot mem_upper: %x\n", mbi->mem_upper);
-    qemu_info("Multiboot boot_device: %x\n", mbi->boot_device);
-    qemu_info("Multiboot cmdline: %x\n", mbi->cmdline);
-    qemu_info("Multiboot mmap_length: %x\n", mbi->mmap_length);
-    qemu_info("Multiboot mmap_addr: %x\n", mbi->mmap_addr);
-#endif // QEMU_SERIAL_ENABLED
+
+    ASSERT(mbi->mods_count > 0);
 
     pci_enum_bus();
 
-#ifdef QEMU_SERIAL_ENABLED
     multiboot_uint32_t checksum = -(mbi->flags + magic);
-
     qemu_info("Multiboot flags:             %x\n", mbi->flags);
-    qemu_info("Multiboot mem_lower:         %x\n", mbi->mem_lower);
-    qemu_info("Multiboot mem_upper:         %x\n", mbi->mem_upper);
     qemu_info("Multiboot boot_device:       %x\n", mbi->boot_device);
     qemu_info("Multiboot cmdline:           %x\n", mbi->cmdline);
     qemu_info("Multiboot mmap_length:       %u\n", mbi->mmap_length);
     qemu_info("Multiboot mmap_addr:         %x\n", mbi->mmap_addr);
+    qemu_info("Multiboot mem_lower:         %x\n", mbi->mem_lower);
+    qemu_info("Multiboot mem_upper:         %x\n", mbi->mem_upper);
     qemu_info("Multiboot config_table:      %x\n", mbi->config_table);
     qemu_info("Multiboot drives_length:     %u\n", mbi->drives_length);
     qemu_info("Multiboot drives_addr:       %x\n", mbi->drives_addr);
     qemu_info("Multiboot modules_count:     %u\n", mbi->mods_count);
     qemu_info("Multiboot checksum:          %x\n", checksum);
-#endif
 
     time_init();
     heap_init(0x100000, 0x100000);
@@ -162,9 +146,7 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     char* loading_message = "TinyKernel Booting";
     loading_bar(VGA_COLS / 2, VGA_ROWS / 2, strlen(loading_message), loading_message, 0xff);
 
-#ifdef QEMU_SERIAL_ENABLED
     qemu_success("Kernel Initialization Complete\r\n");
-#endif // QEMU_SERIAL_ENABLED
 
     kprintf("TinyKernel - %s\n", KERNEL_VERSION);
     kprintf(" [i] Kernel Version:   %s\n", KERNEL_VERSION);
@@ -172,16 +154,12 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     if (gdt == true)
     {
         kprintf(" [i] GDT:              Enabled\n");
-#ifdef QEMU_SERIAL_ENABLED
         qemu_success("GDT Initialized\r\n", gdt);
-#endif // QEMU_SERIAL_ENABLED
     }
     if (vga == true)
     {
         kprintf(" [i] VGA Driver:       Enabled\n");
-#ifdef QEMU_SERIAL_ENABLED
         qemu_success("VGA Initialized\r\n", vga);
-#endif // QEMU_SERIAL_ENABLED
     }
 
     cpuid_info();
@@ -189,11 +167,9 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     void* kmalloc_test = kmalloc(0x10);
     void* kmalloc_test1 = kmalloc(0x10);
     void* kmalloc_test2 = kmalloc(0x10);
-#ifdef QEMU_SERIAL_ENABLED
     qemu_dbg("kmalloc_test: %x\r\n", kmalloc_test);
     qemu_dbg("kmalloc_test1: %x\r\n", kmalloc_test1);
     qemu_dbg("kmalloc_test2: %x\r\n", kmalloc_test2);
-#endif // QEMU_SERIAL_ENABLED
     vga_write_string("Heap Allocation Test:     --------", 35, 0);
     vga_write_string("[0] kmalloc: 0x10 -> 0x", 40, 1); vga_write_string(convert_to_base((uint64_t)kmalloc_test, 16), 63, 1);
     vga_write_string("[1] kmalloc: 0x10 -> 0x", 40, 2); vga_write_string(convert_to_base((uint64_t)kmalloc_test1, 16), 63, 2);
@@ -203,20 +179,16 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     kfree(kmalloc_test);
     kfree(kmalloc_test1);
     kfree(kmalloc_test2);
-#ifdef QEMU_SERIAL_ENABLED
     qemu_dbg("kmalloc_test: %x\r\n", kmalloc_test);
     qemu_dbg("kmalloc_test1: %x\r\n", kmalloc_test1);
     qemu_dbg("kmalloc_test2: %x\r\n", kmalloc_test2);
-#endif // QEMU_SERIAL_ENABLED
 
     void* kmalloc_test3 = kmalloc(0x10);
     void* kmalloc_test4 = kmalloc(0x10);
     void* kmalloc_test5 = kmalloc(0x10);
-#ifdef QEMU_SERIAL_ENABLED
     qemu_dbg("kmalloc_test3: %x\r\n", kmalloc_test3);
     qemu_dbg("kmalloc_test4: %x\r\n", kmalloc_test4);
     qemu_dbg("kmalloc_test5: %x\r\n", kmalloc_test5);
-#endif // QEMU_SERIAL_ENABLED
     vga_write_string("Heap Free Test:           --------", 35, 4);
     vga_write_string("[3] kmalloc: 0x10 -> 0x", 40, 5); vga_write_string(convert_to_base((uint64_t)kmalloc_test3, 16), 63, 5);
     vga_write_string("[4] kmalloc: 0x10 -> 0x", 40, 6); vga_write_string(convert_to_base((uint64_t)kmalloc_test4, 16), 63, 6);
@@ -227,9 +199,7 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     {
         if (readKey(KEY_ENTER) == true)
         {
-#ifdef QEMU_SERIAL_ENABLED
             qemu_success("Shutting Down\r\n");
-#endif // QEMU_SERIAL_ENABLED
             sys_shutdown();
         }
     }

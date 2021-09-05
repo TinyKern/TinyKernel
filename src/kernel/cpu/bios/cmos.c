@@ -170,7 +170,5 @@ void read_rtc()
 void get_current_time()
 {
     read_rtc();
-#ifdef QEMU_SERIAL_ENABLED
     qemu_info("time: %u.%u.%u %u:%u\n", day, month, year, hour, minute);
-#endif
 }

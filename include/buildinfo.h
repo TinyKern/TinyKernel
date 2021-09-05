@@ -13,22 +13,28 @@
 
 #pragma once
 
+#include "types.h"
+
 #ifndef __BUILD_ARCH__
 # define __BUILD_ARCH__ "unknown"
-#endif
+#endif /* __BUILD_ARCH__ */
 
 #ifndef __BUILD_GITREF__
 # define __BUILD_GITREF__ "unknown"
-#endif
+#endif /* __BUILD_GITREF__ */
 
 #ifndef __BUILD_UNAME__
 # define __BUILD_UNAME__ "unknown"
-#endif
+#endif /* __BUILD_UNAME__ */
 
 #ifndef __BUILD_DATE__
 # define __BUILD_DATE__ "unknown"
-#endif
+#endif /* __BUILD_DATE__ */
 
 #ifndef __BUILD_VERSION__
 # define __BUILD_VERSION__ "unknown"
-#endif
+#endif /* __BUILD_VERSION__ */
+
+#ifndef __QEMU__
+# define __QEMU__ FALSE
+#endif /* __QEMU__ */

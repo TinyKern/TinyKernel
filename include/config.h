@@ -53,7 +53,7 @@ extern uint8_t g_back_color;
 #define KERNEL_BASE_VA  0xC0000000
 #define KERNEL_PADDR    0x00100000
 
-#define QEMU_SERIAL_ENABLED
+#define CONFIG_QEMU_DEBUG __QEMU__
 
 #define CURRENT_YEAR    2021
 

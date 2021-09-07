@@ -14,23 +14,9 @@
 #ifndef CDEFS_H
 #define CDEFS_H
 
+#include "assert.h"
+
 #define assert_failed(expr, file, line)
-
-#ifdef ASSERT
-# undef ASSERT
-#endif // ASSERT
-
-#ifndef NDEBUG
-# define ASSERT(x)                                  \
-    do {                                            \
-        if (UNLIKELY(!(x)))                         \
-        {                                           \
-            assert_failed(#x, __FILE__, __LINE__);  \
-        }                                           \
-    } while (0)
-#else
-# define ASSERT(x) do { /* Nothing */ } while (0)
-#endif // NDEBUG
 
 #define VERIFY(x)                                   \
     do {                                            \

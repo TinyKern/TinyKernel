@@ -119,7 +119,7 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     get_current_time();
 
 
-    ASSERT(mbi->mods_count > 0);
+    Assert(mbi->mods_count > 0);
 
     pci_enum_bus();
 

@@ -23,7 +23,7 @@
  * 
  * @return uint32_t - The length of the string.
  */
-uint32_t  strlen(const char*);
+uint32_t strlen(const char*);
 
 /**
  * @brief Compares two strings
@@ -33,7 +33,7 @@ uint32_t  strlen(const char*);
  * 
  * @return int - 0 if the strings are equal, -1 if s1 is less than s2, 1 if s1 is greater than s2.
  */
-int     strcmp(const char*, const char*);
+int strcmp(const char*, const char*);
 
 /**
  * @brief Locates a char in a string
@@ -53,7 +53,7 @@ const char *strchr(const char*, char);
  * 
  * @return char* - The tokenized string or NULL if no tokens were found.
  */
-char*   strtok(char*, const char*);
+char *strtok(char*, const char*);
 
 /**
  * @brief Copies <n> bytes from <src> to <dest>
@@ -63,7 +63,7 @@ char*   strtok(char*, const char*);
  * @param size 
  * @return void* - The destination pointer where the copy ended.
  */
-void* memcpy(void* dest, const void* src, uint32_t size);
+void *memcpy(void* dest, const void* src, uint32_t size);
 
 /**
  * @brief Copies the string <src> to <dest>
@@ -72,7 +72,7 @@ void* memcpy(void* dest, const void* src, uint32_t size);
  * @param src 
  * @return char* - The destination pointer where the string was copied to.
  */
-char* strcpy(char* dest, const char* src);
+char *strcpy(char* dest, const char* src);
 
 /**
  * @brief Concatenates <src> to <dest>
@@ -81,5 +81,5 @@ char* strcpy(char* dest, const char* src);
  * @param src 
  * @return char* - The destination pointer where the string was concatenated to.
  */
-char* strcat(char* dest, const char* src);
+char *strcat(char* dest, const char* src);
 #endif // STRING_H

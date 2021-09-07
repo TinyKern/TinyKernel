@@ -31,12 +31,12 @@ void get_symtab_and_strtab(Elf_Shdr **symtab, Elf_Shdr **strtab)
 
         if (s -> sh_type == SHT_SYMTAB)
         {
-            ASSERT(!*symtab);
+            Assert(!*symtab);
             *symtab = s;
         }
         else if (s->sh_type == SHT_STRTAB && i != h->e_shstrndx)
         {
-            ASSERT(!*strtab);
+            Assert(!*strtab);
             *strtab = s;
         }
     }

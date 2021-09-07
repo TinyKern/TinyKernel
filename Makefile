@@ -26,12 +26,13 @@ ISO 			?= TinyKernel_$(AUTHOR)-$(BUILD_VERSION).iso
 ALLFILES 		:= $(SRCS) $(HDRS) $(OBJS) $(AUXS)
 
 # GCC Definitions
-BUILD_DEFS		:= \
-	-D__BUILD_ARCH__=\""$(BUILD_ARCH)"\" 	\
-	-D__BUID_GITREF__=\""$(BUILD_GITREF)"\"	\
-	-D__BUILD_UNAME__=\""$(BUILD_UNAME)"\" 	\
-	-D__BUILD_DATE__=\""$(BUILD_DATE)"\" 	\
-	-D__QEMU__="$(QEMU_DEBUG)" 				\
+BUILD_DEFS		:= 								\
+	-DASSERT 									\
+	-D__BUILD_ARCH__=\""$(BUILD_ARCH)"\" 		\
+	-D__BUID_GITREF__=\""$(BUILD_GITREF)"\"		\
+	-D__BUILD_UNAME__=\""$(BUILD_UNAME)"\" 		\
+	-D__BUILD_DATE__=\""$(BUILD_DATE)"\" 		\
+	-D__QEMU__="$(QEMU_DEBUG)" 					\
 	-D__BUILD_VERSION__=\""$(BUILD_VERSION)"\"
 
 # Flags

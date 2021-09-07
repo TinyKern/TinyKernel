@@ -1,3 +1,13 @@
+2021-09-07    bobrossrtx    <bobrossrtx@gmail.com>
+
+* include/assert.h: Updated assert
+
+
+2021-09-05    bobrossrtx    <bobrossrtx@gmail.com>
+
+Merged 2 different variations of master together
+
+
 2021-09-05    bobrossrtx    <bobrossrtx@gmail.com>
 
 * Makefile, config.cfg: Added QEMU_DEBUG option to CFLAGS
@@ -5,6 +15,46 @@
 * include | buildinfo.h, config.h, debug/qemu.h, types.h: Updated qemu macros & types
 * src | debug/qemu.c: Updated names of qemu functions by prefixing them with an underscore
 * src | drivers/pci/bus.c, kernel/cpu/**, kernel/kernel.c, kernel/panic.c: Used new qemu macros
+
+2021-09-02    bobrossrtx    <bobrossrtx@gmail.com>
+
+Updated changelog
+
+
+2021-09-02    bobrossrtx    <bobrossrtx@gmail.com>
+
+Updated changelog
+
+
+2021-09-02    bobrossrtx    <bobrossrtx@gmail.com>
+
+* scripts/changelog_gen: Updated changelog output format
+
+
+2021-09-02    bobrossrtx    <bobrossrtx@gmail.com>
+
+Updated changelog
+
+
+2021-09-02    bobrossrtx    <bobrossrtx@gmail.com>
+
+Updated gitpush script
+
+
+2021-09-02    bobrossrtx    <bobrossrtx@gmail.com>
+
+Added device qemu print option
+
+
+2021-09-02    Owen Boreham    <noreply@github.com>
+
+Add files via upload
+
+
+2021-09-01    Owen Boreham    <noreply@github.com>
+
+Update gitpush
+
 
 2021-09-01    bobrossrtx    <bobrossrtx@gmail.com>
 
@@ -14,6 +64,11 @@ Updated Changelog script
 2021-09-01    bobrossrtx    <bobrossrtx@gmail.com>
 
 Updated changelog
+
+
+2021-09-01    Owen Boreham    <noreply@github.com>
+
+Updated README to show latest version
 
 
 2021-09-01    bobrossrtx    <bobrossrtx@gmail.com>

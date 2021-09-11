@@ -140,6 +140,28 @@ install-toolchain:
 	@echo "Toolchain installed to ${LIGHT_PURPLE}$(CROSS_PREFIX)${RESET}"
 	@echo "run ${LIGHT_PURPLE}'bash install.sh'${RESET} in ${LIGHT_PURPLE}$(CROSS_PREFIX)${RESET} to build the toolchain"
 
+git-sizes:
+	@git ls-tree -r -t -l --full-name HEAD | sort -n -k 4 | tail -n 10
+
+info:
+	@echo "========================"
+	@echo "= TinyKernel info ="
+	@echo "========================"
+	@echo
+	@echo "${PURPLE}Build directory${RESET}: $(BUILD_DIR)"
+	@echo "${PURPLE}Build target${RESET}: $(TARGET)"
+	@echo "${PURPLE}Build flags${RESET}: $(BUILD_DEFS)"
+	@echo "${PURPLE}Build includes${RESET}: $(INC_FLAGS)"
+	@echo "${PURPLE}Build libraries${RESET}: $(LIB_FLAGS)"
+	@echo "${PURPLE}Build linker flags${RESET}: $(LDFLAGS)"
+	@echo "${PURPLE}Build kernel linker flags${RESET}: $(KERNEL_LDFLAGS)"
+	@echo "${PURPLE}Build C flags${RESET}: $(CFLAGS)"
+	@echo "${PURPLE}Build C++ flags${RESET}: $(CXXFLAGS)"
+	@echo "${PURPLE}Build AS flags${RESET}: $(ASFLAGS)"
+	@echo "${PURPLE}Build NASM flags${RESET}: $(NASMFLAGS)"
+	@echo "${PURPLE}Build LD flags${RESET}: $(LDFLAGS)"
+
+
 .PHONY: clean todos todolist
 todolist: todos
 todos:

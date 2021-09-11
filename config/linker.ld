@@ -24,7 +24,7 @@ SECTIONS
     . = 1M;
 
     /* Define kernel image base address */
-    kernel_start = .;
+    _kernel_start = .;
 
     /* First we put the multiboot header, as it is required
         to be put very early in the image or the bootloader
@@ -61,5 +61,5 @@ SECTIONS
     }
 
     /* Define kernel image end address */
-    kernel_end = .;
+    _kernel_end = .;
 }

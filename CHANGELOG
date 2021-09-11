@@ -1,6 +1,76 @@
+2021-09-11    bobrossrtx    <bobrossrtx@gmail.com>
+
+* bootloader: Added more comments to describe more users to understand.
+
+
+2021-09-11    bobrossrtx    <bobrossrtx@gmail.com>
+
+Merge branch 'master' of github.com:TinyKern/TinyKernel
+
+
+2021-09-11    bobrossrtx    <bobrossrtx@gmail.com>
+
+* ACPI: Started working on ACPI & figuring out how it works (not working)
+
+
+2021-09-11    bobrossrtx    <bobrossrtx@gmail.com>
+
+* types.h: Added new types
+
+
+2021-09-11    bobrossrtx    <bobrossrtx@gmail.com>
+
+* string.h: Added memcmp
+
+
+2021-09-11    bobrossrtx    <bobrossrtx@gmail.com>
+
+* qemu: Added new serial output messages & config setting
+
+
+2021-09-09    bobrossrtx    <bobrossrtx@gmail.com>
+
+Merge branch 'master' of github.com:TinyKern/TinyKernel
+
+
+2021-09-09    bobrossrtx    <bobrossrtx@gmail.com>
+
+Updated some of the assmebly comments
+
+
+2021-09-09    Owen Boreham    <noreply@github.com>
+
+Create CITATION.cff
+
+
+2021-09-07    Owen Boreham    <noreply@github.com>
+
+Delete semgrep.yml
+
+
+2021-09-07    bobrossrtx    <bobrossrtx@gmail.com>
+
+* Makefile: Added ASSERT definition to cflags * assert.c: Fixed an error & changed debug messages to error messages
+
+
+2021-09-07    bobrossrtx    <bobrossrtx@gmail.com>
+
+Merge branch 'master' of github.com:TinyKern/TinyKernel
+
+
+2021-09-07    bobrossrtx    <bobrossrtx@gmail.com>
+
+Daily Bump
+
+
 2021-09-07    bobrossrtx    <bobrossrtx@gmail.com>
 
 * include/assert.h: Updated assert
+
+
+2021-09-05    bobrossrtx    <bobrossrtx@gmail.com>
+
+* config.cfg: Updated header file name
 
 
 2021-09-05    bobrossrtx    <bobrossrtx@gmail.com>

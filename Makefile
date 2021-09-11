@@ -33,6 +33,7 @@ BUILD_DEFS		:= 								\
 	-D__BUILD_UNAME__=\""$(BUILD_UNAME)"\" 		\
 	-D__BUILD_DATE__=\""$(BUILD_DATE)"\" 		\
 	-D__QEMU__="$(QEMU_DEBUG)" 					\
+	-D__SERIAL_COLORS__="$(SERIAL_COLORS)" 		\
 	-D__BUILD_VERSION__=\""$(BUILD_VERSION)"\"
 
 # Flags

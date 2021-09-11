@@ -131,7 +131,7 @@ char* output;
 
 void _qemu_dbg(char *fmt, ...)
 {
-    strcpy(output, DEBUG_COLORS);
+    strcpy(output, DEBUG_MESSAGE_PREFIX );
     strcat(output, fmt);
 
     va_list args;
@@ -142,7 +142,7 @@ void _qemu_dbg(char *fmt, ...)
 
 void _qemu_success(char *fmt, ...)
 {
-    strcpy(output, SUCCESS_COLORS);
+    strcpy(output, SUCCESS_MESSAGE_PREFIX );
     strcat(output, fmt);
 
     va_list args;
@@ -153,7 +153,7 @@ void _qemu_success(char *fmt, ...)
 
 void _qemu_info(char *fmt, ...)
 {
-    strcpy(output, INFO_COLORS);
+    strcpy(output, INFO_MESSAGE_PREFIX );
     strcat(output, fmt);
 
     va_list args;
@@ -164,7 +164,7 @@ void _qemu_info(char *fmt, ...)
 
 void _qemu_error(char* fmt, ...)
 {
-    strcpy(output, ERROR_COLORS);
+    strcpy(output, ERROR_MESSAGE_PREFIX );
     strcat(output, fmt);
 
     va_list args;
@@ -175,7 +175,7 @@ void _qemu_error(char* fmt, ...)
 
 void _qemu_panic(char* fmt, ...)
 {
-    strcpy(output, PANIC_COLORS);
+    strcpy(output, PANIC_MESSAGE_PREFIX );
     strcat(output, fmt);
 
     va_list args;
@@ -186,7 +186,18 @@ void _qemu_panic(char* fmt, ...)
 
 void _qemu_device(char* fmt, ...)
 {
-    strcpy(output, DEVICE_COLORS);
+    strcpy(output, DEVICE_MESSAGE_PREFIX );
+    strcat(output, fmt);
+
+    va_list args;
+    va_start(args, fmt);
+    qemu_print(output, args);
+    va_end(args);
+}
+
+void _qemu_warning(char* fmt, ...)
+{
+    strcpy(output, WARNING_MESSAGE_PREFIX );
     strcat(output, fmt);
 
     va_list args;

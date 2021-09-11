@@ -29,6 +29,7 @@ void _qemu_info(char *fmt, ...);
 void _qemu_error(char* fmt, ...);
 void _qemu_panic(char* fmt, ...);
 void _qemu_device(char* fmt, ...);
+void _qemu_warning(char* fmt, ...);
 
 #if CONFIG_QEMU_DEBUG
 # define qemu_dbg(fmt, ...) _qemu_dbg(fmt, ##__VA_ARGS__)
@@ -37,6 +38,7 @@ void _qemu_device(char* fmt, ...);
 # define qemu_error(fmt, ...) _qemu_error(fmt, ##__VA_ARGS__)
 # define qemu_panic(fmt, ...) _qemu_panic(fmt, ##__VA_ARGS__)
 # define qemu_device(fmt, ...) _qemu_device(fmt, ##__VA_ARGS__)
+# define qemu_warning(fmt, ...) _qemu_warning(fmt, ##__VA_ARGS__)
 #else
 # define qemu_dbg(fmt, ...)
 # define qemu_success(fmt, ...)
@@ -44,6 +46,7 @@ void _qemu_device(char* fmt, ...);
 # define qemu_error(fmt, ...)
 # define qemu_panic(fmt, ...)
 # define qemu_device(fmt, ...)
+# define qemu_warning(fmt, ...)
 #endif /* CONFIG_QEMU_DEBUG */
 
 #endif // QEMU_H

@@ -38,3 +38,7 @@
 #ifndef __QEMU__
 # define __QEMU__ FALSE
 #endif /* __QEMU__ */
+
+#ifndef __SERIAL_COLORS__
+# define __SERIAL_COLORS__ FALSE
+#endif /* __SERIAL_COLORS__ */

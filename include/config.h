@@ -38,12 +38,27 @@ extern uint8_t g_back_color;
 # define COMPILER_NAME       "unknown"
 #endif
 
-#define INFO_COLORS     "[\033[1;36minfo\033[0m]    "
-#define DEBUG_COLORS    "[\033[0;33m\033[4mdebug\033[0m]   "
-#define SUCCESS_COLORS  "[\033[1;32msuccess\033[0m] "
-#define ERROR_COLORS    "[\033[1;31merror\033[0m] %u, %s | "
-#define PANIC_COLORS    "[\033[1;31mpanic\033[0m]   "
-#define DEVICE_COLORS   "[\033[1;34mdevice\033[0m]  "
+#define CONFIG_QEMU_DEBUG   __QEMU__
+#define SERIAL_COLORS       __SERIAL_COLORS__
+
+#if __SERIAL_COLORS__
+# define INFO_MESSAGE_PREFIX     "[\033[1;36minfo\033[0m]    "
+# define DEBUG_MESSAGE_PREFIX    "[\033[0;33m\033[4mdebug\033[0m]   "
+# define SUCCESS_MESSAGE_PREFIX  "[\033[1;32msuccess\033[0m] "
+# define ERROR_MESSAGE_PREFIX    "[\033[1;31merror\033[0m]   "
+# define PANIC_MESSAGE_PREFIX    "[\033[1;31mpanic\033[0m]   "
+# define DEVICE_MESSAGE_PREFIX   "[\033[1;34mdevice\033[0m]  "
+# define WARNING_MESSAGE_PREFIX  "[\033[1;33mwarning\033[0m] "
+#else
+# define INFO_MESSAGE_PREFIX     "[info]    "
+# define DEBUG_MESSAGE_PREFIX    "[debug]   "
+# define SUCCESS_MESSAGE_PREFIX  "[success] "
+# define ERROR_MESSAGE_PREFIX    "[error]   "
+# define PANIC_MESSAGE_PREFIX    "[panic]   "
+# define DEVICE_MESSAGE_PREFIX   "[device]  "
+# define WARNING_MESSAGE_PREFIX  "[warning] "
+#endif
+
 #define KB (1024u)
 #define MB (1024u*KB)
 
@@ -53,7 +68,6 @@ extern uint8_t g_back_color;
 #define KERNEL_BASE_VA  0xC0000000
 #define KERNEL_PADDR    0x00100000
 
-#define CONFIG_QEMU_DEBUG __QEMU__
 
 #define CURRENT_YEAR    2021
 

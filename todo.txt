@@ -1,5 +1,5 @@
 =============
 = TODO List =
 =============
-src/kernel/cpu/bios/cmos.c:169:// FIXME: This is a hack to get around the fact that QEMU doesn't support the CMOS registers 0x0B and 0x0C
-src/kernel/stdio.c:18:// TODO: Make the stdarg header file without using the real libc version
+./src/kernel/cpu/bios/cmos.c:169:// FIXME: This is a hack to get around the fact that QEMU doesn't support the CMOS registers 0x0B and 0x0C
+./src/kernel/stdio.c:18:// TODO: Make the stdarg header file without using the real libc version

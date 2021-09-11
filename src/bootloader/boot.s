@@ -20,18 +20,18 @@
 
 // set multiboot enabled. This is required for the bootloader to work.
 .section    .multiboot
-.align      4                       // align to 4 bytes
-.long       MAGIC                   // magic number
-.long       FLAGS                   // flags
-.long       CHECKSUM                // checksum
+.align      4                           // align to 4 bytes
+.long       MAGIC                       // magic number
+.long       FLAGS                       // flags
+.long       CHECKSUM                    // checksum
 
 stackBottom:
-.skip       1024                    // stack bottom
+.skip       1024                        // stack bottom
 stackTop:
 
 .section    .text
-.global     _start                  // entry point
-.type       _start, @function       // function type
+.global     _start                      // entry point
+.type       _start, @function           // function type
 
 _start:
     // Disable interrupts: we don't want to be interrupted by anything
@@ -45,17 +45,17 @@ _start:
 
     // Enter the high-level kernel. This will load the kernel and
     // call the entry point.
-    push    %eax                    // save eax for later
-    push    %ebx                    // save ebx for later
-    call    kernel_entry            // call the kernel entry point
+    push    %eax                        // save eax for later
+    push    %ebx                        // save ebx for later
+    call    kernel_entry                // call the kernel entry point
 
-    cli                             // disable interrupts
+    cli                                 // disable interrupts
 
 // put system in infinite loop. This is a good place to put a breakpoint
 // to debug the kernel.
 hltLoop:
-    hlt                             // halt the system
-    jmp     hltLoop                 // loop forever
+    hlt                                 // halt the system
+    jmp     hltLoop                     // loop forever
 
 // kernel entry point, called by the high-level kernel. This will load
 // the kernel and call the entry point.

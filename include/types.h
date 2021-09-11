@@ -17,6 +17,10 @@
 #include <sys/stddef.h>
 #include "cdefs.h"
 
+// Byte
+typedef unsigned char       byte;
+typedef signed char         sbyte;
+
 // Unsigned types
 typedef unsigned char       uint8_t;
 typedef unsigned short      uint16_t;
@@ -30,6 +34,16 @@ typedef signed short        int16_t;
 typedef signed int          int32_t;
 typedef signed long         int64_t;
 typedef signed long long    int128_t;
+
+// Words
+typedef short               word_t;
+typedef int                 dword_t;
+typedef long                qword_t;
+
+typedef short               word;
+typedef int                 dword;
+typedef long                qword;
+
 
 // float types
 typedef float       float_t;
@@ -73,7 +87,7 @@ typedef float64_t   *float64ptr;
 typedef float128_t  *float128ptr;
 
 
-typedef enum {false, true} bool;
+typedef enum {false=0, true} bool;
 #define FALSE   false
 #define TRUE    true
 
@@ -87,5 +101,16 @@ typedef enum {false, true} bool;
 #define ALIGNED_TYPEDEF(x) __attribute__((aligned(x))) typedef
 #define ALIGNED_ENUM(x) __attribute__((aligned(x))) enum
 #define DEPRECATED __attribute__((deprecated))
+
+#define __always_inline inline __attribute__((always_inline))
+#define __no_return __attribute__((noreturn))
+#define __unused __attribute__((unused))
+#define __packed __attribute__((packed))
+#define __aligned(x) __attribute__((aligned(x)))
+#define __aligned_struct(x) __attribute__((aligned(x))) struct
+#define __aligned_union(x) __attribute__((aligned(x))) union
+#define __aligned_typedef(x) __attribute__((aligned(x))) typedef
+#define __aligned_enum(x) __attribute__((aligned(x))) enum
+#define __deprecated __attribute__((deprecated))
 
 #endif

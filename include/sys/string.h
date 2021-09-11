@@ -66,6 +66,17 @@ char *strtok(char*, const char*);
 void *memcpy(void* dest, const void* src, uint32_t size);
 
 /**
+ * @brief Compares two blocks of memory
+ * 
+ * @param ptr1
+ * @param ptr2
+ * @param num
+ * 
+ * @return int - 0 if the memory blocks are equal, -1 if ptr1 is less than ptr2, 1 if ptr1 is greater than ptr2.
+ */
+int memcmp(const void* ptr1, const void* ptr2, size_t num);
+
+/**
  * @brief Copies the string <src> to <dest>
  * 
  * @param dest 

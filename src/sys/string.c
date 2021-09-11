@@ -83,10 +83,18 @@ void* memcpy(void* dest, const void* src, uint32_t size)
   return dest;
 }
 
-char* strcpy(char* dest, const char* src)
+int memcmp(const void* ptr1, const void* ptr2, size_t num)
 {
-  return memcpy(dest, src, strlen(src) + 1);
+  register const uint8_t *s1 = (const uint8_t *)ptr1;
+  register const uint8_t *s2 = (const uint8_t *)ptr2;
+  while (num-- > 0)
+    if (*s1++ != *s2++)
+      return s1[-1] < s2[-1] ? -1 : 1;
+  return 0;
 }
+
+char* strcpy(char* dest, const char* src)
+{ return memcpy(dest, src, strlen(src) + 1); }
 
 char* strcat(char* dest, const char* src)
 {

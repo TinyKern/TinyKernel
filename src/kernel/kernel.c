@@ -12,6 +12,7 @@
  */
 
 #include <multiboot.h>
+#include <arch/i386/acpi.h>
 #include <drivers/keyboard/keyboard.h>
 #include <drivers/video/video.h>
 #include <drivers/vga/vga.h>
@@ -98,6 +99,8 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     // Initialise the kernel since interupts are not enabled
     bool gdt = gdt_init();
     bool vga = vga_init();
+    acpi_init();
+    Assert(gdt && vga);
     
     switch (magic)
     {
@@ -109,6 +112,7 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
             kpanic(ERRNO_KERNEL_INVALID_MAGIC, "Invalid magic number");
     }
 
+    multiboot_uint32_t checksum = -(mbi->flags + magic);
     qemu_info("Kernel Initializing\r\n");
     qemu_info("Version: %s\r\n", KERNEL_VERSION);
     qemu_info("Compiler: %s - %u\r\n", COMPILER_NAME, COMPILER_VERSION);
@@ -116,14 +120,6 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     qemu_info("Build: %s\r\n", __BUILD_DATE__);
     qemu_info("magic x: %x\n", magic);
     qemu_info("magic u: %u\n", magic);
-    get_current_time();
-
-
-    Assert(mbi->mods_count > 0);
-
-    pci_enum_bus();
-
-    multiboot_uint32_t checksum = -(mbi->flags + magic);
     qemu_info("Multiboot flags:             %x\n", mbi->flags);
     qemu_info("Multiboot boot_device:       %x\n", mbi->boot_device);
     qemu_info("Multiboot cmdline:           %x\n", mbi->cmdline);
@@ -138,6 +134,7 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     qemu_info("Multiboot checksum:          %x\n", checksum);
 
     time_init();
+    pci_enum_bus();
     heap_init(0x100000, 0x100000);
 
     disable_cursor();

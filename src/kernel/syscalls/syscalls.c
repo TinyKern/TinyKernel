@@ -12,11 +12,15 @@
  */
 
 #include <kernel/syscalls/syscalls.h>
+#include <arch/i386/acpi.h>
 
 void sys_shutdown(void)
 {
   out16(0x604, 0x2000);
   out16(0x4004, 3400);
   out16(0xb004, 0x2000);
+
+  acpi_power_off();
+
   kpanic(ESHUTD, "Failed to shutdown");
 }

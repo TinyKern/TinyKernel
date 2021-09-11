@@ -11,53 +11,52 @@
  * full license details.
  */
 
-// set magic number to 0x1BADB002 to be identified by bootloader
-.set        MAGIC, 0x1BADB002
+// Constants for the bootloader
+.set        ALIGN, 1<<0                 // align loaded modules on page boundaries
+.set        MEMINFO, 1<<1               // load memory information
+.set        FLAGS, ALIGN | MEMINFO      // load all modules
+.set        MAGIC, 0x1BADB002           // magic number for the bootloader
+.set        CHECKSUM, -(MAGIC + FLAGS)  // checksum for the bootloader
 
-// set flags to 0
-.set        FLAGS, 0
-
-// set the checksum
-.set        CHECKSUM, -(MAGIC + FLAGS)
-
-// set multiboot enabled
+// set multiboot enabled. This is required for the bootloader to work.
 .section    .multiboot
+.align      4                       // align to 4 bytes
+.long       MAGIC                   // magic number
+.long       FLAGS                   // flags
+.long       CHECKSUM                // checksum
 
-// define type to long for each data defined as above
-.long       MAGIC
-.long       FLAGS
-.long       CHECKSUM
-
-// set the stack bottom
 stackBottom:
-
-// define the maximum size of stack to 512 bytes
-.skip 1024
-
-// set the stack top which grows from higher to lower
+.skip       1024                    // stack bottom
 stackTop:
 
 .section    .text
-.global     _start
-.type       _start, @function
+.global     _start                  // entry point
+.type       _start, @function       // function type
 
 _start:
+    // Disable interrupts: we don't want to be interrupted by anything
+    // while we're loading the kernel.
     cli
     cld
 
-    // assign current stack pointer location to stackTop
+    // Setup the stack pointer. We need to do this before loading the
+    // kernel.
     mov     $stackTop, %esp
 
-    // call the kernel main source
-    push    %eax
-    push    %ebx
-    call    kernel_entry
+    // Enter the high-level kernel. This will load the kernel and
+    // call the entry point.
+    push    %eax                    // save eax for later
+    push    %ebx                    // save ebx for later
+    call    kernel_entry            // call the kernel entry point
 
-    cli
+    cli                             // disable interrupts
 
-// put system in infinite loop
+// put system in infinite loop. This is a good place to put a breakpoint
+// to debug the kernel.
 hltLoop:
-    hlt
-    jmp     hltLoop
+    hlt                             // halt the system
+    jmp     hltLoop                 // loop forever
 
+// kernel entry point, called by the high-level kernel. This will load
+// the kernel and call the entry point.
 .size _start, . - _start

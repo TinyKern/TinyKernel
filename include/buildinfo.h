@@ -42,3 +42,7 @@
 #ifndef __SERIAL_COLORS__
 # define __SERIAL_COLORS__ FALSE
 #endif /* __SERIAL_COLORS__ */
+
+#ifndef __NDEBUG__
+# define __NDEBUG__ FALSE
+#endif /* __NDEBUG__ */

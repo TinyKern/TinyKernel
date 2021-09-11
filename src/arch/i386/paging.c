@@ -34,7 +34,7 @@ int get_mapping2(pdir_t *pdir, void *vaddrp, uint64_t *pa_ref)
 
     if (!e.psize)
     {
-        // Assert(e.ptaddr != 0);
+        Assert(e.ptaddr != 0);
 
         // get the page table
         pt = KERNEL_PA_TO_VA(e.ptaddr << PAGE_SHIFT);
@@ -60,7 +60,7 @@ static int virtual_read_unsafe(pdir_t *pdir, void *extern_va, void *dest, size_t
     size_t tot, to_read;
     void *va;
 
-    // Assert(len <= INT32_MAX);
+    Assert(len <= INT32_MAX);
 
     for (tot = 0; tot < len; extern_va += to_read, tot += to_read)
     {
@@ -83,7 +83,7 @@ static int virtual_write_unsafe(pdir_t *pdir, void *extern_va, void *src, size_t
     size_t tot, to_write;
     void *va;
 
-    // Assert(len <= INT32_MAX);
+    Assert(len <= INT32_MAX);
 
     for (tot = 0; tot < len; extern_va += to_write, tot += to_write)
     {

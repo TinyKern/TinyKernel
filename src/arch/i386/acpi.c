@@ -19,7 +19,7 @@ static uint32_t *acpi_check_rsd_ptr(uint32_t *ptr)
     struct RSDPtr *rsdp = (struct RSDPtr *)ptr;
     byte *bptr;
     byte check = 0;
-    int i;
+    size_t i;
 
     if (memcmp(sig, rsdp, 8) == 0)
     {
@@ -85,7 +85,7 @@ static bool acpi_check_header(uint32_t *ptr, char *sig)
         if (check == 0)
             return true;
     }
-    
+
     return false;
 }
 
@@ -148,7 +148,7 @@ int acpi_enable(void)
  * RSDP signature and load the RSDT tables. It will also enable the
  * ACPI subsystem.
  * More information can be found in the ACPI specification.
- * 
+ *
  * @return int 0 on success, -1 on failure
  */
 int acpi_init(void)
@@ -185,12 +185,12 @@ int acpi_init(void)
                             break;
                         S5addr++;
                     }
-                    
+
                     // Check is \_S5 was found
                     if (dsdt_len > 0)
                     {
                         // Check for valid AML structure
-                        if ((*(S5addr-1) == 0x08 || (*(S5addr-2) == 0x08 && *(S5addr-1) == '\\')) 
+                        if ((*(S5addr-1) == 0x08 || (*(S5addr-2) == 0x08 && *(S5addr-1) == '\\'))
                             && *(S5addr+4) == 0x12 )
                         {
                             S5addr += 5; // Skip the \_S5 package
@@ -255,13 +255,13 @@ void acpi_power_off(void)
     // SCI_EN is set to 1 if acpi shutdown is possible
     if (SCI_EN == 0)
         return;
-    
+
     acpi_enable();
 
     // send the shutdown command
     outw((uint32_t) PM1a_CNT, SLP_TYPa | SLP_EN);
     if (PM1b_CNT != 0)
         outw((uint32_t) PM1b_CNT, SLP_TYPb | SLP_EN);
-    
+
     qemu_error("ACPI shutdown failed\n");
 }

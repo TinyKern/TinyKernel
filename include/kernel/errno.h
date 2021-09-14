@@ -27,6 +27,84 @@
 
 #define ESHUTD      87  // Failed to send shutdown signal
 
+/**
+ * 0        - Division by zero exception
+ * 1        - Debug exception
+ * 2        - Non maskable interrupt
+ * 3        - Breakpoint exception
+ * 4        - 'Into detected overflow'
+ * 5        - Out of bounds exception
+ * 6        - Invalid opcode exception
+ * 7        - No coprocessor exception
+ * 8        - Double fault (pushes an error code)
+ * 9        - Coprocessor segment overrun
+ * 10       - Bad TSS (pushes an error code)
+ * 11       - Segment not present (pushes an error code)
+ * 12       - Stack fault (pushes an error code)
+ * 13       - General protection fault (pushes an error code)
+ * 14       - Page fault (pushes an error code)
+ * 15       - Unknown interrupt exception
+ * 16       - Coprocessor fault
+ * 17       - Alignment check exception
+ * 18       - Machine check exception
+ * 19-32    - Reserved
+ */
+enum interrupt_exception
+{
+    EXCEPTION_DIVISION_BY_ZERO = 0,
+    EXCEPTION_DEBUG = 1,
+    EXCEPTION_NMI = 2,
+    EXCEPTION_BREAKPOINT = 3,
+    EXCEPTION_OVERFLOW = 4,
+    EXCEPTION_BOUNDS = 5,
+    EXCEPTION_INVALID_OPCODE = 6,
+    EXCEPTION_NO_COPROCESSOR = 7,
+    EXCEPTION_DOUBLE_FAULT = 8,
+    EXCEPTION_COPROCESSOR_SEGMENT_OVERRUN = 9,
+    EXCEPTION_BAD_TSS = 10,
+    EXCEPTION_SEGMENT_NOT_PRESENT = 11,
+    EXCEPTION_STACK_FAULT = 12,
+    EXCEPTION_GENERAL_PROTECTION_FAULT = 13,
+    EXCEPTION_PAGE_FAULT = 14,
+    EXCEPTION_UNKNOWN_INTERRUPT = 15,
+    EXCEPTION_COPROCESSOR_FAULT = 16,
+    EXCEPTION_ALIGNMENT_CHECK = 17,
+    EXCEPTION_MACHINE_CHECK = 18,
+    EXCEPTION_RESERVED_19 = 19,
+    EXCEPTION_RESERVED_20, EXCEPTION_RESERVED_21, EXCEPTION_RESERVED_22,
+    EXCEPTION_RESERVED_23, EXCEPTION_RESERVED_24, EXCEPTION_RESERVED_25,
+    EXCEPTION_RESERVED_26, EXCEPTION_RESERVED_27, EXCEPTION_RESERVED_28,
+    EXCEPTION_RESERVED_29, EXCEPTION_RESERVED_30, EXCEPTION_RESERVED_31,
+    EXCEPTION_RESERVED_32,
+};
+
+char *exception_messages[32] = {
+    "Division by zero",
+    "Debug",
+    "Non-maskable interrupt",
+    "Breakpoint",
+    "Overflow",
+    "Bounds",
+    "Invalid opcode",
+    "No coprocessor",
+    "Double fault",
+    "Coprocessor segment overrun",
+    "Bad TSS",
+    "Segment not present",
+    "Stack fault",
+    "General protection fault",
+    "Page fault",
+    "Unknown interrupt",
+    "Coprocessor fault",
+    "Alignment check",
+    "Machine check",
+    "Reserved", "Reserved", "Reserved", "Reserved",
+    "Reserved", "Reserved", "Reserved", "Reserved",
+    "Reserved", "Reserved", "Reserved", "Reserved",
+    "Reserved",
+};
+
+
 enum ERR_CODES
 {
     ERRNO_KERNEL_INVALID_MAGIC      = 0x01, //!< Invalid magic number

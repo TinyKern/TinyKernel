@@ -28,6 +28,8 @@
 #include <kernel/stdio.h>
 #include <kernel/errno.h>
 #include <sys/utils.h>
+#include <kernel/cpu/idt/idt.h>
+#include <kernel/cpu/irq/irq.h>
 #include <cdefs.h>
 
 #include <debug/qemu.h>
@@ -98,6 +100,8 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
 {
     // Initialise the kernel since interupts are not enabled
     bool gdt = gdt_init();
+    idt_init(); /* Initialise the IDT */
+    irq_init(); /* Initialise the IRQs */
     bool vga = vga_init();
     acpi_init();
     Assert(gdt && vga);

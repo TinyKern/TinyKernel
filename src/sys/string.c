@@ -93,6 +93,16 @@ int memcmp(const void* ptr1, const void* ptr2, size_t num)
   return 0;
 }
 
+uint8_t *memset(uint8_t *dest, const uint8_t value, size_t length)
+{
+  uint8_t *temp = dest;
+  
+  while (length--)
+    *temp++ = value;
+
+  return dest;
+}
+
 char* strcpy(char* dest, const char* src)
 { return memcpy(dest, src, strlen(src) + 1); }
 

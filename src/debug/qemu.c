@@ -108,6 +108,10 @@ void qemu_print(const char *str, va_list args)
                     qemu_puthex(va_arg(args, uint32_t));
                     break;
 
+                case 'p':
+                    qemu_puthex(va_arg(args, uint32_t));
+                    break;
+
                 default:
                     com_send_char(COM1_PORT, str[i]);
                     break;

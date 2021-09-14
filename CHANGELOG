@@ -1,3 +1,58 @@
+2021-09-14    owen    <owen@owens-laptop.localdomain>
+
+* Updates: Made some small changes & fixes
+
+
+2021-09-14    owen    <owen@owens-laptop.localdomain>
+
+* Fix: Fixed interrupt assembly comments
+
+
+2021-09-14    bobrossrtx    <bobrossrtx@gmail.com>
+
+Working please wait :p
+
+
+2021-09-14    owen    <owen@owens-laptop.localdomain>
+
+* IDT: Started working on idt
+
+
+2021-09-14    owen    <owen@owens-laptop.localdomain>
+
+* Clean: Cleaned up makefile loose bits
+
+
+2021-09-13    bobrossrtx    <bobrossrtx@gmail.com>
+
+fix: swapped integer to unsigned int because of comparrion
+
+
+2021-09-12    bobrossrtx    <bobrossrtx@gmail.com>
+
+Merge branch 'master' of github.com:TinyKern/TinyKernel
+
+
+2021-09-12    bobrossrtx    <bobrossrtx@gmail.com>
+
+* docs: Started writing docs & started writing kernel assert docs.
+
+
+2021-09-12    bobrossrtx    <bobrossrtx@gmail.com>
+
+* Assert: Updated assert config & uncommented used asserts in paging.c
+
+
+2021-09-11    bobrossrtx    <bobrossrtx@gmail.com>
+
+* Makefile: Added 2 new makefile commands
+
+
+2021-09-11    bobrossrtx    <bobrossrtx@gmail.com>
+
+* daily bump
+
+
 2021-09-11    bobrossrtx    <bobrossrtx@gmail.com>
 
 * bootloader: Added more comments to describe more users to understand.

@@ -77,9 +77,9 @@ IRQ       14, 46
 IRQ       15, 47
 
 isr_common:
-    pusha           // save registers
+    pusha               ; save registers
 
-    push    ax, ds
+    mov     ax, ds
     push    eax
 
     mov     ax, 0x10
@@ -96,13 +96,13 @@ isr_common:
     mov     fs, bx
     mov     gs, bx
 
-    popa            // restore registers
-    add    esp, 8   // pop error code
+    popa                ; restore registers
+    add    esp, 8       ; pop error code
     sti
     iret
 
 irq_common:
-    pusha           // save registers
+    pusha               ; save registers
 
     push    ax, ds
     push    eax
@@ -121,7 +121,8 @@ irq_common:
     mov     fs, bx
     mov     gs, bx
 
-    popa            // restore registers
-    add    esp, 8   // pop error code
+    popa                ; restore registers
+    add    esp, 8       ; pop error code
     sti
     iret
+

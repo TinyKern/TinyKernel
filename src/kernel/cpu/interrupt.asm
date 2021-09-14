@@ -104,7 +104,7 @@ isr_common:
 irq_common:
     pusha               ; save registers
 
-    push    ax, ds
+    mov     ax, ds
     push    eax
 
     mov     ax, 0x10

@@ -3,7 +3,7 @@
  * @author Owen Boreham (owenkadeboreham@gmail.com)
  * @version 0.1.2
  * @date 2021-07-09
- * 
+ *
  * @copyright Copyright (c) 2021 TinyKernel
  * This file is part of TinyKernel which is released
  * under Apache License 2.0.  See file LICENSE or go
@@ -29,7 +29,7 @@ void vga_set_default_color(uint8_t color) {
 struct vga_entry_t vga_create_entry(uint8_t ch, uint8_t color)
 { return (struct vga_entry_t){ ch, color }; }
 
-void vga_put_entry(struct vga_entry_t entry, size_t x, size_t y) 
+void vga_put_entry(struct vga_entry_t entry, size_t x, size_t y)
 {
   VGA_BUFFER[y * VGA_COLS + x] = entry;
 }
@@ -53,7 +53,8 @@ uint32_t draw(uint32_t x, uint32_t y, uint8_t color)
   return (x /= y);
 }
 
-bool vga_init() {
+bool vga_init()
+{
   VGA_COL = 0;
   VGA_ROW = 0;
   VGA_DEF_COLOR = vga_create_color(BLACK, GREY);
@@ -62,12 +63,24 @@ bool vga_init() {
 }
 
 void vga_putchar(const char c) {
-  if(c == '\n') {
+  if (c == '\n')
+  {
     VGA_COL = 0;
     ++VGA_ROW;
-  } else {
+  }
+  else if (c == '\r')
+  {
+    VGA_COL = 0;
+  }
+  else if (c == '\t')
+  {
+    VGA_COL += 4;
+  }
+  else
+  {
     vga_put_entry(vga_create_entry(c, VGA_DEF_COLOR), VGA_COL, VGA_ROW);
-    if(++VGA_COL == VGA_COLS) {
+    if(++VGA_COL == VGA_COLS)
+    {
       VGA_COL = 0;
       ++VGA_ROW;
     }

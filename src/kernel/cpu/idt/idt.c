@@ -13,8 +13,6 @@ static struct idt_pointer   idt_ptr;
 
 void idt_init()
 {
-    idt_debug("\n");
-
     idt_ptr.limit = sizeof(struct idt_entry) * 256 - 1;
     idt_ptr.base  = (uint32_t)&idt_entries;
 
@@ -25,7 +23,7 @@ void idt_init()
      * When the computer is booted, the default interrupt handlers are
      *      IRQ 0..7 - INT 0x8..0xF
      *      IRQ 8..15 - INT 0x70..0x77
-     * 
+     *
      * This causes a problem when we want to use the default handlers.
      * The master IRQ maps (0x8-0xF) conflict with the interrupt numbers
      * used by the CPU to signal exceptions and faults. The normal way
@@ -93,20 +91,21 @@ void idt_init()
 	idt_set_gate(47, (uint32_t)irq15, 0x08, 0x8E);
 
     load_idt((uint32_t)&idt_ptr);
+    qemu_success("Initialized IDT\n");
 }
 
-void idt_set_gate(uint8_t num, uint32_t base, 
+void idt_set_gate(uint8_t num, uint32_t base,
                             uint16_t selector, uint8_t flags)
 {
     idt_entries[num].base_low = base            & 0xFFFF;
     idt_entries[num].base_high = (base >> 16)   & 0xFFFF;
-    
+
     idt_entries[num].selector = selector;
     idt_entries[num].always0 = 0;
 
-    /* 
+    /*
      * We must uncomment the OR below when we get to using user-mode.
      * It sets the interrupt gate's privilege level to 3.
      */
     idt_entries[num].flags = flags; /* | 0x60 */
-
+}

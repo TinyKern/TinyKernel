@@ -3,7 +3,7 @@
  * @author Owen Boreham (owenkadeboreham@gmail.com)
  * @version 0.1.2
  * @date 2021-07-09
- * 
+ *
  * @copyright Copyright (c) 2021 TinyKernel
  * This file is part of TinyKernel which is released
  * under Apache License 2.0.  See file LICENSE or go
@@ -77,33 +77,6 @@ enum interrupt_exception
     EXCEPTION_RESERVED_29, EXCEPTION_RESERVED_30, EXCEPTION_RESERVED_31,
     EXCEPTION_RESERVED_32,
 };
-
-char *exception_messages[32] = {
-    "Division by zero",
-    "Debug",
-    "Non-maskable interrupt",
-    "Breakpoint",
-    "Overflow",
-    "Bounds",
-    "Invalid opcode",
-    "No coprocessor",
-    "Double fault",
-    "Coprocessor segment overrun",
-    "Bad TSS",
-    "Segment not present",
-    "Stack fault",
-    "General protection fault",
-    "Page fault",
-    "Unknown interrupt",
-    "Coprocessor fault",
-    "Alignment check",
-    "Machine check",
-    "Reserved", "Reserved", "Reserved", "Reserved",
-    "Reserved", "Reserved", "Reserved", "Reserved",
-    "Reserved", "Reserved", "Reserved", "Reserved",
-    "Reserved",
-};
-
 
 enum ERR_CODES
 {

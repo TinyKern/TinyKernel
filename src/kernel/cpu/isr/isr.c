@@ -6,6 +6,32 @@
 #include <kernel/errno.h>
 #include <sys/string.h>
 
+static char *exception_messages[] = {
+    "Division by zero",
+    "Debug",
+    "Non-maskable interrupt",
+    "Breakpoint",
+    "Overflow",
+    "Bounds",
+    "Invalid opcode",
+    "No coprocessor",
+    "Double fault",
+    "Coprocessor segment overrun",
+    "Bad TSS",
+    "Segment not present",
+    "Stack fault",
+    "General protection fault",
+    "Page fault",
+    "Unknown interrupt",
+    "Coprocessor fault",
+    "Alignment check",
+    "Machine check",
+    "Reserved", "Reserved", "Reserved", "Reserved",
+    "Reserved", "Reserved", "Reserved", "Reserved",
+    "Reserved", "Reserved", "Reserved", "Reserved",
+    "Reserved",
+};
+
 isr_t interrupt_handlers[256];
 
 static void handle_excecution(struct registers registers)
@@ -19,10 +45,10 @@ static void handle_excecution(struct registers registers)
 
 /**
  * @brief Handles an interrupt
- * 
+ *
  * @note This function is called by the assembly interrupt handler
  *  and is not meant to be called by the user.
- * 
+ *
  * @param registers
  * @return void
  */
@@ -41,9 +67,9 @@ void isr_handler(struct registers registers)
 
 /**
  * @brief Interrupt request handler
- * 
+ *
  * @note This function is called by the assembly interrupt handler
- * 
+ *
  * @param registers
  * @return void
  */
@@ -69,10 +95,10 @@ void irq_handler(struct registers registers)
 
 /**
  * @brief Registers an interrupt handler
- * 
+ *
  * @param int_no Interrupt number
  * @param handler Interrupt handler
- * 
+ *
  * @return void
  */
 void register_interrupt_handler(uint8_t interrupt_number, isr_t handler)

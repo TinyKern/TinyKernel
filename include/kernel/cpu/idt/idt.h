@@ -6,7 +6,7 @@
 #include <debug/qemu.h>
 
 /* IDT_DEBUG (define if debugging) */
-#define IDT_DEBUG 1
+#define IDT_DEBUG 0
 
 #ifdef IDT_DEBUG
 # define idt_debug(...) {                   \
@@ -109,13 +109,13 @@ extern void irq15(void);
 
 /**
  * @brief set the interrupt descriptor table (IDT)
- * 
- * @param num 
- * @param base 
- * @param selector 
- * @param flags 
+ *
+ * @param num
+ * @param base
+ * @param selector
+ * @param flags
  */
-void idt_set_gate(uint8_t num, uint32_t base, 
+void idt_set_gate(uint8_t num, uint32_t base,
                             uint16_t selector, uint8_t flags);
 
 /**

@@ -6,7 +6,7 @@
 #include <debug/qemu.h>
 
 /* IDT_DEBUG (define if debugging) */
-#define IDT_DEBUG
+#define IDT_DEBUG 0
 
 #ifdef IDT_DEBUG
 # define idt_debug(...) {                   \
@@ -14,7 +14,7 @@
             __FILE__, __LINE__, __func__);  \
 }
 #else
-# define idt_debug(f, ...) /* */
+# define idt_debug(f, ...) /* nothing */
 #endif
 
 struct idt_entry
@@ -106,5 +106,21 @@ extern void irq12(void);
 extern void irq13(void);
 extern void irq14(void);
 extern void irq15(void);
+
+/**
+ * @brief set the interrupt descriptor table (IDT)
+ *
+ * @param num
+ * @param base
+ * @param selector
+ * @param flags
+ */
+void idt_set_gate(uint8_t num, uint32_t base,
+                            uint16_t selector, uint8_t flags);
+
+/**
+ * @brief Initialize the IDT table and load it into the CPU
+ */
+void idt_init();
 
 #endif /* IDT_H */

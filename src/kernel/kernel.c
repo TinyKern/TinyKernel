@@ -28,6 +28,8 @@
 #include <kernel/stdio.h>
 #include <kernel/errno.h>
 #include <sys/utils.h>
+#include <kernel/cpu/idt/idt.h>
+#include <kernel/cpu/irq/irq.h>
 #include <cdefs.h>
 
 #include <debug/qemu.h>
@@ -98,6 +100,8 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
 {
     // Initialise the kernel since interupts are not enabled
     bool gdt = gdt_init();
+    idt_init(); /* Initialise the IDT */
+    irq_init(); /* Initialise the IRQs */
     bool vga = vga_init();
     acpi_init();
     Assert(gdt && vga);
@@ -146,16 +150,16 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     qemu_success("Kernel Initialization Complete\r\n");
 
     kprintf("TinyKernel - %s\n", KERNEL_VERSION);
-    kprintf(" [i] Kernel Version:   %s\n", KERNEL_VERSION);
-    kprintf(" [i] Keyboard Driver:  Enabled\n");
+    kprintf("\t[i] Kernel Version:   %s\n", KERNEL_VERSION);
+    kprintf("\t[i] Keyboard Driver:  Enabled\n");
     if (gdt == true)
     {
-        kprintf(" [i] GDT:              Enabled\n");
+        kprintf("\t[i] GDT:              Enabled\n");
         qemu_success("GDT Initialized\r\n", gdt);
     }
     if (vga == true)
     {
-        kprintf(" [i] VGA Driver:       Enabled\n");
+        kprintf("\t[i] VGA Driver:       Enabled\n");
         qemu_success("VGA Initialized\r\n", vga);
     }
 
@@ -191,7 +195,7 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     vga_write_string("[4] kmalloc: 0x10 -> 0x", 40, 6); vga_write_string(convert_to_base((uint64_t)kmalloc_test4, 16), 63, 6);
     vga_write_string("[5] kmalloc: 0x10 -> 0x", 40, 7); vga_write_string(convert_to_base((uint64_t)kmalloc_test5, 16), 63, 7);
 
-    kprintf("\nPress enter to shut down\n");
+    kprintf("\n\tPress enter to shut down\n");
     while (true)
     {
         if (readKey(KEY_ENTER) == true)

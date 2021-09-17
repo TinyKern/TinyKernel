@@ -36,6 +36,18 @@
 
 #define WRITE_WORD          0x30
 
+/* Addresses of PIT registers */
+#define PIC_MASTER_COMMAND  0x20
+#define PIC_MASTER_DATA     0x21
+#define PIC_SLAVE_COMMAND   0xA0
+#define PIC_SLAVE_DATA      0xA1
+
+/* Macros for setting up the PIT */
+#define PIC_MASTER_CMD_OUT(byte)    outb(PIC_MASTER_COMMAND, (byte))
+#define PIC_MASTER_DATA_OUT(byte)   outb(PIC_MASTER_DATA, (byte))
+#define PIC_SLAVE_CMD_OUT(byte)     outb(PIC_SLAVE_COMMAND, (byte))
+#define PIC_SLAVE_DATA_OUT(byte)    outb(PIC_SLAVE_DATA, (byte))
+
 #define BASE_FREQ           1193180
 
 extern unsigned read_pit_count(void);

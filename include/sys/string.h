@@ -77,6 +77,17 @@ void *memcpy(void* dest, const void* src, uint32_t size);
 int memcmp(const void* ptr1, const void* ptr2, size_t num);
 
 /**
+ * @brief Sets a block of memory to a value
+ * 
+ * @param ptr   - The pointer to the memory block to set.
+ * @param value - The value to set the memory block to.
+ * @param num   - The number of bytes to set.
+ * 
+ * @return void* - The pointer to the memory block where the set ended.
+ */
+uint8_t *memset(uint8_t *dest, const uint8_t value, size_t length);
+
+/**
  * @brief Copies the string <src> to <dest>
  * 
  * @param dest 

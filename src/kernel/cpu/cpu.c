@@ -55,13 +55,13 @@ static void print_eax(uint32_t eax)
 	ext_family_id >>= 20;     // bits 20-27
 	ext_family_id &= (2 << 7) - 1;
 
-	kprintf("    EAX ------------------------|\n");
-	kprintf("        Stepping ID       : %d\n", step_id);
-	kprintf("        Model             : %d\n", model);
-	kprintf("        Family ID         : %d\n", family_id);
-	kprintf("        ProcessorType     : %d\n", proc_type);
-	kprintf("        Extended Model ID : %d\n", ext_mod_id);
-	kprintf("        Extended Family   : %d\n", ext_family_id);
+	kprintf("\tEAX ------------------------|\n");
+	kprintf("\t\tStepping ID       : %d\n", step_id);
+	kprintf("\t\tModel             : %d\n", model);
+	kprintf("\t\tFamily ID         : %d\n", family_id);
+	kprintf("\t\tProcessorType     : %d\n", proc_type);
+	kprintf("\t\tExtended Model ID : %d\n", ext_mod_id);
+	kprintf("\t\tExtended Family   : %d\n", ext_family_id);
 }
 
 static void print_ebx(uint32_t ebx)
@@ -75,11 +75,11 @@ static void print_ebx(uint32_t ebx)
 	max_addr_id = bytes[2];			// bits 16-23
 	init_apic_id = bytes[3];		// bits 24-31
 
-	kprintf("    EBX ------------------------|\n");
-	kprintf("        Brand Index       : %d\n", brand_index);
-	kprintf("        Cache Line Size   : %d\n", cache_line_size);
-	kprintf("        Max Address Id    : %d\n", max_addr_id);
-	kprintf("        APIC ID           : %d\n", init_apic_id);
+	kprintf("\tEBX ------------------------|\n");
+	kprintf("\t\tBrand Index       : %d\n", brand_index);
+	kprintf("\t\tCache Line Size   : %d\n", cache_line_size);
+	kprintf("\t\tMax Address Id    : %d\n", max_addr_id);
+	kprintf("\t\tAPIC ID           : %d\n", init_apic_id);
 }
 
 static void print_edx(uint32_t edx)
@@ -93,11 +93,11 @@ static void print_edx(uint32_t edx)
     max_cores = bytes[2];			// bits 16-23
     max_threads = bytes[3];		    // bits 24-31
 
-	kprintf("    EDX ------------------------|\n");
-	kprintf("        APIC ID           : %d\n", apic_id);
-    kprintf("        Max Logical Proc  : %d\n", max_log_proc);
-    kprintf("        Max Cores         : %d\n", max_cores);
-    kprintf("        Max Threads       : %d\n", max_threads);
+	kprintf("\tEDX ------------------------|\n");
+	kprintf("\t\tAPIC ID           : %d\n", apic_id);
+    kprintf("\t\tMax Logical Proc  : %d\n", max_log_proc);
+    kprintf("\t\tMax Cores         : %d\n", max_cores);
+    kprintf("\t\tMax Threads       : %d\n", max_threads);
 }
 
 void cpuid_info()

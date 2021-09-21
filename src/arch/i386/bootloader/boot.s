@@ -43,6 +43,9 @@ _start:
     // kernel.
     mov     $stackTop, %esp
 
+    // Call global constructors.
+    call    _init
+
     // Enter the high-level kernel. This will load the kernel and
     // call the entry point.
     push    %eax                        // save eax for later

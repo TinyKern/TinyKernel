@@ -31,8 +31,6 @@ struct tm
 
 #define BCD_TO_BIN(val) ((val) = ((val)&15) + ((val)>>4)*10)
 
-extern long time_init(void);
-
 extern long mktime(struct tm*);
 
 #endif // TIME_H

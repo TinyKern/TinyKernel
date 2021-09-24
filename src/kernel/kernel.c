@@ -30,8 +30,8 @@
 #include <sys/utils.h>
 #include <kernel/cpu/idt/idt.h>
 #include <kernel/cpu/irq/irq.h>
+#include <system.h>
 #include <cdefs.h>
-
 #include <debug/qemu.h>
 
 void kernel_entry();
@@ -96,6 +96,31 @@ void loading_bar(int x, int y, int len, char* message, uint8_t color)
     clear_screen();
 }
 
+long startup_time;
+static void time_init(void)
+{
+    struct tm time;
+
+    do {
+        time.tm_sec = READ_CMOS(0);
+        time.tm_min = READ_CMOS(2);
+        time.tm_hour = READ_CMOS(4);
+        time.tm_mday = READ_CMOS(7);
+        time.tm_mon = READ_CMOS(8) - 1;
+        time.tm_year = READ_CMOS(9);
+    } while (time.tm_sec != READ_CMOS(0));
+
+    BCD_TO_BIN(time.tm_sec);
+    BCD_TO_BIN(time.tm_min);
+    BCD_TO_BIN(time.tm_hour);
+    BCD_TO_BIN(time.tm_mday);
+    BCD_TO_BIN(time.tm_mon);
+    BCD_TO_BIN(time.tm_year);
+
+    startup_time = mktime(&time);
+}
+#define CURRENT_TIME (startup_time + 0/100)
+
 void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
 {
     // Initialise the kernel since interupts are not enabled
@@ -104,6 +129,7 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     irq_init(); /* Initialise the IRQs */
     bool vga = vga_init();
     acpi_init();
+    time_init();
     Assert(gdt && vga);
     
     switch (magic)
@@ -195,6 +221,7 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     vga_write_string("[4] kmalloc: 0x10 -> 0x", 40, 6); vga_write_string(convert_to_base((uint64_t)kmalloc_test4, 16), 63, 6);
     vga_write_string("[5] kmalloc: 0x10 -> 0x", 40, 7); vga_write_string(convert_to_base((uint64_t)kmalloc_test5, 16), 63, 7);
 
+    switch_to_usermode();
     kprintf("\n\tPress enter to shut down\n");
     while (true)
     {

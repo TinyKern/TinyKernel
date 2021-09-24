@@ -34,42 +34,18 @@ static int monthk[12] = {
     DAY * (31+29+31+30+31+30+31+31+30+31+30)
 };
 
-long time_init(void)
-{
-    struct tm time;
-
-    do {
-        time.tm_sec = READ_CMOS(0);
-        time.tm_min = READ_CMOS(2);
-        time.tm_hour = READ_CMOS(4);
-        time.tm_mday = READ_CMOS(7);
-        time.tm_mon = READ_CMOS(8) - 1;
-        time.tm_year = READ_CMOS(9);
-    } while (time.tm_sec != READ_CMOS(0));
-
-    BCD_TO_BIN(time.tm_sec);
-    BCD_TO_BIN(time.tm_min);
-    BCD_TO_BIN(time.tm_hour);
-    BCD_TO_BIN(time.tm_mday);
-    BCD_TO_BIN(time.tm_mon);
-    BCD_TO_BIN(time.tm_year);
-
-    return mktime(&time);
-}
-
 long mktime(struct tm *tm)
 {
     long res;
     int year;
 
     year = tm->tm_year - 70;
-
+    /* Magic offset (y+1) to get leap year */
     res = YEAR*year + DAY*((year+1)/4);
     res += monthk[tm->tm_mon];
-
+    /* Magic offset (y+2) to get non-leap year */
     if (tm->tm_mon > 1 && ((year+2) % 4))
         res -= DAY;
-    
     res += DAY * (tm->tm_mday - 1);
     res += HOUR * tm->tm_hour;
     res += MINUTE * tm->tm_min;

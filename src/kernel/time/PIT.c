@@ -14,6 +14,7 @@
 
 #include <kernel/time/PIT.h>
 #include <kernel/stdio.h>
+#include <system.h>
 
 unsigned read_pit_count(void)
 {

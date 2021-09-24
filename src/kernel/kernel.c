@@ -221,7 +221,6 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     vga_write_string("[4] kmalloc: 0x10 -> 0x", 40, 6); vga_write_string(convert_to_base((uint64_t)kmalloc_test4, 16), 63, 6);
     vga_write_string("[5] kmalloc: 0x10 -> 0x", 40, 7); vga_write_string(convert_to_base((uint64_t)kmalloc_test5, 16), 63, 7);
 
-    switch_to_usermode();
     kprintf("\n\tPress enter to shut down\n");
     while (true)
     {

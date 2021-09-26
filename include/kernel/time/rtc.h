@@ -18,7 +18,7 @@ typedef struct datetime
 } datetime_t;
 
 int rtc_is_updating();
-uint8_t utc_get_register(uint8_t reg);
+uint8_t rtc_get_register(uint8_t reg);
 void rtc_set_register(uint8_t reg, uint8_t val);
 void rtc_read_datetime();
 void rtc_write_datetime(datetime_t *dt);

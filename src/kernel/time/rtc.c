@@ -25,7 +25,7 @@ int rtc_is_updating()
  * @param reg 
  * @return uint8_t 
  */
-uint8_t utc_get_register(uint8_t reg)
+uint8_t rtc_get_register(uint8_t reg)
 {
     outb(CMOS_ADDR, reg);
     return inb(CMOS_DATA);
@@ -52,14 +52,14 @@ void rtc_read_datetime()
     /* Wait for the RTC to be updated */
     while (rtc_is_updating());
 
-    current_datetime.second = utc_get_register(0x00);
-    current_datetime.minute = utc_get_register(0x02);
-    current_datetime.hour = utc_get_register(0x04);
-    current_datetime.day = utc_get_register(0x07);
-    current_datetime.month = utc_get_register(0x08);
-    current_datetime.year = utc_get_register(0x09);
+    current_datetime.second = rtc_get_register(0x00);
+    current_datetime.minute = rtc_get_register(0x02);
+    current_datetime.hour = rtc_get_register(0x04);
+    current_datetime.day = rtc_get_register(0x07);
+    current_datetime.month = rtc_get_register(0x08);
+    current_datetime.year = rtc_get_register(0x09);
 
-    uint8_t register_b = utc_get_register(0x0B);
+    uint8_t register_b = rtc_get_register(0x0B);
 
     /* Convert BCD to binary values if necessary */
     if (!(register_b & 0x04))
@@ -154,6 +154,14 @@ int rtc_leap_year(int year, int month)
 
 /**
  * @brief Initialize the RTC
+ * 
+ * @note FIXME: This function is not working properly. It is not setting the correct time.
+ *  It is also not setting the correct date.
+ * 
+ * @note NOTE: copilot idea: The rtc_read_datetime() function is not working properly.
+ *  It is not reading the correct time. This could be because of the way the RTC is set.
+ *  The RTC is set using the `-rtc base=localtime` command line argument for qemu.
+ *  The RTC is not being read correctly. via the rtc_read_datetime() function.
  * 
  */
 void rtc_init()

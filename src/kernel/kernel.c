@@ -154,6 +154,7 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     qemu_info("Build: %s\r\n", __BUILD_DATE__);
     qemu_info("magic x: %x\n", magic);
     qemu_info("magic u: %u\n", magic);
+    qemu_dbg("current date and time: %s\r\n", rtc_datetime_string(rtc_read_datetime));
     qemu_info("Multiboot flags:             %x\n", mbi->flags);
     qemu_info("Multiboot boot_device:       %x\n", mbi->boot_device);
     qemu_info("Multiboot cmdline:           %x\n", mbi->cmdline);

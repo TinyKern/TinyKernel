@@ -126,3 +126,33 @@ irq_common:
     sti
     iret
 
+extern final_irq_handler
+
+temp_irq_handler:
+    pusha               ; save registers
+
+    mov     ax, ds
+    push    eax
+
+    mov     ax, 0x10
+    mov     ds, ax
+    mov     es, ax
+    mov     fs, ax
+    mov     gs, ax
+    
+    push    esp
+    call    final_irq_handler
+    pop     esp
+
+    pop     ebx         ; restore registers
+    mov     ds, bx
+    mov     es, bx
+    mov     fs, bx
+    mov     gs, bx
+
+    popa                ; restore registers
+    add     esp, 0x8    ; pop error code
+
+    sti                 ; enable interrupts
+    iret
+

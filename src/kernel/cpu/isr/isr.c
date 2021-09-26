@@ -1,5 +1,6 @@
 #include <kernel/cpu/isr/isr.h>
 #include <kernel/cpu/cpu.h>
+#include <kernel/cpu/pic.h>
 #include <kernel/time/PIT.h>
 #include <kernel/panic.h>
 #include <kernel/stdio.h>
@@ -34,12 +35,17 @@ static char *exception_messages[] = {
 
 isr_t interrupt_handlers[256];
 
-static void handle_excecution(struct registers registers)
+static void handle_excecution(register_t registers)
 {
-    if (interrupt_handlers[registers.int_no] != 0)
+    if (registers.int_no < 32)
+    {
+        qemu_panic("EXCEPTION: %s (code %x)\r\n", exception_messages[registers.int_no], registers.err_code);
+        kpanic(registers.err_code, "An exception occurred");
+    }
+    if (interrupt_handlers[registers.int_no] != NULL)
     {
         isr_t handler = interrupt_handlers[registers.int_no];
-        handler(registers);
+        handler(&registers);
     }
 }
 
@@ -52,7 +58,7 @@ static void handle_excecution(struct registers registers)
  * @param registers
  * @return void
  */
-void isr_handler(struct registers registers)
+void isr_handler(register_t registers)
 {
     if (registers.int_no < 32)
     {
@@ -73,7 +79,7 @@ void isr_handler(struct registers registers)
  * @param registers
  * @return void
  */
-void irq_handler(struct registers registers)
+void irq_handler(register_t registers)
 {
     /* If interrupt originated from slave PIC, send EOI to slave PIC */
     if (registers.int_no >= 40)
@@ -103,8 +109,17 @@ void irq_handler(struct registers registers)
  */
 void register_interrupt_handler(uint8_t interrupt_number, isr_t handler)
 {
-    isr_debug("Register: [%d. %p]\n",
-        interrupt_number, (uint32_t)handler);
+    qemu_dbg("Register: [%d. %p]\n", interrupt_number, (uint32_t)handler);
+    if (interrupt_number < 256)
+        interrupt_handlers[interrupt_number] = handler;
+}
 
-    interrupt_handlers[interrupt_number] = handler;
+void final_irq_handler(register_t *reg)
+{
+    if (interrupt_handlers[reg->int_no] != NULL)
+    {
+        isr_t handler = interrupt_handlers[reg->int_no];
+        handler(reg);
+    }
+    irq_ack(reg->int_no);
 }

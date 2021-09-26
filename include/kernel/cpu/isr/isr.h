@@ -2,7 +2,6 @@
 #define ISR_H
 
 #include <types.h>
-
 #include <debug/qemu.h>
 
 /* ISR_DEBUG (define if debugging) */
@@ -16,6 +15,14 @@
 #else
 # define isr_debug(f, ...) /* nothing */
 #endif
+
+/* Interrupt Service Routine prototype */
+typedef void (*isr_t)(register_t*);
+
+/* Interrupt handlers */
+extern isr_t interrupt_handlers[256];
+void register_interrupt_handler(uint8_t interrupt_number, isr_t handler);
+void final_irq_handler(register_t *reg);
 
 /* IRQ Map */
 #define IRQ0    32
@@ -35,38 +42,23 @@
 #define IRQ14   46
 #define IRQ15   47
 
-typedef uint32_t register_t;
-
-struct registers
-{
-    /* Segment selector */
-    register_t ds;
-
-    /* General purpose registers */
-    register_t edi;
-    register_t esi;
-    register_t ebp;
-    register_t esp;
-    register_t ebx;
-    register_t edx;
-    register_t ecx;
-    register_t eax;
-
-    /* Interrupt number and error code (if applicable) */
-    register_t int_no;
-    register_t err_code;
-
-    /* Processor */
-    register_t eip;
-    register_t cs;
-    register_t eflags;
-    register_t useresp;
-    register_t ss;
-};
-
-/* ISR handler */
-typedef void (*isr_t)(struct registers);
-
-void register_interrupt_handler(uint8_t interrupt_number, isr_t handler);
+/* IRQ Constants */
+#define IRQ_BASE                0x20
+#define IRQ_SLAVE_BASE          0x00
+#define IRQ1_Keyboard           0x01
+#define IRQ2_CASCADE            0x02
+#define IRQ3_SERIAL_PORT2       0x03
+#define IRQ4_SERIAL_PORT1       0x04
+#define IRQ5_RESERVED           0x05
+#define IRQ6_DISKETTE_DRIVE     0x06
+#define IRQ7_PARALLEL_PORT      0x07
+#define IRQ8_CMOS_CLOCK         0x08
+#define IRQ9_CGA                0x09
+#define IRQ10_RESERVED          0x0A
+#define IRQ11_RESERVED          0x0B
+#define IRQ12_AUXILIARY         0x0C
+#define IRQ13_FPU               0x0D
+#define IRQ14_HARD_DISK         0x0E
+#define IRQ15_RESERVED          0x0F
 
 #endif /* ISR_H */

@@ -86,10 +86,27 @@ typedef float32_t   *float32ptr;
 typedef float64_t   *float64ptr;
 typedef float128_t  *float128ptr;
 
-
+/* Boolean */
 typedef enum {false=0, true} bool;
 #define FALSE   false
 #define TRUE    true
+
+/* Registers - interrupt/exception */
+typedef struct Registers
+{
+    uint32_t ds;
+    uint32_t edi, esi, ebp, esp, ebx, edx, ecx, eax;
+    uint32_t int_no, err_code;
+    uint32_t eip, cs, eflags, useresp, ss;
+} register_t;
+
+/* Registers - Bios service */
+typedef struct Register16
+{
+    uint16_t di, si, bp, sp, bx, dx, cx, ax;
+    uint16_t ds, es, fs, gs, ss;
+    uint16_t eflags;
+} register16_t;
 
 #define ALWAYS_INLINE __attribute__((always_inline))
 #define NO_RETURN __attribute__((noreturn))

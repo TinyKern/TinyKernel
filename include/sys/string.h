@@ -85,7 +85,8 @@ int memcmp(const void* ptr1, const void* ptr2, size_t num);
  * 
  * @return void* - The pointer to the memory block where the set ended.
  */
-uint8_t *memset(uint8_t *dest, const uint8_t value, size_t length);
+// uint8_t *memset(uint8_t *dest, const uint8_t value, size_t length);
+void *memset(void *dest, char *value, size_t length);
 
 /**
  * @brief Copies the string <src> to <dest>

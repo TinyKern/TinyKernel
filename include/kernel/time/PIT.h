@@ -50,7 +50,13 @@
 
 #define BASE_FREQ           1193180
 
-extern unsigned read_pit_count(void);
-extern void     set_pit_count(unsigned count);
+void pit_init(uint32_t frequency);
+
+void pit_add_tick();
+void pit_add_ticks(uint64_t ticks);
+uint64_t pit_get_ticks();
+
+unsigned read_pit_count(void);
+void     set_pit_count(unsigned count);
 
 #endif // PIT_H

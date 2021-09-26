@@ -17,6 +17,8 @@
 #include <types.h>
 #include <kernel/io.h>
 
+void keyboard_init(void); 
+
 char get_input_keycode();
 
 #define KEYBOARD_PORT 0x60

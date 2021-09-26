@@ -12,6 +12,7 @@
  */
 
 #include <drivers/vga/vga.h>
+#include <debug/qemu.h>
 
 size_t VGA_COL;
 size_t VGA_ROW;
@@ -53,13 +54,14 @@ uint32_t draw(uint32_t x, uint32_t y, uint8_t color)
   return (x /= y);
 }
 
-bool vga_init()
+void vga_init()
 {
   VGA_COL = 0;
   VGA_ROW = 0;
   VGA_DEF_COLOR = vga_create_color(BLACK, GREY);
   VGA_BUFFER = (struct vga_entry_t*) VGA_ADDRESS;
-  return true;
+  
+  qemu_success("VGA initialized, buffer->%p\r\n", VGA_BUFFER);
 }
 
 void vga_putchar(const char c) {

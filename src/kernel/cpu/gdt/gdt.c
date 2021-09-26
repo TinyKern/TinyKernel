@@ -12,13 +12,14 @@
  */
 
 #include <kernel/cpu/gdt/gdt.h>
+#include <debug/qemu.h>
 
 struct GDT gdt_entries[3];
 struct GDT_PTR gdt_first;
 
 extern void load_gdt(struct GDT*);
 
-bool gdt_init()
+void gdt_init()
 {
     // Set null segment
     gdt_entries[NULL_SEGMENT].segment_limit = 0;
@@ -48,6 +49,6 @@ bool gdt_init()
     gdt_first.base_address = (struct GDT*)&gdt_entries;
 
     load_gdt((struct GDT*)&gdt_first);
-    
-    return true;
+
+    qemu_success("GDT Loaded, base->%p\r\n", gdt_first.base_address);
 }

@@ -91,7 +91,7 @@ void idt_init()
 	idt_set_gate(47, (uint32_t)irq15, 0x08, 0x8E);
 
     load_idt((uint32_t)&idt_ptr);
-    qemu_success("Initialized IDT\n");
+    qemu_success("IDT Loaded, base->%p\r\n", &idt_ptr.base);
 }
 
 void idt_set_gate(uint8_t num, uint32_t base,

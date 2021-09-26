@@ -19,7 +19,7 @@ uint32_t irq_init(void)
     idt_set_gate(46, (uint32_t)irq14, 0x08, 0x8E);
     idt_set_gate(47, (uint32_t)irq15, 0x08, 0x8E);
 
-    qemu_success("Initialized IRQ\n");
+    qemu_success("IRQ Loaded\r\n");
 
     return 0;
 }

@@ -39,6 +39,6 @@ struct GDT_PTR
 extern struct GDT gdt_entries[3];
 extern struct GDT_PTR gdt_first;
 
-bool gdt_init();
+void gdt_init();
 
 #endif // GDT_H

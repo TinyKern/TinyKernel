@@ -56,7 +56,7 @@ struct regs
 
 typedef struct regs regs_t;
 
-extern void cpuid(uint32_t value, uint32_t *eax, uint32_t *ebx, uint32_t *ecx, uint32_t *edx);
+// extern void cpuid(uint32_t value, uint32_t *eax, uint32_t *ebx, uint32_t *ecx, uint32_t *edx);
 extern void cpuid_info();
 
 #endif // CPU_H

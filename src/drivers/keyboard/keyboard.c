@@ -11,8 +11,18 @@
  * full license details.
  */
 
-#include <kernel/cpu/ports.h>
 #include <drivers/keyboard/keyboard.h>
+#include <kernel/cpu/ports.h>
+#include <debug/qemu.h>
+
+void keyboard_init(void)
+{
+  /* Enable the keyboard */
+  outb(0x64, 0x60);
+  outb(0x60, 0x47);
+  
+  qemu_success("Keyboard initialized\r\n");
+}
 
 char get_input_keycode()
 {

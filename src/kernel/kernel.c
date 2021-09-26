@@ -23,6 +23,7 @@
 #include <kernel/cpu/cpu.h>
 #include <kernel/time/time.h>
 #include <kernel/time/PIT.h>
+#include <kernel/time/rtc.h>
 #include <kernel/memory.h>
 #include <kernel/kernel.h>
 #include <kernel/stdio.h>
@@ -124,13 +125,16 @@ static void time_init(void)
 void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
 {
     // Initialise the kernel since interupts are not enabled
-    bool gdt = gdt_init();
-    idt_init(); /* Initialise the IDT */
-    irq_init(); /* Initialise the IRQs */
-    bool vga = vga_init();
-    acpi_init();
-    time_init();
-    Assert(gdt && vga);
+    gdt_init();                     /* Initialise the global descriptor table */
+    idt_init();                     /* Initialise the interrupt descriptor table */
+    irq_init();                     /* Initialise the interrupt request handler */
+    vga_init();                     /* Initialise the VGA driver */
+    acpi_init();                    /* Initialise the ACPI driver */
+    time_init();                    /* Initialise the time driver */
+    heap_init(0x100000, 0x100000);  /* Initialise the heap */
+    keyboard_init();                /* Initialise the keyboard driver */
+    pit_init(1000);                 /* Initialise the PIT driver */
+    rtc_init();                     /* Initialise the RTC driver */
     
     switch (magic)
     {
@@ -143,7 +147,7 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     }
 
     multiboot_uint32_t checksum = -(mbi->flags + magic);
-    qemu_info("Kernel Initializing\r\n");
+
     qemu_info("Version: %s\r\n", KERNEL_VERSION);
     qemu_info("Compiler: %s - %u\r\n", COMPILER_NAME, COMPILER_VERSION);
     qemu_info("Architecture: %s\r\n", __BUILD_ARCH__);
@@ -162,13 +166,10 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     qemu_info("Multiboot drives_addr:       %x\n", mbi->drives_addr);
     qemu_info("Multiboot modules_count:     %u\n", mbi->mods_count);
     qemu_info("Multiboot checksum:          %x\n", checksum);
-
-    time_init();
     pci_enum_bus();
-    heap_init(0x100000, 0x100000);
 
-    disable_cursor();
-    clear_screen();
+    disable_cursor();   /* Disable the cursor */
+    clear_screen();     /* Clear the screen */
 
     char* loading_message = "TinyKernel Booting";
     loading_bar(VGA_COLS / 2, VGA_ROWS / 2, strlen(loading_message), loading_message, 0xff);
@@ -176,18 +177,6 @@ void kernel_entry(multiboot_info_t *mbi, uint32_t magic)
     qemu_success("Kernel Initialization Complete\r\n");
 
     kprintf("TinyKernel - %s\n", KERNEL_VERSION);
-    kprintf("\t[i] Kernel Version:   %s\n", KERNEL_VERSION);
-    kprintf("\t[i] Keyboard Driver:  Enabled\n");
-    if (gdt == true)
-    {
-        kprintf("\t[i] GDT:              Enabled\n");
-        qemu_success("GDT Initialized\r\n", gdt);
-    }
-    if (vga == true)
-    {
-        kprintf("\t[i] VGA Driver:       Enabled\n");
-        qemu_success("VGA Initialized\r\n", vga);
-    }
 
     cpuid_info();
 

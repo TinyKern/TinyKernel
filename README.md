@@ -5,8 +5,8 @@
 [![Issues Closed](https://img.shields.io/github/issues-search/TinyKern/TinyKernel?color=red&label=Issues%20Closed&query=is%3Aclosed)](https://github.com/TinyKern/TinyKernel/issues)
 [![License](https://img.shields.io/github/license/TinyKern/TinyKernel)](https://github.com/TinyKern/TinyKernel/blob/0.1.3/LICENSE)
 [![Tag](https://img.shields.io/github/v/tag/TinyKern/TinyKernel)](https://github.com/TinyKern/TinyKernel/releases)
-[![CodeQuality](https://www.code-inspector.com/project/26723/score/svg)](https://github.com/TinyKern/TinyKernel/)
-[![CodeGrade](https://www.code-inspector.com/project/26723/status/svg)](https://github.com/TinyKern/TinyKernel/)
+<!-- [![CodeQuality](https://www.code-inspector.com/project/26723/score/svg)](https://github.com/TinyKern/TinyKernel/) -->
+<!-- [![CodeGrade](https://www.code-inspector.com/project/26723/status/svg)](https://github.com/TinyKern/TinyKernel/) -->
 
 # TinyKernel - 0.1.4
 Tiny Kernel is a work in progress Operating System kernel.
